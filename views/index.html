@@ -1,0 +1,19 @@
+{{define "index"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{{.SiteName}} - Home</title>
+	<link href="/static/css/style.css" rel="stylesheet">
+	<script src="https://unpkg.com/htmx.org@1.9.2"></script>
+</head>
+
+<body>
+		{{template "navbar" .}}
+    <h1>Welcome to Adarsha Secondary School</h1>
+</body>
+
+</html>
+{{end}}
