@@ -1,13 +1,17 @@
 package router
 
 import (
+	"html/template"
+	"log"
 	"net/http"
-	"text/template"
+	"os"
+	"path/filepath"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 )
+
 type Templates struct {
 	templates *template.Template
 }
@@ -41,6 +45,13 @@ func NewRouter(templates *Templates) http.Handler {
 	}))
 
 	r.Get("/", rootHandler(templates))
-	r.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
+	cwd, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	staticDir := filepath.Join(cwd, "static")
+	log.Println("Serving static files from:", staticDir)
+
+	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir(staticDir))))
 	return r
 }

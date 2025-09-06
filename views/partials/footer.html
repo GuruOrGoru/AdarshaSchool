@@ -1,0 +1,407 @@
+{{define "footer"}}
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>WHERE TO START</h4>
+      <ul>
+        <li><a href="/admissions" hx-boost="true">Admissions</a></li>
+        <li><a href="/academics" hx-boost="true">Majors & Minors</a></li>
+        <li><a href="/visit" hx-boost="true">Schedule a Visit</a></li>
+        <li><a href="/affordability" hx-boost="true">Affordability</a></li>
+        <li><a href="/apply" hx-boost="true">Apply to {{.SiteName}}</a></li>
+        <li><a href="/schools" hx-boost="true">College & Schools</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+			<h4>GET TO KNOW {{.SiteName}}</h4>
+      <ul>
+        <li><a href="/about" hx-boost="true">About {{.SiteName}}</a></li>
+        <li><a href="/campus-life" hx-boost="true">Campus Life</a></li>
+        <li><a href="/athletics" hx-boost="true">Athletics</a></li>
+        <li><a href="/visitor-info" hx-boost="true">Visitor Information</a></li>
+        <li><a href="/downtown" hx-boost="true">{{.SiteName}} Downtown</a></li>
+        <li><a href="/experience" hx-boost="true">Experience {{.SiteName}}</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h4>RESOURCES</h4>
+      <ul>
+        <li><a href="/hr" hx-boost="true">Human Resources</a></li>
+        <li><a href="/events" hx-boost="true">Event Calendar</a></li>
+        <li><a href="/libraries" hx-boost="true">Libraries</a></li>
+        <li><a href="/wellbeing" hx-boost="true">Wellbeing</a></li>
+        <li><a href="/campus-map" hx-boost="true">Campus Map</a></li>
+        <li><a href="/news" hx-boost="true">News & Media</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section quick-links">
+      <div class="quick-link-btn">
+        <a href="/work" class="btn-secondary" hx-boost="true">WORK AT {{.SiteName}}</a>
+      </div>
+      <div class="quick-link-btn">
+        <a href="/directories" class="btn-secondary" hx-boost="true">DIRECTORIES</a>
+      </div>
+      <div class="quick-link-btn">
+        <a href="/contact" class="btn-secondary" hx-boost="true">CONTACT</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-giving">
+    <div class="giving-section">
+      <div class="giving-card">
+        <div class="giving-image">
+          <img src="/static/images/support-bg.jpg" alt="Support {{.SiteName}}" loading="lazy">
+        </div>
+        <div class="giving-content">
+          <h3>Support {{.SiteName}}</h3>
+          <p>A gift to the {{.SiteName}} Fund supports student needs immediately.</p>
+          <a href="/give" class="btn-primary" hx-boost="true">GIVE NOW</a>
+        </div>
+      </div>
+      
+      <div class="giving-card">
+        <div class="giving-image">
+          <div class="giving-badge">
+            <span class="badge-text">{{.SiteName}}<br>GIVING<br>SOCIETIES</span>
+          </div>
+        </div>
+        <div class="giving-content">
+          <h3>{{.SiteName}} Giving Societies</h3>
+          <p>Where the most loyal {{.SiteName}} supporters belong.</p>
+          <a href="/giving-societies" class="btn-primary" hx-boost="true">JOIN TODAY</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <div class="footer-logo">
+        <img src="/static/images/logo-white.svg" alt="{{.SiteName}}" class="university-logo">
+        <div class="university-info">
+          <p>1834 {{.SiteName}} Road, Winston-Salem, NC 27109</p>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <a href="/affiliates" hx-boost="true">Affiliates</a>
+        <a href="/privacy" hx-boost="true">Privacy</a>
+        <a href="/emergency" hx-boost="true">Emergency</a>
+        <a href="/non-discrimination" hx-boost="true">Non-Discrimination</a>
+        <a href="/ethics" hx-boost="true">Ethics</a>
+        <a href="/hotline" hx-boost="true">Hotline</a>
+      </div>
+      
+      <div class="social-links">
+        <a href="#" aria-label="Facebook" hx-boost="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Twitter" hx-boost="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Instagram" hx-boost="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background-color: #2c2c2c;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.footer-section h4 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #ffffff;
+}
+
+.quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quick-link-btn .btn-secondary {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #555555;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.quick-link-btn .btn-secondary:hover {
+  background-color: #666666;
+}
+
+.footer-giving {
+  background-color: #333333;
+  padding: 40px 20px;
+}
+
+.giving-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+}
+
+.giving-card {
+  display: flex;
+  background-color: #404040;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.giving-image {
+  flex: 1;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  min-height: 200px;
+}
+
+.giving-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.giving-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #b8860b, #daa520);
+  color: #000000;
+}
+
+.badge-text {
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: 1px;
+}
+
+.giving-content {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.giving-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.giving-content p {
+  color: #cccccc;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #daa520;
+  color: #000000;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  align-self: flex-start;
+}
+
+.btn-primary:hover {
+  background-color: #b8860b;
+}
+
+.footer-bottom {
+  background-color: #1a1a1a;
+  padding: 30px 20px;
+}
+
+.footer-bottom-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.university-logo {
+  height: 40px;
+  width: auto;
+}
+
+.university-info p {
+  color: #cccccc;
+  font-size: 12px;
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  color: #cccccc;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #daa520;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 40px 20px 30px;
+  }
+  
+  .giving-section {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .giving-card {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .giving-image {
+    min-height: 150px;
+  }
+  
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .footer-logo {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .footer-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-links {
+    gap: 10px;
+  }
+  
+  .quick-link-btn .btn-secondary {
+    padding: 10px 20px;
+    font-size: 11px;
+  }
+  
+  .giving-content {
+    padding: 20px;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+</style>
+{{end}}

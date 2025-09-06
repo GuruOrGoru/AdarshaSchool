@@ -15,7 +15,7 @@ func rootHandler(templates *Templates) http.HandlerFunc {
 			SiteName: "Adarsha Secondary School",
 		}
 		log.Println("Attempting to render index.html")
-		err := templates.Render(w, "index.html", data)
+		err := templates.Render(w, "index", data)
 		if err != nil {
 			log.Printf("Error rendering template: %v", err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
