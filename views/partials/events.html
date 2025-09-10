@@ -1,0 +1,20 @@
+{{define "events"}}
+<div class="events-section">
+	<div class="container">
+		<h2 class="section-title">Ongoing Events</h2>
+
+		<div class="events-grid">
+			{{range .Events}}
+			<div class="events-item">
+				{{if .ImageURL}}<img src="{{.ImageURL}}" alt="{{.Title}}" class="events-image">{{end}}
+				<div class="events-content">
+					<h3 class="events-title">{{.Title}} - {{.Date}}</h3>
+					<p class="events-excerpt">{{.Description}}</p>
+					<a href="#" class="read-more">Read More</a>
+				</div>
+			</div>
+			{{end}}
+		</div>
+	</div>
+</div>
+{{end}}
