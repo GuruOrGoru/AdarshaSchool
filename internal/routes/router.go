@@ -52,6 +52,8 @@ func NewRouter(templates *Templates) http.Handler {
 	r.Get("/vacancies", getVacanciesHandler(templates))
 	r.Get("/events", getEventsHandler(templates))
 
+	r.Post("/news", postNewsHandler(templates))
+
 	r.Get("/about", createSimplePageHandler(templates, "about"))
 	r.Get("/academics", createSimplePageHandler(templates, "academics"))
 	r.Get("/academics/graduate", createSimplePageHandler(templates, "academics/graduate"))
@@ -100,7 +102,11 @@ func NewRouter(templates *Templates) http.Handler {
 	}
 	staticDir := filepath.Join(cwd, "static")
 	log.Println("Serving static files from:", staticDir)
-
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir(staticDir))))
+
+	uploadsDir := filepath.Join(cwd, "uploads")
+	log.Println("Serving uploaded files from:", uploadsDir)
+	r.Handle("/uploads/*", http.StripPrefix("/uploads/", http.FileServer(http.Dir(uploadsDir))))
+
 	return r
 }
