@@ -5,54 +5,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adarsha University</title>
+    <title>Contact Us - Adarsha Secondary School</title>
     <link rel="icon" href="/static/favicon.ico" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: url("/static/images/bg-for-about.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
         }
 
         .container {
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 40px auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            padding: 40px;
+            background: #2c3e50;
+            color: white;
+        }
+
+        .contact-form {
+            padding: 40px;
         }
 
         h1 {
-            color: #333;
-            font-family: 'Georgia', serif;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+        }
+
+        .info-item h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .info-item p {
+            margin: 5px 0;
+            color: #ecf0f1;
+        }
+
+        .form-group {
             margin-bottom: 20px;
         }
 
-        p {
-            color: #555;
-            line-height: 1.6;
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+            font-family: inherit;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #2980b9;
+        }
+
+        .map-container {
+            margin-top: 40px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                margin: 20px;
+            }
         }
     </style>
 </head>
 
+    </style>
+</head>
+
 <body>
-    <nav>
-        {{template "navbar-partial" .}}
-    </nav>
+    <nav>{{template "navbar-partial" .}}</nav>
 
     <main>
         <div class="container">
-            <h1>Contact Us</h1>
-            <p>Reach out to us for any inquiries or assistance.</p>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2 style="color: white; margin-bottom: 30px;">Get in Touch</h2>
+
+                    <div class="info-item">
+                        <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                        <p>Biratnagar-1, Morang, Nepal</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3><i class="fas fa-phone"></i> Phone</h3>
+                        <p>+977-21-522647</p>
+                        <p>+977-9852074408</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3><i class="fas fa-envelope"></i> Email</h3>
+                        <p>adarshavidyala1986@gmail.com</p>
+                        <p>info@adarshaschool.edu.np</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3><i class="fas fa-clock"></i> Office Hours</h3>
+                        <p>Sunday - Friday: 10:00 AM - 5:00 PM</p>
+                        <p>Saturday: Closed</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2>Send us a Message</h2>
+                    <form action="/contact" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572.3040298135087!2d87.27111231503471!3d26.45881998332946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef744377e9ae61%3A0x8f68f4e646935001!2sAdarsha%20Secondary%20School!5e0!3m2!1sen!2snp!4v1652846247750!5m2!1sen!2snp"
+                    width="100%"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy">
+                </iframe>
+            </div>
         </div>
     </main>
 
-    <footer>
-        {{template "footer-partial" .}}
-    </footer>
+    <footer>{{template "footer-partial" .}}</footer>
 </body>
-
 </html>
 {{end}}

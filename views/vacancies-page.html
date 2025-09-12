@@ -1,80 +1,160 @@
 {{define "vacancies-page"}}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{{.SiteName}} - Vacancies</title>
+        <link rel="icon" href="/static/favicon.ico" type="image/jpeg" />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Adarsha University - Vacancies</title>
-	<link rel="icon" href="/static/favicon.ico" type="image/jpeg">
-	<script src="https://unpkg.com/htmx.org@1.9.2"></script>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-			background-color: #f4f4f4;
-		}
+            body {
+                font-family: "Arial", "Helvetica Neue", sans-serif;
+                background-color: #ffffff;
+                color: #333333;
+                line-height: 1.6;
+            }
 
-		.container {
-			max-width: 1200px;
-			margin: 20px auto;
-			padding: 20px;
-			background-color: #fff;
-			border-radius: 8px;
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-		}
+            main {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
 
-		h1 {
-			color: #333;
-			font-family: 'Georgia', serif;
-			margin-bottom: 20px;
-		}
+            .vacancies-section {
+                padding: 60px 0;
+            }
 
-		p {
-			color: #555;
-			line-height: 1.6;
-		}
-	</style>
-</head>
+            .section-title {
+                font-size: 2.75rem;
+                font-weight: 700;
+                color: #1a1a1a;
+                text-align: center;
+                margin-bottom: 50px;
+                letter-spacing: -0.5px;
+            }
 
-<body>
-	<nav>
-		{{template "navbar-partial" .}}
-	</nav>
+            .vacancies-grid {
+                display: grid;
+                gap: 0;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
 
-	<main>
-		<h1>Upload Vacancies</h1>
+            .vacancies-item {
+                background: white;
+                border-bottom: 1px solid #e9ecef;
+                transition: background-color 0.2s;
+                display: flex;
+                align-items: flex-start;
+                padding: 40px;
+            }
 
-			<form hx-post="/vacancies" hx-target=".vacancies-grid" hx-swap="afterbegin" hx-on="htmx:afterRequest: document.getElementById('response').innerText = 'Vacancies uploaded successfully!'; this.reset();" hx-encoding="multipart/form-data" enctype="multipart/form-data" method="post">	
-			<label for="title">Title:</label><br>
-			<input type="text" name="title" id="title" required><br><br>
+            .vacancies-item:hover {
+                background: #f8f9fa;
+            }
 
-			<label for="description">Description:</label><br>
-			<textarea name="description" id="description" required></textarea><br><br>
+            .vacancies-item:last-child {
+                border-bottom: none;
+            }
 
-			<label for="image">Image:</label><br>
-			<input type="file" name="image" id="image" accept="image/*"><br><br>
+            .vacancies-image {
+                width: 280px;
+                height: 200px;
+                object-fit: cover;
+                margin-right: 40px;
+                flex-shrink: 0;
+            }
 
-			<button type="submit">Upload Vacancies</button>
-		</form>
+            .vacancies-content {
+                flex: 1;
+            }
 
-		<div id="response" style="margin-top: 20px; color: green;"></div>
-		<div class="vacancies-section">
-			<div class="container">
-				<h2 class="section-title">Vacancies: Become a member</h2>
-				<div class="vacancies-grid">
-						{{template "vacancies-partial" .}}
-				</div>
-			</div>
-		</div>
+            .vacancies-title {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #1a1a1a;
+                margin-bottom: 15px;
+                line-height: 1.3;
+                letter-spacing: -0.3px;
+            }
 
-	</main>
+            .vacancies-excerpt {
+                color: #555555;
+                font-size: 1.1rem;
+                line-height: 1.7;
+                margin-bottom: 20px;
+            }
 
-	<footer>
-		{{template "footer-partial" .}}
-	</footer>
-</body>
+            .read-more {
+                color: #000000;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                border-bottom: 2px solid #000000;
+                padding-bottom: 2px;
+                transition: all 0.2s;
+            }
 
+            .read-more:hover {
+                color: #666666;
+                border-bottom-color: #666666;
+            }
+
+            @media (max-width: 768px) {
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .vacancies-item {
+                    flex-direction: column;
+                    padding: 30px 20px;
+                }
+
+                .vacancies-image {
+                    width: 100%;
+                    height: 220px;
+                    margin-right: 0;
+                    margin-bottom: 20px;
+                }
+
+                .vacancies-title {
+                    font-size: 1.5rem;
+                }
+
+                .vacancies-excerpt {
+                    font-size: 1rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .vacancies-item {
+                    padding: 20px 15px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        {{template "navbar-partial" .}}
+
+        <main>
+            <div class="vacancies-section">
+                <h2 class="section-title">Career Opportunities</h2>
+                <div class="vacancies-grid">
+                    {{template "vacancies-partial" .}}
+                </div>
+            </div>
+        </main>
+
+        {{template "footer-partial" .}}
+    </body>
 </html>
 {{end}}

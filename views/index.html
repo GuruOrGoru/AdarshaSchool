@@ -1,28 +1,30 @@
 {{define "index"}}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{{.SiteName}}</title>
+        <link href="css/style.css" rel="stylesheet" />
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{{.SiteName}}</title>
-	<link href="css/style.css" rel="stylesheet">
-	<link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-</head>
-
-<body>
-	<nav>
-		{{template "navbar-partial" .}}
-	</nav>
-	<main>
-		{{template "home-body-video" .}}
-		{{template "home-body-description" .}}
-	</main>
-	<footer>
-		{{template "footer-partial" .}}
-	</footer>
-</body>
-
+    <body>
+        <nav>{{template "navbar-partial" .}}</nav>
+        <main>
+            {{template "home-body-video" .}} {{template "home-body-description"
+            .}}
+        </main>
+        <footer>{{template "footer-partial" .}}</footer>
+    </body>
 </html>
 
 {{end}}

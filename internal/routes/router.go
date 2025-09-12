@@ -51,10 +51,17 @@ func NewRouter(templates *Templates) http.Handler {
 	r.Get("/news", getNewsHandler(templates))
 	r.Get("/vacancies", getVacanciesHandler(templates))
 	r.Get("/events", getEventsHandler(templates))
+	r.Get("/login", loginHandler(templates))
+	
+	r.Group(func(r chi.Router) {
+		r.Use(adminOnly)
+		r.Get("/dashboard", dashboardHandler(templates))
+	})
 
 	r.Post("/news", postNewsHandler(templates))
 	r.Post("/events", postEventHandler(templates))
-		r.Post("/vacancies", postVacancyHandler(templates))
+	r.Post("/vacancies", postVacancyHandler(templates))
+	r.Post("/login", loginHandler(templates))
 
 	r.Get("/about", createSimplePageHandler(templates, "about"))
 	r.Get("/academics", createSimplePageHandler(templates, "academics"))
@@ -96,7 +103,6 @@ func NewRouter(templates *Templates) http.Handler {
 	r.Get("/student-life", createSimplePageHandler(templates, "student-life"))
 	r.Get("/visitor-info", createSimplePageHandler(templates, "visitor-info"))
 	r.Get("/wellbeing", createSimplePageHandler(templates, "wellbeing"))
-	r.Get("/login", createSimplePageHandler(templates, "login"))
 
 	cwd, err := os.Getwd()
 	if err != nil {

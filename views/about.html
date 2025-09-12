@@ -1,58 +1,249 @@
 {{define "about"}}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>About Us - Adarsha Secondary School</title>
+        <link rel="icon" href="/static/favicon.ico" type="image/jpeg" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: "Poppins", sans-serif;
+                margin: 0;
+                padding: 0;
+                background: url("/static/images/bg-for-about.jpg") no-repeat
+                    center center fixed;
+                background-size: cover;
+                color: #333;
+                line-height: 1.6;
+            }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adarsha University</title>
-    <link rel="icon" href="/static/favicon.ico" type="image/jpeg">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+            .hero {
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 100px 0;
+                text-align: center;
+                margin-bottom: 40px;
+            }
 
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
+            .hero h1 {
+                font-size: 3em;
+                margin: 0;
+                padding: 0;
+            }
 
-        h1 {
-            color: #333;
-            font-family: 'Georgia', serif;
-            margin-bottom: 20px;
-        }
+            .hero p {
+                font-size: 1.2em;
+                margin-top: 20px;
+            }
 
-        p {
-            color: #555;
-            line-height: 1.6;
-        }
-    </style>
-</head>
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: rgba(255, 255, 255, 0.95);
+                border-radius: 8px;
+                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            }
 
-<body>
-    <nav>
-        {{template "navbar-partial" .}}
-    </nav>
+            .section {
+                margin-bottom: 40px;
+                padding: 20px;
+                border-radius: 8px;
+                background: white;
+            }
 
-    <main>
-        <div class="container">
-            <h1>About {{.SiteName}}</h1>
-            <p>Learn about our mission, vision, and values.</p>
+            h2 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+
+            .stat-box {
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                margin: 10px 0;
+                display: inline-block;
+                width: calc(33.33% - 20px);
+                text-align: center;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            }
+
+            .stat-box h3 {
+                color: #3498db;
+                margin: 0;
+            }
+
+            .values {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+            .value-item {
+                flex: 1;
+                min-width: 200px;
+                padding: 20px;
+                background: #f8f9fa;
+                border-radius: 8px;
+                text-align: center;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 12px 24px;
+                background: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background 0.3s;
+            }
+
+            .btn:hover {
+                background: #2980b9;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>{{template "navbar-partial" .}}</nav>
+
+        <div class="hero">
+            <div class="container">
+                <h1>About Adarsha Secondary School</h1>
+                <p>Illuminating Minds Since 1930</p>
+            </div>
         </div>
-    </main>
 
-    <footer>
-        {{template "footer-partial" .}}
-    </footer>
-</body>
+        <main>
+            <div class="container">
+                <div class="section">
+                    <div class="stat-box">
+                        <h3>Est. 1930</h3>
+                        <p>Years of Excellence</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>2654+</h3>
+                        <p>Students</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>6</h3>
+                        <p>Academic Programs</p>
+                    </div>
+                </div>
 
+                <div class="section">
+                    <h2>Our Story</h2>
+                    <p>
+                    Established in 1930 AD (1986 BS), Adarsha Secondary School
+                    Morang (आदर्श माध्यमिक विद्यालय, विराटनगर, मोरङ्ग) is a
+                    prestigious community-based educational institution located
+                    in Biratnagar, Morang, Nepal.
+                </p>
+
+                <h2>Our Legacy</h2>
+                <p>
+                    As the first and finest educational institution in this
+                    area, Adarsha School Biratnagar has been illuminating lives
+                    through education for generations. We have proudly produced
+                    numerous distinguished professionals including expert
+                    industrialists, politicians, administrators, and literary
+                    figures who contribute significantly to our nation's
+                    development.
+                </p>
+
+                <h2>Academic Excellence</h2>
+                <p>
+                    We are affiliated with the National Examination Board (NEB)
+                    and approved by the Ministry of Education. Our comprehensive
+                    educational programs range from PlayGroup to Grade 10,
+                    complemented by plus two programs in Management, Education,
+                    and Science streams.
+                </p>
+
+                <h2>Technical Education</h2>
+                <p>We also offer specialized technical programs including:</p>
+                <ul>
+                    <li>Junior Computer Technician (15 months program)</li>
+                    <li>Diploma in Computer Engineering (CTEVT affiliated)</li>
+                    <li>Diploma in Civil Engineering</li>
+                </ul>
+
+                <h2>Our Commitment</h2>
+                <p>
+                    At Adarsha Secondary School, we maintain moderate fee
+                    structures and provide scholarship schemes for financially
+                    disadvantaged and deserving students. Our commitment to
+                    quality education is reinforced by our expert leadership and
+                    continuous improvement in both physical infrastructure and
+                    educational standards.
+                </p>
+
+                <div class="section">
+                    <h2>Our Values</h2>
+                    <div class="values">
+                        <div class="value-item">
+                            <h3>Excellence</h3>
+                            <p>Striving for academic and personal excellence in everything we do</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Innovation</h3>
+                            <p>Embracing modern teaching methods and technology</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Inclusivity</h3>
+                            <p>Providing quality education accessible to all</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Campus Facilities</h2>
+                    <div class="values">
+                        <div class="value-item">
+                            <h3>Academic</h3>
+                            <ul>
+                                <li>Modern Classrooms</li>
+                                <li>Science Labs</li>
+                                <li>Computer Labs</li>
+                                <li>Library</li>
+                            </ul>
+                        </div>
+                        <div class="value-item">
+                            <h3>Sports & Recreation</h3>
+                            <ul>
+                                <li>Sports Ground</li>
+                                <li>Indoor Games</li>
+                                <li>Cafeteria</li>
+                                <li>Student Lounges</li>
+                            </ul>
+                        </div>
+                        <div class="value-item">
+                            <h3>Infrastructure</h3>
+                            <ul>
+                                <li>Conference Hall</li>
+                                <li>Multimedia Room</li>
+                                <li>Transportation</li>
+                                <li>Medical Room</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" style="text-align: center;">
+                    <h2>Join Our Community</h2>
+                    <p>Take the first step towards excellence in education</p>
+                    <a href="/admissions" class="btn">Explore Admissions</a>
+                </div>
+            </div>
+        </main>
+
+        <footer>{{template "footer-partial" .}}</footer>
+    </body>
 </html>
 {{end}}

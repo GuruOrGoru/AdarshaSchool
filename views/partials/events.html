@@ -1,15 +1,13 @@
-{{define "events-partial"}}
-{{range .Events}}
+{{define "events-partial"}} {{range .Events}}
 <div class="event-item">
-	{{if .ImageURL}}
-	<img src="{{.ImageURL}}" alt="{{.Title}}" class="event-image">
-	{{end}}
-	<div class="event-content">
-		<h3 class="event-title">{{.Title}}</h3>
-		<h5 class="event-date">{{.Date}}</h5>
-		<p class="event-excerpt">{{.Description}}</p>
-		<a href="#" class="read-more">Read More</a>
-	</div>
+    {{if .ImageURL}}
+    <img src="{{.ImageURL}}" alt="{{.Title}}" class="event-image" />
+    {{end}}
+    <div class="event-content">
+        <h3 class="event-title">{{.Title}}</h3>
+        <h5 class="event-date">{{.Date}}</h5>
+        <p class="event-excerpt">{{.Description}}</p>
+        <a href="#" class="read-more">Learn More</a>
+    </div>
 </div>
-{{end}}
-{{end}}
+{{end}} {{end}}

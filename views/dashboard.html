@@ -1,0 +1,488 @@
+{{define "dashboard"}}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Dashboard | {{.SiteName}}</title>
+        <script
+            src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+            defer
+        ></script>
+        <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --primary: #d4af37;
+                --primary-dark: #b8860b;
+                --dark: #2c2c2c;
+                --light: #f8f8f8;
+                --white: #ffffff;
+                --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                --radius: 8px;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body {
+                background: var(--light);
+                color: var(--dark);
+                line-height: 1.6;
+            }
+
+            .container {
+                display: flex;
+                min-height: 100vh;
+            }
+
+            .sidebar {
+                width: 250px;
+                background: var(--dark);
+                padding: 2rem;
+                position: fixed;
+                height: 100vh;
+            }
+
+            .logo {
+                color: var(--primary);
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-bottom: 2rem;
+                display: block;
+                text-align: center;
+            }
+
+            .nav-links {
+                list-style: none;
+            }
+
+            .nav-links a {
+                color: var(--white);
+                text-decoration: none;
+                padding: 0.75rem 1rem;
+                display: block;
+                margin: 0.5rem 0;
+                border-radius: var(--radius);
+                transition: background 0.3s;
+            }
+
+            .nav-links a:hover,
+            .nav-links a.active {
+                background: var(--primary);
+            }
+
+            .main-content {
+                flex: 1;
+                margin-left: 250px;
+                padding: 2rem;
+            }
+
+            .section {
+                background: var(--white);
+                border-radius: var(--radius);
+                padding: 2rem;
+                margin-bottom: 2rem;
+                box-shadow: var(--shadow);
+            }
+
+            .section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.5rem 1rem;
+                border: none;
+                border-radius: var(--radius);
+                cursor: pointer;
+                font-weight: 600;
+                transition: background 0.3s;
+            }
+
+            .btn-primary {
+                background: var(--primary);
+                color: var(--white);
+            }
+
+            .btn-primary:hover {
+                background: var(--primary-dark);
+            }
+
+            .form {
+                display: grid;
+                gap: 1rem;
+            }
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .form-group label {
+                font-weight: 600;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.75rem;
+                border: 1px solid #ddd;
+                border-radius: var(--radius);
+                font-size: 1rem;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .card {
+                background: var(--white);
+                border-radius: var(--radius);
+                overflow: hidden;
+                box-shadow: var(--shadow);
+            }
+
+            .card-img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .card-title {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .card-actions {
+                display: flex;
+                justify-content: flex-end;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .btn-icon {
+                padding: 0.5rem;
+                border-radius: 50%;
+                background: var(--light);
+            }
+
+            .btn-icon:hover {
+                background: #ddd;
+            }
+
+            @media (max-width: 768px) {
+                .sidebar {
+                    width: 60px;
+                    padding: 1rem;
+                }
+
+                .logo span {
+                    display: none;
+                }
+
+                .nav-links span {
+                    display: none;
+                }
+
+                .main-content {
+                    margin-left: 60px;
+                }
+            }
+        </style>
+    </head>
+    <body x-data="{ activeTab: 'news' }">
+        {{template "navbar-partial" .}}
+
+        <div class="container">
+            <aside class="sidebar">
+                <a href="/dashboard" class="logo">
+                    <i class="fas fa-school"></i>
+                    <span>Admin</span>
+                </a>
+                <nav>
+                    <ul class="nav-links">
+                        <li>
+                            <a
+                                href="#"
+                                @click.prevent="activeTab = 'news'"
+                                :class="{ active: activeTab === 'news' }"
+                            >
+                                <i class="fas fa-newspaper"></i>
+                                <span>News</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                @click.prevent="activeTab = 'events'"
+                                :class="{ active: activeTab === 'events' }"
+                            >
+                                <i class="fas fa-calendar"></i>
+                                <span>Events</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                @click.prevent="activeTab = 'vacancies'"
+                                :class="{ active: activeTab === 'vacancies' }"
+                            >
+                                <i class="fas fa-briefcase"></i>
+                                <span>Vacancies</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                <!-- News Section -->
+                <section x-show="activeTab === 'news'" class="section">
+                    <div class="section-header">
+                        <h2>Manage News</h2>
+                        <button
+                            class="btn btn-primary"
+                            @click="$refs.newsForm.classList.toggle('hidden')"
+                        >
+                            <i class="fas fa-plus"></i> Add News
+                        </button>
+                    </div>
+
+                    <form
+                        x-ref="newsForm"
+                        class="form hidden"
+                        hx-post="/news"
+                        hx-encoding="multipart/form-data"
+                        hx-target="#news-list"
+                    >
+                        <div class="form-group">
+                            <label for="newsTitle">Title</label>
+                            <input
+                                type="text"
+                                id="newsTitle"
+                                name="title"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="newsDescription">Description</label>
+                            <textarea
+                                id="newsDescription"
+                                name="description"
+                                rows="4"
+                                required
+                            ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="newsImage">Image</label>
+                            <input
+                                type="file"
+                                id="newsImage"
+                                name="image"
+                                accept="image/*"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="news-list" class="grid">
+                        {{range .News}}
+                        <div class="card">
+                            {{if .ImageURL}}
+                            <img
+                                src="{{.ImageURL}}"
+                                alt="{{.Title}}"
+                                class="card-img"
+                            />
+                            {{end}}
+                            <div class="card-body">
+                                <h3 class="card-title">{{.Title}}</h3>
+                                <p>{{.Description}}</p>
+                            </div>
+                        </div>
+                        {{end}}
+                    </div>
+                </section>
+
+                <!-- Events Section -->
+                <section x-show="activeTab === 'events'" class="section">
+                    <div class="section-header">
+                        <h2>Manage Events</h2>
+                        <button
+                            class="btn btn-primary"
+                            @click="$refs.eventsForm.classList.toggle('hidden')"
+                        >
+                            <i class="fas fa-plus"></i> Add Event
+                        </button>
+                    </div>
+
+                    <form
+                        x-ref="eventsForm"
+                        class="form hidden"
+                        hx-post="/events"
+                        hx-encoding="multipart/form-data"
+                        hx-target="#events-list"
+                    >
+                        <div class="form-group">
+                            <label for="eventTitle">Title</label>
+                            <input
+                                type="text"
+                                id="eventTitle"
+                                name="title"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDescription">Description</label>
+                            <textarea
+                                id="eventDescription"
+                                name="description"
+                                rows="4"
+                                required
+                            ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDate">Date</label>
+                            <input
+                                type="date"
+                                id="eventDate"
+                                name="date"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="eventImage">Image</label>
+                            <input
+                                type="file"
+                                id="eventImage"
+                                name="image"
+                                accept="image/*"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="events-list" class="grid">
+                        {{range .Events}}
+                        <div class="card">
+                            {{if .ImageURL}}
+                            <img
+                                src="{{.ImageURL}}"
+                                alt="{{.Title}}"
+                                class="card-img"
+                            />
+                            {{end}}
+                            <div class="card-body">
+                                <h3 class="card-title">{{.Title}}</h3>
+                                <p>{{.Description}}</p>
+                                <p><strong>Date:</strong> {{.Date}}</p>
+                            </div>
+                        </div>
+                        {{end}}
+                    </div>
+                </section>
+
+                <!-- Vacancies Section -->
+                <section x-show="activeTab === 'vacancies'" class="section">
+                    <div class="section-header">
+                        <h2>Manage Vacancies</h2>
+                        <button
+                            class="btn btn-primary"
+                            @click="$refs.vacanciesForm.classList.toggle('hidden')"
+                        >
+                            <i class="fas fa-plus"></i> Add Vacancy
+                        </button>
+                    </div>
+
+                    <form
+                        x-ref="vacanciesForm"
+                        class="form hidden"
+                        hx-post="/vacancies"
+                        hx-encoding="multipart/form-data"
+                        hx-target="#vacancies-list"
+                    >
+                        <div class="form-group">
+                            <label for="vacancyTitle">Title</label>
+                            <input
+                                type="text"
+                                id="vacancyTitle"
+                                name="title"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="vacancyDescription">Description</label>
+                            <textarea
+                                id="vacancyDescription"
+                                name="description"
+                                rows="4"
+                                required
+                            ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="vacancyImage">Image</label>
+                            <input
+                                type="file"
+                                id="vacancyImage"
+                                name="image"
+                                accept="image/*"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="vacancies-list" class="grid">
+                        {{range .Vacancies}}
+                        <div class="card">
+                            {{if .ImageURL}}
+                            <img
+                                src="{{.ImageURL}}"
+                                alt="{{.Title}}"
+                                class="card-img"
+                            />
+                            {{end}}
+                            <div class="card-body">
+                                <h3 class="card-title">{{.Title}}</h3>
+                                <p>{{.Description}}</p>
+                            </div>
+                        </div>
+                        {{end}}
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        {{template "footer-partial" .}}
+    </body>
+</html>
+{{end}}

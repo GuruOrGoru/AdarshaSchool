@@ -1,14 +1,12 @@
-{{define "news-partial"}}
-{{range .News}}
+{{define "news-partial"}} {{range .News}}
 <div class="news-item">
-	{{if .ImageURL}}
-		<img src="{{.ImageURL}}" class="news-image">
-	{{end}}
-	<div class="news-content">
-		<h3 class="news-title">{{.Title}}</h3>
-		<p class="news-excerpt">{{.Description}}</p>
-		<a href="#" class="read-more">Read More</a>
-	</div>
+    {{if .ImageURL}}
+    <img src="{{.ImageURL}}" class="news-image" alt="{{.Title}}" />
+    {{end}}
+    <div class="news-content">
+        <h3 class="news-title">{{.Title}}</h3>
+        <p class="news-excerpt">{{.Description}}</p>
+        <a href="#" class="read-more">Read More</a>
+    </div>
 </div>
-{{end}}
-{{end}}
+{{end}} {{end}}

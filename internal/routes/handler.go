@@ -16,6 +16,7 @@ type SiteData struct {
 	News      []models.NewsData
 	Events    []models.EventData
 	Vacancies []models.VacanciesData
+	IsAdmin   bool
 }
 
 func rootHandler(templates *Templates) http.HandlerFunc {
@@ -41,6 +42,7 @@ func rootHandler(templates *Templates) http.HandlerFunc {
 			News:      FromModel,
 			Events:    eventsFromModel,
 			Vacancies: vacanciesFromModel,
+			IsAdmin: models.IsLoggedIn(r),
 		}
 		log.Println("Attempting to render index.html")
 		err = templates.Render(w, "index", data)
@@ -345,4 +347,63 @@ func postVacancyHandler(templates *Templates) http.HandlerFunc {
 
 		log.Printf("Vacancies item created: %+v", Item)
 	}
+}
+
+func loginHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case http.MethodGet:
+			err := templates.Render(w, "login", nil)
+			if err != nil {
+				log.Printf("Error rendering login template: %v", err)
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+			}
+			return
+		case http.MethodPost:
+			err := r.ParseForm()
+			if err != nil {
+				http.Error(w, "Failed to parse form: "+err.Error(), http.StatusBadRequest)
+				return
+			}
+			email := r.FormValue("email")
+			password := r.FormValue("password")
+
+			if models.IsAdmin(email, password) {
+				models.SetSession(w)
+				http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
+				return
+			} else {
+				http.Error(w, "Invalid credentials", http.StatusUnauthorized)
+				return
+			}
+		default:
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+	}
+}
+
+func dashboardHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		data := &SiteData{
+			SiteName: "Adarsha Secondary School",
+			IsAdmin:  true,
+		}
+		err := templates.Render(w, "dashboard", data)
+		if err != nil {
+			log.Printf("Error rendering dashboard template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
+}
+
+func adminOnly(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if !models.IsLoggedIn(r) {
+			http.Redirect(w, r, "/login", http.StatusSeeOther)
+			return
+		}
+		next.ServeHTTP(w, r)
+	})
 }

@@ -1,644 +1,414 @@
 {{define "home-body-description"}}
-
-<!-- Hero About Section with Background Image -->
-<div class="about-hero">
-	<div class="hero-overlay">
-		<div class="hero-content">
-			<h1 class="hero-title">Where Excellence Meets Impact</h1>
-			<p class="hero-subtitle">Through interdisciplinary collaboration and community engagement, our students and faculty generate meaningful impact that reaches far beyond our campus. Our commitment to academic excellence establishes us as a global leader in developing solutions that benefit society.</p>
-			<a href="/about" class="hero-cta">Learn More About Our Mission</a>
-		</div>
-	</div>
+<div class="parallax-section hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Adarsha Secondary School</h1>
+        <p class="hero-subtitle">Where Excellence Meets Innovation</p>
+        <div class="hero-cta-container">
+            <a href="/admissions" class="hero-cta">Apply Now</a>
+            <a href="/about" class="hero-cta">Schedule a Visit</a>
+            <a href="/academics" class="hero-cta">Explore Programs</a>
+        </div>
+    </div>
 </div>
 
-<!-- Main Content Layout -->
-<div class="content-wrapper">
-	<!-- Logo Section -->
-	<div class="logo-section">
-		<img src="/static/logo.jpg" alt="{{.SiteName}} Logo">
-	</div>
+<!-- Mission Section with Parallax -->
+<div class="parallax-section mission-section">
+    <div class="section-overlay"></div>
+    <div class="container">
+        <div class="mission-content">
+            <h2>Our Mission</h2>
+            <p>
+                Empowering students with knowledge, skills, and values to become
+                future leaders and innovators.
+            </p>
+        </div>
+    </div>
+</div>
 
-	<!-- News Section -->
-	<div class="news-section">
-		<div class="container">
-			<h2 class="section-title">News & Announcements</h2>
+<!-- Quick Actions Section -->
+<div class="quick-actions-section">
+    <div class="container">
+        <h2 class="section-title">Our Impact</h2>
+        <div class="quick-actions-grid">
+            <div class="quick-action-card">
+                <h3>Academic Excellence</h3>
+                <p>
+                    Discover our comprehensive curriculum and innovative
+                    teaching methods.
+                </p>
+                <a href="/academics" class="action-link">Learn More »</a>
+            </div>
+            <div class="quick-action-card">
+                <h3>Student Life</h3>
+                <p>
+                    Experience a vibrant community with diverse extracurricular
+                    activities.
+                </p>
+                <a href="/student-life" class="action-link">Explore »</a>
+            </div>
+            <div class="quick-action-card">
+                <h3>Admissions</h3>
+                <p>
+                    Start your journey with us. Learn about admissions and
+                    scholarships.
+                </p>
+                <a href="/admissions" class="action-link">Get Started »</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-			<div class="news-grid">
-				{{range .News}}
-				<div class="news-item">
-					{{if .ImageURL}}<img src="{{.ImageURL}}" alt="{{.Title}}" class="news-image">{{end}}
-					<div class="news-content">
-						<h3 class="news-title">{{.Title}}</h3>
-						<p class="news-excerpt">{{.Description}}</p>
-						<a href="#" class="read-more">Read More</a>
-					</div>
-				</div>
-				{{end}}
-			</div>
-		</div>
-	</div>
+<!-- News Section -->
+<div class="news-section">
+    <div class="container">
+        <h2 class="section-title">Latest News</h2>
+        <div class="news-grid">
+            {{range .News}}
+            <div class="news-card">
+                {{if .ImageURL}}
+                <div
+                    class="news-image"
+                    style="background-image: url('{{.ImageURL}}')"
+                ></div>
+                {{end}}
+                <div class="news-content">
+                    <h3>{{.Title}}</h3>
+                    <p>{{.Description}}</p>
+                    <a href="/news" class="read-more">Read More »</a>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</div>
 
-	<!-- Quick Actions Section -->
-	<div class="quick-actions">
-		<div class="container">
-			<div class="action-grid">
-				<div class="action-card">
-					<h3>Admissions</h3>
-					<p>Information for prospective students and families about our admissions process, requirements, and financial aid opportunities.</p>
-					<a href="/admissions" class="card-link">Admissions Information</a>
-				</div>
-				<div class="action-card">
-					<h3>Academic Programs</h3>
-					<p>Explore our comprehensive undergraduate and graduate degree programs across all schools and colleges.</p>
-					<a href="/academics" class="card-link">Browse Academic Programs</a>
-				</div>
-				<div class="action-card">
-					<h3>Research</h3>
-					<p>Discover groundbreaking research opportunities and initiatives across diverse fields of study.</p>
-					<a href="/research" class="card-link">Research Opportunities</a>
-				</div>
-				<div class="action-card">
-					<h3>Student Life</h3>
-					<p>Experience our vibrant campus community through student organizations, athletics, and campus traditions.</p>
-					<a href="/student-life" class="card-link">Campus Life</a>
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- Events Section -->
+<div class="events-section">
+    <div class="container">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="events-grid">
+            {{range .Events}}
+            <div class="event-card">
+                {{if .ImageURL}}
+                <div
+                    class="event-image"
+                    style="background-image: url('{{.ImageURL}}')"
+                ></div>
+                {{end}}
+                <div class="event-content">
+                    <div class="event-date">{{.Date}}</div>
+                    <h3>{{.Title}}</h3>
+                    <p>{{.Description}}</p>
+                    <a href="/events" class="event-link">Learn More »</a>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</div>
 
-	<!-- Our Motto Section -->
-	<div class="motto-section">
-		<div class="container">
-			<h2 class="motto-title">Our Motto Means More</h2>
-			<p class="motto-description">Pro Humanitate (for humanity) invites us to use our ideas, knowledge, talents and compassion on behalf of humanity in all its difference and diversity. This guiding principle shapes everything we do as an academic community.</p>
-			<a href="/about-motto" class="motto-link">Learn More About Our Motto</a>
-		</div>
-	</div>
+<!-- Impact Section with Parallax -->
+<div class="parallax-section impact-section">
+    <div class="section-overlay"></div>
+    <div class="container">
+        <div class="impact-content">
+            <h2>Making an Impact</h2>
+            <p>
+                Through excellence in education, research, and community
+                engagement, we shape the leaders of tomorrow.
+            </p>
+        </div>
+    </div>
+</div>
 
-	<!-- Statistics Section -->
-	<div class="stats-section">
-		<div class="container">
-			<h2 class="stats-title">By the Numbers</h2>
-			<div class="stats-grid">
-				<div class="stat-item">
-					<div class="stat-number">250+</div>
-					<div class="stat-description">Student organizations available for you to explore and discover your passion. Don't find what you're looking for? Apply to charter a new organization.</div>
-					<a href="/student-life" class="stat-link">Explore Student Organizations</a>
-				</div>
-				<div class="stat-item">
-					<div class="stat-number">11:1</div>
-					<div class="stat-description">Student-to-faculty ratio ensures personalized attention. More than half of our undergraduate classes have fewer than 20 students. Only 1% have more than 50 students.</div>
-					<a href="/academics" class="stat-link">Learn About Class Sizes</a>
-				</div>
-				<div class="stat-item">
-					<div class="stat-number">72%</div>
-					<div class="stat-description">Of undergraduates participate in study abroad programs, many in our academic residential houses located around the world.</div>
-					<a href="/study-abroad" class="stat-link">Study Abroad Programs</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Upcoming Events -->
-	<div class="events-section">
-		<div class="container">
-			<h2 class="section-title">Upcoming Events</h2>
-			<div class="events-list">
-				<div class="event-item">
-					<div class="event-date">March 20, 2024</div>
-					<div class="event-info">
-						<h3>Spring Open House</h3>
-						<p>Join us for campus tours, information sessions, and meetings with faculty, staff, and current students. Registration required.</p>
-					</div>
-				</div>
-				<div class="event-item">
-					<div class="event-date">March 25, 2024</div>
-					<div class="event-info">
-						<h3>Career Fair</h3>
-						<p>Connect with leading employers from various industries. Open to all students and recent alumni. Business attire recommended.</p>
-					</div>
-				</div>
-				<div class="event-item">
-					<div class="event-date">April 2, 2024</div>
-					<div class="event-info">
-						<h3>Academic Excellence Awards Ceremony</h3>
-						<p>Annual celebration recognizing outstanding academic achievements by undergraduate and graduate students across all disciplines.</p>
-					</div>
-				</div>
-				<div class="event-item">
-					<div class="event-date">April 8, 2024</div>
-					<div class="event-info">
-						<h3>Research Symposium</h3>
-						<p>Faculty and student researchers present their latest findings across multiple disciplines. Open to the university community.</p>
-					</div>
-				</div>
-			</div>
-			<div class="events-footer">
-				<a href="/events" class="events-link">View All Events</a>
-			</div>
-		</div>
-	</div>
-
-	<!-- Call to Action Section -->
-	<div class="cta-section">
-		<div class="container">
-			<div class="cta-content">
-				<h2>Take the Next Step</h2>
-				<p>Discover the opportunities that await you at our university</p>
-				<div class="cta-buttons">
-					<a href="/majors" class="cta-button">Explore Majors & Minors</a>
-					<a href="/visit" class="cta-button">Schedule a Campus Visit</a>
-					<a href="/apply" class="cta-button">Apply for Admission</a>
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- Vacancy Section -->
+<div class="vacancy-section">
+    <div class="container">
+        <h2 class="section-title">Career Opportunities</h2>
+        <div class="vacancy-grid">
+            {{range .Vacancies}}
+            <div class="vacancy-card">
+                <div class="vacancy-content">
+                    <h3>{{.Title}}</h3>
+                    <p>{{.Description}}</p>
+                    <a href="/vacancies" class="vacancy-link">View Details »</a>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </div>
 </div>
 
 <style>
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
-
-	body {
-		font-family: Georgia, "Times New Roman", Times, serif;
-		line-height: 1.6;
-		color: #333333;
-		background-color: #ffffff;
-	}
-
-	.container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 20px;
-	}
-
-	/* Hero Section */
-	.about-hero {
-		height: 500px;
-		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-					url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
-		background-size: cover;
-		background-position: center;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		position: relative;
-	}
-
-	.hero-overlay {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0 20px;
-	}
-
-	.hero-content {
-		max-width: 800px;
-		text-align: center;
-		color: white;
-	}
-
-	.hero-title {
-		font-size: 3rem;
-		font-weight: normal;
-		margin-bottom: 20px;
-		letter-spacing: 1px;
-	}
-
-	.hero-subtitle {
-		font-size: 1.2rem;
-		margin-bottom: 30px;
-		line-height: 1.6;
-		font-weight: normal;
-	}
-
-	.hero-cta {
-		display: inline-block;
-		background-color: #8B0000;
-		color: white;
-		text-decoration: none;
-		padding: 15px 30px;
-		font-size: 1rem;
-		font-weight: normal;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		border: none;
-		transition: background-color 0.3s ease;
-	}
-
-	.hero-cta:hover {
-		background-color: #a50000;
-	}
-
-	/* Content Wrapper */
-	.content-wrapper {
-		background-color: white;
-	}
-
-	/* Logo Section */
-	.logo-section {
-		text-align: center;
-		padding: 40px 0;
-		background-color: #f8f8f8;
-		border-bottom: 1px solid #dddddd;
-	}
-
-	.logo-section img {
-		max-width: 200px;
-		height: auto;
-	}
-
-	/* News Section */
-	.news-section {
-		padding: 60px 0;
-		background-color: white;
-	}
-
-	.section-title {
-		font-size: 2.2rem;
-		font-weight: normal;
-		color: #333333;
-		margin-bottom: 40px;
-		text-align: center;
-		border-bottom: 2px solid #8B0000;
-		padding-bottom: 10px;
-		display: inline-block;
-		width: 100%;
-		text-align: center;
-	}
-
-	.news-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-		gap: 40px;
-		margin-top: 40px;
-	}
-
-	.news-item {
-		background: white;
-		border: 1px solid #dddddd;
-	}
-
-	.news-image {
-		width: 100%;
-		height: 200px;
-		object-fit: cover;
-	}
-
-	.news-content {
-		padding: 25px;
-	}
-
-	.news-title {
-		font-size: 1.3rem;
-		font-weight: bold;
-		color: #333333;
-		margin-bottom: 15px;
-		line-height: 1.4;
-	}
-
-	.news-excerpt {
-		color: #666666;
-		font-size: 1rem;
-		line-height: 1.6;
-		margin-bottom: 15px;
-	}
-
-	.read-more {
-		color: #8B0000;
-		text-decoration: underline;
-		font-weight: normal;
-		font-size: 1rem;
-	}
-
-	.read-more:hover {
-		color: #a50000;
-	}
-
-	/* Quick Actions */
-	.quick-actions {
-		padding: 60px 0;
-		background-color: #f8f8f8;
-		border-top: 1px solid #dddddd;
-		border-bottom: 1px solid #dddddd;
-	}
-
-	.action-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		gap: 30px;
-	}
-
-	.action-card {
-		background: white;
-		padding: 30px 25px;
-		border: 1px solid #dddddd;
-	}
-
-	.action-card h3 {
-		font-size: 1.4rem;
-		font-weight: bold;
-		color: #333333;
-		margin-bottom: 15px;
-	}
-
-	.action-card p {
-		color: #666666;
-		margin-bottom: 20px;
-		font-size: 1rem;
-		line-height: 1.6;
-	}
-
-	.card-link {
-		color: #8B0000;
-		text-decoration: underline;
-		font-weight: normal;
-		font-size: 1rem;
-	}
-
-	.card-link:hover {
-		color: #a50000;
-	}
-
-	/* Motto Section */
-	.motto-section {
-		padding: 80px 0;
-		background-color: #8B0000;
-		color: white;
-		text-align: center;
-	}
-
-	.motto-title {
-		font-size: 2.5rem;
-		font-weight: normal;
-		margin-bottom: 25px;
-	}
-
-	.motto-description {
-		font-size: 1.2rem;
-		line-height: 1.7;
-		margin-bottom: 30px;
-		max-width: 900px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.motto-link {
-		color: white;
-		text-decoration: underline;
-		font-weight: normal;
-		font-size: 1.1rem;
-	}
-
-	.motto-link:hover {
-		color: #f0f0f0;
-	}
-
-	/* Statistics Section */
-	.stats-section {
-		padding: 80px 0;
-		background-color: white;
-	}
-
-	.stats-title {
-		font-size: 2.5rem;
-		font-weight: normal;
-		color: #333333;
-		margin-bottom: 50px;
-		text-align: center;
-		border-bottom: 2px solid #8B0000;
-		padding-bottom: 10px;
-		display: inline-block;
-		width: 100%;
-	}
-
-	.stats-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 50px;
-	}
-
-	.stat-item {
-		text-align: center;
-		padding: 30px 20px;
-	}
-
-	.stat-number {
-		font-size: 4rem;
-		font-weight: bold;
-		color: #8B0000;
-		margin-bottom: 20px;
-		display: block;
-	}
-
-	.stat-description {
-		font-size: 1rem;
-		color: #666666;
-		line-height: 1.6;
-		margin-bottom: 20px;
-	}
-
-	.stat-link {
-		color: #8B0000;
-		text-decoration: underline;
-		font-weight: normal;
-		font-size: 1rem;
-	}
-
-	.stat-link:hover {
-		color: #a50000;
-	}
-
-	/* Events Section */
-	.events-section {
-		padding: 60px 0;
-		background-color: #f8f8f8;
-		border-top: 1px solid #dddddd;
-	}
-
-	.events-list {
-		margin-top: 40px;
-	}
-
-	.event-item {
-		display: flex;
-		padding: 25px 0;
-		border-bottom: 1px solid #dddddd;
-	}
-
-	.event-item:last-child {
-		border-bottom: none;
-	}
-
-	.event-date {
-		flex-shrink: 0;
-		width: 120px;
-		font-weight: bold;
-		color: #8B0000;
-		font-size: 1rem;
-		margin-right: 30px;
-	}
-
-	.event-info {
-		flex: 1;
-	}
-
-	.event-info h3 {
-		font-size: 1.2rem;
-		font-weight: bold;
-		color: #333333;
-		margin-bottom: 8px;
-	}
-
-	.event-info p {
-		font-size: 1rem;
-		color: #666666;
-		line-height: 1.5;
-	}
-
-	.events-footer {
-		text-align: center;
-		margin-top: 40px;
-		padding-top: 30px;
-		border-top: 1px solid #dddddd;
-	}
-
-	.events-link {
-		color: #8B0000;
-		text-decoration: underline;
-		font-weight: normal;
-		font-size: 1.1rem;
-	}
-
-	.events-link:hover {
-		color: #a50000;
-	}
-
-	/* CTA Section */
-	.cta-section {
-		padding: 80px 0;
-		background-color: #333333;
-		color: white;
-		text-align: center;
-	}
-
-	.cta-content h2 {
-		font-size: 2.5rem;
-		font-weight: normal;
-		margin-bottom: 20px;
-	}
-
-	.cta-content p {
-		font-size: 1.2rem;
-		margin-bottom: 40px;
-	}
-
-	.cta-buttons {
-		display: flex;
-		justify-content: center;
-		gap: 30px;
-		flex-wrap: wrap;
-	}
-
-	.cta-button {
-		background-color: #8B0000;
-		color: white;
-		padding: 15px 30px;
-		text-decoration: none;
-		font-weight: normal;
-		font-size: 1rem;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		border: none;
-		transition: background-color 0.3s ease;
-	}
-
-	.cta-button:hover {
-		background-color: #a50000;
-	}
-
-	/* Mobile Responsiveness */
-	@media (max-width: 768px) {
-		.hero-title {
-			font-size: 2.2rem;
-		}
-
-		.hero-subtitle {
-			font-size: 1.1rem;
-		}
-
-		.section-title,
-		.stats-title,
-		.motto-title {
-			font-size: 2rem;
-		}
-
-		.cta-content h2 {
-			font-size: 2rem;
-		}
-
-		.cta-buttons {
-			flex-direction: column;
-			align-items: center;
-		}
-
-		.cta-button {
-			width: 280px;
-		}
-
-		.about-hero {
-			height: 400px;
-		}
-
-		.news-grid,
-		.action-grid,
-		.stats-grid {
-			grid-template-columns: 1fr;
-			gap: 30px;
-		}
-
-		.stat-number {
-			font-size: 3rem;
-		}
-
-		.event-item {
-			flex-direction: column;
-		}
-
-		.event-date {
-			width: auto;
-			margin-right: 0;
-			margin-bottom: 10px;
-		}
-
-		.container {
-			padding: 0 15px;
-		}
-	}
-
-	@media (max-width: 480px) {
-		.hero-title {
-			font-size: 1.8rem;
-		}
-
-		.hero-subtitle {
-			font-size: 1rem;
-		}
-
-		.section-title,
-		.stats-title,
-		.motto-title {
-			font-size: 1.6rem;
-		}
-
-		.stat-number {
-			font-size: 2.5rem;
-		}
-	}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Georgia, "Times New Roman", Times, serif;
+        line-height: 1.6;
+        color: #333333;
+        background-color: #ffffff;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    /* Parallax Sections */
+    .parallax-section {
+        position: relative;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        height: 80vh;
+        min-height: 600px;
+        background-image: url("/static/bg-img.jpg");
+    }
+
+    /* Mission Section */
+    .mission-section {
+        height: 60vh;
+        min-height: 400px;
+        background-image: url("/static/bg-img2.jpg");
+    }
+
+    /* Impact Section */
+    .impact-section {
+        height: 60vh;
+        min-height: 400px;
+        background-image: url("/static/bg-img3.jpg");
+    }
+
+    .mission-content,
+    .impact-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        padding: 2rem;
+    }
+
+    .mission-content h2,
+    .impact-content h2 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: white;
+    }
+
+    .mission-content p,
+    .impact-content p {
+        font-size: 1.25rem;
+        line-height: 1.8;
+    }
+
+    .hero-overlay,
+    .section-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        padding: 0 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-cta-container {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-cta {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: #c99700;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: background-color 0.3s;
+    }
+
+    .hero-cta:hover {
+        background-color: #a67d00;
+    }
+
+    /* Common Styles */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 20px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: #333;
+    }
+
+    /* Quick Actions Section */
+    .quick-actions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .quick-action-card {
+        background: #f8f8f8;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .quick-action-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .action-link {
+        color: #c99700;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    /* News Section */
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .news-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .news-content {
+        padding: 1.5rem;
+    }
+
+    /* Events Section */
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .event-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .event-content {
+        padding: 1.5rem;
+    }
+
+    .event-date {
+        color: #c99700;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Vacancy Section */
+    .vacancy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .vacancy-card {
+        background: #f8f8f8;
+        padding: 2rem;
+        border-radius: 8px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .parallax-section {
+            background-attachment: scroll;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+        }
+
+        .container {
+            padding: 2rem 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-cta {
+            width: 100%;
+        }
+
+        .quick-actions-grid,
+        .news-grid,
+        .events-grid,
+        .vacancy-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 {{end}}
