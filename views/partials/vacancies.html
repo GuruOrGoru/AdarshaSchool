@@ -1,20 +1,14 @@
-{{define "vacancies"}}
-<div class="vacancies-section">
-	<div class="container">
-		<h2 class="section-title">Applicable Vacancies</h2>
-
-		<div class="vacancies-grid">
-			{{range .Vacancies}}
-			<div class="vacancies-item">
-				{{if .ImageURL}}<img src="{{.ImageURL}}" alt="{{.Title}}" class="vacancies-image">{{end}}
-				<div class="vacancies-content">
-					<h3 class="vacancies-title">{{.Title}}</h3>
-					<p class="vacancies-excerpt">{{.Description}}</p>
-					<a href="#" class="read-more">Read More</a>
-				</div>
-			</div>
-			{{end}}
-		</div>
+{{define "vacancies-partial"}}
+{{range .Vacancies}}
+<div class="vacancies-item">
+	{{if .ImageURL}}
+		<img src="{{.ImageURL}}" class="vacancies-image">
+	{{end}}
+	<div class="vacancies-content">
+		<h3 class="vacancies-title">{{.Title}}</h3>
+		<p class="vacancies-excerpt">{{.Description}}</p>
+		<a href="#" class="read-more">Read More</a>
 	</div>
 </div>
+{{end}}
 {{end}}

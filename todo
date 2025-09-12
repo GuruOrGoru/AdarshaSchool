@@ -1,0 +1,115 @@
+Add database support for events and 
+
+Got it! You want to **handle `time.Time` fields in Go** when working with **PostgreSQL** and **HTMX**. Let's go step by step.
+
+---
+
+## 1️⃣ Go + PostgreSQL (`time.Time` mapping)
+
+In Go, `time.Time` is the standard way to store dates/times. PostgreSQL has several relevant types:
+
+| Go Type     | Postgres Type                              |
+| ----------- | ------------------------------------------ |
+| `time.Time` | `timestamp`                                |
+| `time.Time` | `timestamp with time zone` (`timestamptz`) |
+| `time.Time` | `date` (if you only want date part)        |
+
+### Example with GORM:
+
+```go
+type News struct {
+    ID          int       `gorm:"primaryKey"`
+    Title       string
+    Description string
+    CreatedAt   time.Time
+}
+```
+
+* `CreatedAt` will map automatically to `timestamp` in PostgreSQL.
+* When inserting, GORM will handle the conversion.
+
+**Insert example:**
+
+```go
+news := News{
+    Title:       "New Event",
+    Description: "Some description",
+    CreatedAt:   time.Now(), // current timestamp
+}
+
+db.Create(&news)
+```
+
+---
+
+## 2️⃣ Formatting `time.Time` for HTMX / HTML
+
+HTMX works with standard HTML forms. So if your form includes a date or datetime input:
+
+```html
+<label for="date">Date:</label>
+<input type="datetime-local" name="date" id="date">
+```
+
+* Go's `time.Time` must be **formatted as `YYYY-MM-DDTHH:MM`** to match `datetime-local`:
+
+```go
+news.CreatedAt.Format("2006-01-02T15:04") // Go's reference date
+```
+
+**Example in a template:**
+
+```go
+<input type="datetime-local" name="createdAt" value="{{.CreatedAt.Format "2006-01-02T15:04" }}">
+```
+
+---
+
+## 3️⃣ Receiving form data
+
+When HTMX posts a form, Go will receive the string. You must parse it back into `time.Time`:
+
+```go
+createdStr := r.FormValue("createdAt")
+createdTime, err := time.Parse("2006-01-02T15:04", createdStr)
+if err != nil {
+    log.Println("Invalid time:", err)
+}
+```
+
+Then store `createdTime` in your DB.
+
+---
+
+## 4️⃣ Returning time to HTMX partial
+
+When rendering HTMX partials with Go templates, you can format the time for display:
+
+```go
+<p>Published on: {{.CreatedAt.Format "Jan 02, 2006 03:04 PM"}}</p>
+```
+
+* HTMX just replaces inner HTML, so formatted strings are fine.
+* No need to send `time.Time` object—just send the string.
+
+---
+
+✅ **Summary Workflow**
+
+1. **Form display**: Format `time.Time` for `datetime-local`.
+2. **Form submission (HTMX POST)**: Parse the string back to `time.Time`.
+3. **DB**: Store using GORM; `time.Time` maps to `timestamp`.
+4. **Render partial**: Format `time.Time` for human-readable display.
+
+---
+
+If you want, I can **give a complete Go + HTMX example** showing:
+
+* Upload news with a `datetime-local` field
+* Store in PostgreSQL
+* Update the news list via HTMX without full page reload
+
+This will tie everything together.
+
+Do you want me to do that?
+

@@ -1,7 +1,8 @@
 {{define "news-partial"}}
 {{range .News}}
 <div class="news-item">
-	{{if .ImageURL}}<img src="{{.ImageURL}}" alt="{{.Title}}" class="news-image">
+	{{if .ImageURL}}
+		<img src="{{.ImageURL}}" class="news-image">
 	{{end}}
 	<div class="news-content">
 		<h3 class="news-title">{{.Title}}</h3>

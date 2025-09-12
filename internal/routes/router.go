@@ -53,6 +53,8 @@ func NewRouter(templates *Templates) http.Handler {
 	r.Get("/events", getEventsHandler(templates))
 
 	r.Post("/news", postNewsHandler(templates))
+	r.Post("/events", postEventHandler(templates))
+		r.Post("/vacancies", postVacancyHandler(templates))
 
 	r.Get("/about", createSimplePageHandler(templates, "about"))
 	r.Get("/academics", createSimplePageHandler(templates, "academics"))
