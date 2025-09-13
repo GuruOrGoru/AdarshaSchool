@@ -12,7 +12,6 @@ RUN go mod download
 
 # Copy the rest of the application source code
 COPY . .
-COPY .env .
 
 # Build the application
 # CGO_ENABLED=0 is important for creating statically linked binaries
