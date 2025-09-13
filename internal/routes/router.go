@@ -60,6 +60,7 @@ func NewRouter(templates *Templates) http.Handler {
 	r.Get("/login", loginHandler(templates))
 	r.Get("/logout", logoutHandler)
 	r.Get("/search", searchHandler(templates))
+	r.Get("/health", healthHandler)
 
 	r.Group(func(r chi.Router) {
 		r.Use(adminOnly)
