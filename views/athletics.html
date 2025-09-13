@@ -1,58 +1,584 @@
 {{define "athletics"}}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adarsha University</title>
-    <link rel="icon" href="/static/favicon.ico" type="image/jpeg">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Athletics - Adarsha Secondary School</title>
+        <link rel="icon" href="/static/favicon.ico" type="image/jpeg" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Crimson+Text:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
     <style>
-        body {
-            font-family: Arial, sans-serif;
+            :root {
+                --wf-black: #000000;
+                --wf-gold: #9e7e38;
+                --wf-dark-gray: #333333;
+                --wf-medium-gray: #666666;
+                --wf-light-gray: #f5f5f5;
+                --wf-white: #ffffff;
+                --wf-blue: #2c5aa0;
+            }
+
+            * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-        }
+                box-sizing: border-box;
+            }
 
-        .container {
+            body {
+                font-family: 'Source Sans Pro', sans-serif;
+                line-height: 1.6;
+                color: var(--wf-dark-gray);
+                background-color: var(--wf-white);
+            }
+
+            /* Parallax Hero Section */
+            .hero-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
+                           url("/static/bg-img9.jpg") center/cover fixed;
+                height: 60vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: var(--wf-white);
+                position: relative;
+            }
+
+            .hero-content h1 {
+                font-family: 'Crimson Text', serif;
+                font-size: 4rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .hero-content p {
+                font-size: 1.25rem;
+                font-weight: 300;
+                opacity: 0.9;
+            }
+
+            .main-container {
             max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
+                margin: 0 auto;
+                padding: 0 20px;
+            }
 
-        h1 {
-            color: #333;
-            font-family: 'Georgia', serif;
-            margin-bottom: 20px;
-        }
+            /* Stats Section with Parallax Background */
+            .stats-banner {
+                background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                           url("/static/bg-img8.jpg") center/cover fixed;
+                color: var(--wf-white);
+                padding: 4rem 0;
+                margin-bottom: 0;
+            }
 
-        p {
-            color: #555;
-            line-height: 1.6;
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .stat-item {
+                padding: 1rem;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .stat-number {
+                font-size: 3rem;
+                font-weight: 700;
+                color: var(--wf-gold);
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+            .stat-label {
+                font-size: 1.1rem;
+                font-weight: 300;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .content-section {
+                margin-bottom: 0;
+                scroll-margin-top: 100px;
+                padding: 4rem 0;
+            }
+
+            /* Alternating background images for sections */
+            .content-section:nth-child(odd) {
+                background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+                           url("/static/bg-img9.jpg") center/cover fixed;
+            }
+
+            .content-section:nth-child(even) {
+                background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                           url("/static/bg-img10.jpg") center/cover fixed;
+                color: var(--wf-white);
+            }
+
+            .content-section:nth-child(even) .section-title {
+                color: var(--wf-white);
+            }
+
+            .content-section:nth-child(even) .section-subtitle {
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-family: 'Crimson Text', serif;
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: var(--wf-black);
+                margin-bottom: 1rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+                color: var(--wf-medium-gray);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .sports-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+
+            .sport-card {
+                background: rgba(255, 255, 255, 0.95);
+                border: 2px solid #e0e0e0;
+                overflow: hidden;
+                transition: border-color 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .content-section:nth-child(even) .sport-card {
+                background: rgba(0, 0, 0, 0.8);
+                border-color: rgba(255, 255, 255, 0.2);
+                color: var(--wf-white);
+            }
+
+            .sport-card:hover {
+                border-color: var(--wf-gold);
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .sport-image {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                background: var(--wf-light-gray);
+            }
+
+            .sport-header {
+                background: var(--wf-black);
+                color: var(--wf-white);
+                padding: 1.5rem;
+            }
+
+            .content-section:nth-child(even) .sport-header {
+                background: var(--wf-gold);
+                color: var(--wf-black);
+            }
+
+            .sport-title {
+                font-size: 1.4rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .sport-subtitle {
+                font-size: 0.9rem;
+                opacity: 0.8;
+                font-weight: 300;
+            }
+
+            .sport-content {
+                padding: 1.5rem;
+            }
+
+            .sport-features {
+                list-style: none;
+            }
+
+            .sport-features li {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                position: relative;
+                padding-left: 1.5rem;
+            }
+
+            .content-section:nth-child(even) .sport-features li {
+                border-bottom-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .sport-features li:before {
+                content: "🏆";
+                position: absolute;
+                left: 0;
+                color: var(--wf-gold);
+                font-weight: bold;
+            }
+
+            .sport-features li:last-child {
+                border-bottom: none;
+            }
+
+            .enrollment-highlight {
+                background: rgba(158, 126, 56, 0.1);
+                padding: 1rem;
+                margin-top: 1rem;
+                text-align: center;
+                font-weight: 600;
+                color: var(--wf-gold);
+                border: 1px solid var(--wf-gold);
+            }
+
+            .content-section:nth-child(even) .enrollment-highlight {
+                background: rgba(158, 126, 56, 0.2);
+                color: var(--wf-gold);
+            }
+
+            /* Final CTA Section with Third Background */
+            .cta-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                           url("/static/bg-img11.jpg") center/cover fixed;
+                color: var(--wf-white);
+                text-align: center;
+                padding: 4rem 2rem;
+                margin-top: 0;
+            }
+
+            .cta-title {
+                font-family: 'Crimson Text', serif;
+                font-size: 2.5rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
+
+            .cta-text {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                opacity: 0.9;
+            }
+
+            .cta-button {
+                display: inline-block;
+                background: var(--wf-gold);
+                color: var(--wf-white);
+                padding: 1rem 2.5rem;
+                text-decoration: none;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: all 0.3s ease;
+                font-size: 0.9rem;
+                border: 2px solid var(--wf-gold);
+            }
+
+            .cta-button:hover {
+                background: transparent;
+                color: var(--wf-gold);
+                border-color: var(--wf-gold);
+            }
+
+            .divider {
+                height: 2px;
+                background: var(--wf-gold);
+                margin: 3rem auto;
+                width: 100px;
+            }
+
+            /* Mobile - Disable parallax */
+            @media (max-width: 768px) {
+                .hero-section,
+                .stats-banner,
+                .content-section:nth-child(odd),
+                .content-section:nth-child(even),
+                .cta-section {
+                    background-attachment: scroll !important;
+                }
+
+                .hero-content h1 {
+                    font-size: 2.5rem;
+                }
+                
+                .sports-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .stats-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .content-section {
+                    padding: 3rem 0;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .hero-content h1 {
+                    font-size: 2rem;
+                }
+                
+                .stats-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .main-container {
+                    padding: 0 15px;
+                }
+
+                .content-section {
+                    padding: 2rem 0;
+                }
         }
     </style>
 </head>
 
 <body>
-    <nav>
-        {{template "navbar-partial" .}}
-    </nav>
+        <nav>{{template "navbar-partial" .}}</nav>
+
+        <!-- Hero Section with Parallax -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Athletics & Sports</h1>
+                <p>Building champions, fostering teamwork, and developing character through sports</p>
+            </div>
+        </section>
+
+        <!-- Stats Banner with Parallax -->
+        <section class="stats-banner">
+            <div class="main-container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Active Athletes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Sports Programs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Championships Won</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">95</span>
+                        <span class="stat-label">Years of Excellence</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     <main>
-        <div class="container">
-            <h1>Athletics</h1>
-            <p>Explore our sports teams, facilities, and athletic achievements.</p>
+            <!-- Team Sports Section -->
+            <section id="team-sports" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Team Sports</h2>
+                        <p class="section-subtitle">Building teamwork, leadership, and competitive spirit through traditional team sports</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="sports-grid">
+                        <div class="sport-card">
+                            <img src="/static/cricket.jpg" alt="Cricket" class="sport-image">
+                            <div class="sport-header">
+                                <h3 class="sport-title">Cricket</h3>
+                                <p class="sport-subtitle">The Gentleman's Game</p>
+                            </div>
+                            <div class="sport-content">
+                                <ul class="sport-features">
+                                    <li>Professional coaching staff</li>
+                                    <li>Modern cricket facilities</li>
+                                    <li>Inter-school tournaments</li>
+                                    <li>National level competitions</li>
+                                    <li>Sports scholarship opportunities</li>
+                                </ul>
+                                <div class="enrollment-highlight">
+                                    Active Players: 45 students
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sport-card">
+                            <img src="/static/volleyball.jpg" alt="Volleyball" class="sport-image">
+                            <div class="sport-header">
+                                <h3 class="sport-title">Volleyball</h3>
+                                <p class="sport-subtitle">Fast-Paced Team Sport</p>
+                            </div>
+                            <div class="sport-content">
+                                <ul class="sport-features">
+                                    <li>Indoor and outdoor courts</li>
+                                    <li>Regular practice sessions</li>
+                                    <li>District level competitions</li>
+                                    <li>Fitness and agility training</li>
+                                    <li>Team building activities</li>
+                                </ul>
+                                <div class="enrollment-highlight">
+                                    Active Players: 32 students
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Individual Sports Section -->
+            <section id="individual-sports" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Individual Sports</h2>
+                        <p class="section-subtitle">Developing focus, precision, and personal excellence through individual athletic pursuits</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="sports-grid">
+                        <div class="sport-card">
+                            <img src="/static/tabletennis.jpg" alt="Table Tennis" class="sport-image">
+                            <div class="sport-header">
+                                <h3 class="sport-title">Table Tennis</h3>
+                                <p class="sport-subtitle">Fast Reflexes & Precision</p>
+                            </div>
+                            <div class="sport-content">
+                                <ul class="sport-features">
+                                    <li>Professional table tennis equipment</li>
+                                    <li>Expert coaching and training</li>
+                                    <li>Regular tournaments and matches</li>
+                                    <li>Mental focus development</li>
+                                    <li>Hand-eye coordination training</li>
+                                </ul>
+                                <div class="enrollment-highlight">
+                                    Active Players: 28 students
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Creative Arts Section -->
+            <section id="creative-arts" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Creative Arts & Expression</h2>
+                        <p class="section-subtitle">Nurturing artistic talents and creative expression through various forms of art and literature</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="sports-grid">
+                        <div class="sport-card">
+                            <img src="/static/poem.jpg" alt="Poetry" class="sport-image">
+                            <div class="sport-header">
+                                <h3 class="sport-title">Poetry & Literature</h3>
+                                <p class="sport-subtitle">Words That Inspire</p>
+                            </div>
+                            <div class="sport-content">
+                                <ul class="sport-features">
+                                    <li>Poetry writing workshops</li>
+                                    <li>Literary competitions</li>
+                                    <li>Creative writing sessions</li>
+                                    <li>Poetry recitation events</li>
+                                    <li>Publication opportunities</li>
+                                </ul>
+                                <div class="enrollment-highlight">
+                                    Active Participants: 35 students
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sport-card">
+                            <img src="/static/essay.jpg" alt="Essay Writing" class="sport-image">
+                            <div class="sport-header">
+                                <h3 class="sport-title">Essay Writing</h3>
+                                <p class="sport-subtitle">Critical Thinking & Expression</p>
+                            </div>
+                            <div class="sport-content">
+                                <ul class="sport-features">
+                                    <li>Structured writing techniques</li>
+                                    <li>Research methodology training</li>
+                                    <li>National essay competitions</li>
+                                    <li>Peer review sessions</li>
+                                    <li>Publication in school magazine</li>
+                                </ul>
+                                <div class="enrollment-highlight">
+                                    Active Participants: 42 students
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sport-card">
+                            <img src="/static/speech.jpg" alt="Public Speaking" class="sport-image">
+                            <div class="sport-header">
+                                <h3 class="sport-title">Public Speaking</h3>
+                                <p class="sport-subtitle">Confidence & Communication</p>
+                            </div>
+                            <div class="sport-content">
+                                <ul class="sport-features">
+                                    <li>Debate and elocution training</li>
+                                    <li>Speech writing workshops</li>
+                                    <li>Inter-school competitions</li>
+                                    <li>Confidence building sessions</li>
+                                    <li>Leadership development</li>
+                                </ul>
+                                <div class="enrollment-highlight">
+                                    Active Participants: 38 students
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sport-card">
+                            <img src="/static/painting.jpg" alt="Painting" class="sport-image">
+                            <div class="sport-header">
+                                <h3 class="sport-title">Painting & Visual Arts</h3>
+                                <p class="sport-subtitle">Creative Expression</p>
+                            </div>
+                            <div class="sport-content">
+                                <ul class="sport-features">
+                                    <li>Various painting techniques</li>
+                                    <li>Art exhibitions and displays</li>
+                                    <li>Professional art supplies</li>
+                                    <li>Mentorship from local artists</li>
+                                    <li>Art competition participation</li>
+                                </ul>
+                                <div class="enrollment-highlight">
+                                    Active Participants: 29 students
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </div>
+            </section>
     </main>
 
-    <footer>
-        {{template "footer-partial" .}}
-    </footer>
-</body>
+        <!-- Call to Action with Third Background Image -->
+        <section class="cta-section">
+            <h2 class="cta-title">Ready to Join Our Athletic Community?</h2>
+            <p class="cta-text">Discover your passion, develop your skills, and become part of our winning tradition</p>
+            <a href="/contact" class="cta-button">Join Today</a>
+        </section>
 
+        <footer>{{template "footer-partial" .}}</footer>
+</body>
 </html>
 {{end}}

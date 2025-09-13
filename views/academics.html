@@ -7,131 +7,341 @@
         <title>Academics - Adarsha Secondary School</title>
         <link rel="icon" href="/static/favicon.ico" type="image/jpeg" />
         <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Crimson+Text:wght@400;600&display=swap"
             rel="stylesheet"
         />
         <style>
-            body {
-                font-family: "Poppins", sans-serif;
+            :root {
+                --wf-black: #000000;
+                --wf-gold: #9e7e38;
+                --wf-dark-gray: #333333;
+                --wf-medium-gray: #666666;
+                --wf-light-gray: #f5f5f5;
+                --wf-white: #ffffff;
+                --wf-blue: #2c5aa0;
+            }
+
+            * {
                 margin: 0;
                 padding: 0;
-                background: url("/static/images/bg-for-about.jpg") no-repeat
-                    center center fixed;
-                background-size: cover;
-                color: #333;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Source Sans Pro', sans-serif;
                 line-height: 1.6;
+                color: var(--wf-dark-gray);
+                background-color: var(--wf-white);
             }
 
-            .hero {
-                background: rgba(0, 0, 0, 0.7);
-                color: white;
-                padding: 60px 0;
-                text-align: center;
-                margin-bottom: 40px;
-            }
-
-            .container {
-                max-width: 1200px;
-                margin: 40px auto;
-                padding: 30px;
-                background-color: rgba(255, 255, 255, 0.95);
-                border-radius: 15px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            }
-
-            .program-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 30px;
-                margin-top: 40px;
-            }
-
-            .program-card {
-                background: white;
-                border-radius: 10px;
-                padding: 25px;
-                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-                transition: transform 0.3s ease;
-            }
-
-            .program-card:hover {
-                transform: translateY(-5px);
-            }
-
-            h1 {
-                font-size: 2.5em;
-                margin-bottom: 20px;
-            }
-
-            h2 {
-                color: #2c3e50;
-                font-size: 1.8em;
-                margin-bottom: 20px;
-                border-bottom: 2px solid #3498db;
-                padding-bottom: 10px;
-            }
-
-            h3 {
-                color: #3498db;
-                margin-bottom: 15px;
-            }
-
-            .features-list {
-                list-style: none;
-                padding: 0;
-            }
-
-            .features-list li {
-                padding: 10px 0;
-                border-bottom: 1px solid #eee;
-            }
-
-            .features-list li:last-child {
-                border-bottom: none;
-            }
-
-            .stats-container {
+            /* Parallax Hero Section */
+            .hero-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
+                           url("/static/bg-img2.jpg") center/cover fixed;
+                height: 60vh;
                 display: flex;
-                justify-content: space-around;
-                flex-wrap: wrap;
-                margin: 40px 0;
-                gap: 20px;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: var(--wf-white);
+                position: relative;
             }
 
-            .stat-box {
-                background: #f8f9fa;
-                padding: 20px;
-                border-radius: 8px;
+            .hero-content h1 {
+                font-family: 'Crimson Text', serif;
+                font-size: 4rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .hero-content p {
+                font-size: 1.25rem;
+                font-weight: 300;
+                opacity: 0.9;
+            }
+
+            .main-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Stats Section with Parallax Background */
+            .stats-banner {
+                background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                           url("/static/bg-img2.jpg") center/cover fixed;
+                color: var(--wf-white);
+                padding: 4rem 0;
+                margin-bottom: 0;
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
                 text-align: center;
-                min-width: 200px;
+            }
+
+            .stat-item {
+                padding: 1rem;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
             }
 
             .stat-number {
-                font-size: 2em;
-                color: #3498db;
+                font-size: 3rem;
+                font-weight: 700;
+                color: var(--wf-gold);
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+            .stat-label {
+                font-size: 1.1rem;
+                font-weight: 300;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .content-section {
+                margin-bottom: 0;
+                scroll-margin-top: 100px;
+                padding: 4rem 0;
+            }
+
+            /* Alternating background images for sections */
+            .content-section:nth-child(odd) {
+                background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+                           url("/static/bg-img5.jpg") center/cover fixed;
+            }
+
+            .content-section:nth-child(even) {
+                background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                           url("/static/bg-img6.jpg") center/cover fixed;
+                color: var(--wf-white);
+            }
+
+            .content-section:nth-child(even) .section-title {
+                color: var(--wf-white);
+            }
+
+            .content-section:nth-child(even) .section-subtitle {
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-family: 'Crimson Text', serif;
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: var(--wf-black);
+                margin-bottom: 1rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+                color: var(--wf-medium-gray);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .programs-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+
+            .program-card {
+                background: rgba(255, 255, 255, 0.95);
+                border: 2px solid #e0e0e0;
+                overflow: hidden;
+                transition: border-color 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .content-section:nth-child(even) .program-card {
+                background: rgba(0, 0, 0, 0.8);
+                border-color: rgba(255, 255, 255, 0.2);
+                color: var(--wf-white);
+            }
+
+            .program-card:hover {
+                border-color: var(--wf-gold);
+            }
+
+            .program-header {
+                background: var(--wf-black);
+                color: var(--wf-white);
+                padding: 1.5rem;
+            }
+
+            .content-section:nth-child(even) .program-header {
+                background: var(--wf-gold);
+                color: var(--wf-black);
+            }
+
+            .program-title {
+                font-size: 1.4rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .program-subtitle {
+                font-size: 0.9rem;
+                opacity: 0.8;
+                font-weight: 300;
+            }
+
+            .program-content {
+                padding: 1.5rem;
+            }
+
+            .program-features {
+                list-style: none;
+            }
+
+            .program-features li {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                position: relative;
+                padding-left: 1.5rem;
+            }
+
+            .content-section:nth-child(even) .program-features li {
+                border-bottom-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .program-features li:before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: var(--wf-gold);
                 font-weight: bold;
             }
 
-            .admission-cta {
+            .program-features li:last-child {
+                border-bottom: none;
+            }
+
+            .enrollment-highlight {
+                background: rgba(158, 126, 56, 0.1);
+                padding: 1rem;
+                margin-top: 1rem;
                 text-align: center;
-                margin-top: 40px;
-                padding: 40px;
-                background: #f8f9fa;
-                border-radius: 10px;
+                font-weight: 600;
+                color: var(--wf-gold);
+                border: 1px solid var(--wf-gold);
             }
 
-            .btn {
+            .content-section:nth-child(even) .enrollment-highlight {
+                background: rgba(158, 126, 56, 0.2);
+                color: var(--wf-gold);
+            }
+
+            /* Final CTA Section with Third Background */
+            .cta-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                           url("/static/bg-img/bg-img3.jpg") center/cover fixed;
+                color: var(--wf-white);
+                text-align: center;
+                padding: 4rem 2rem;
+                margin-top: 0;
+            }
+
+            .cta-title {
+                font-family: 'Crimson Text', serif;
+                font-size: 2.5rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
+
+            .cta-text {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                opacity: 0.9;
+            }
+
+            .cta-button {
                 display: inline-block;
-                padding: 12px 30px;
-                background: #3498db;
-                color: white;
+                background: var(--wf-gold);
+                color: var(--wf-white);
+                padding: 1rem 2.5rem;
                 text-decoration: none;
-                border-radius: 5px;
-                transition: background 0.3s;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: all 0.3s ease;
+                font-size: 0.9rem;
+                border: 2px solid var(--wf-gold);
             }
 
-            .btn:hover {
-                background: #2980b9;
+            .cta-button:hover {
+                background: transparent;
+                color: var(--wf-gold);
+                border-color: var(--wf-gold);
+            }
+
+            .divider {
+                height: 2px;
+                background: var(--wf-gold);
+                margin: 3rem auto;
+                width: 100px;
+            }
+
+            /* Mobile - Disable parallax */
+            @media (max-width: 768px) {
+                .hero-section,
+                .stats-banner,
+                .content-section:nth-child(odd),
+                .content-section:nth-child(even),
+                .cta-section {
+                    background-attachment: scroll !important;
+                }
+
+                .hero-content h1 {
+                    font-size: 2.5rem;
+                }
+                
+                .programs-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .stats-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .content-section {
+                    padding: 3rem 0;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .hero-content h1 {
+                    font-size: 2rem;
+                }
+                
+                .stats-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .main-container {
+                    padding: 0 15px;
+                }
+
+                .content-section {
+                    padding: 2rem 0;
+                }
             }
         </style>
     </head>
@@ -139,130 +349,222 @@
     <body>
         <nav>{{template "navbar-partial" .}}</nav>
 
-        <div class="hero">
-            <div class="container">
-                <h1>Academic Programs</h1>
-                <p>Excellence in Education Since 1930</p>
+        <!-- Hero Section with Parallax -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Academic Excellence</h1>
+                <p>Empowering minds, shaping futures since 1930</p>
             </div>
-        </div>
+        </section>
+
+        <!-- Stats Banner with Parallax -->
+        <section class="stats-banner">
+            <div class="main-container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">2,654+</span>
+                        <span class="stat-label">Total Students</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Major Programs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">95</span>
+                        <span class="stat-label">Years of Excellence</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1930</span>
+                        <span class="stat-label">Established</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <main>
-            <div class="container">
-                <div class="stats-container">
-                    <div class="stat-box">
-                        <div class="stat-number">2654+</div>
-                        <p>Total Students</p>
+            <!-- School Programs Section -->
+            <section id="school-programs" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">School Programs</h2>
+                        <p class="section-subtitle">Building strong foundations for lifelong learning through comprehensive educational programs</p>
                     </div>
-                    <div class="stat-box">
-                        <div class="stat-number">6</div>
-                        <p>Major Programs</p>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">1930</div>
-                        <p>Established</p>
+                    <div class="divider"></div>
+                    
+                    <div class="programs-grid">
+                        <div class="program-card">
+                            <div class="program-header">
+                                <h3 class="program-title">Early Childhood Development</h3>
+                                <p class="program-subtitle">PlayGroup to Grade 5</p>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li>Child-centered learning approach</li>
+                                    <li>Focus on foundational skills</li>
+                                    <li>Creative arts and music integration</li>
+                                    <li>Play-based learning methodology</li>
+                                    <li>Individual attention and care</li>
+                                </ul>
+                                <div class="enrollment-highlight">
+                                    Current Enrollment: 459 students
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card">
+                            <div class="program-header">
+                                <h3 class="program-title">Secondary Education</h3>
+                                <p class="program-subtitle">Grade 6 to 10</p>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li>National Curriculum Framework</li>
+                                    <li>Comprehensive subject coverage</li>
+                                    <li>STEM education emphasis</li>
+                                    <li>Extracurricular activities</li>
+                                    <li>College preparation programs</li>
+                                </ul>
+                                <div class="enrollment-highlight">
+                                    Current Enrollment: 1,429 students
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <section>
-                    <h2>School Programs</h2>
-                    <div class="program-grid">
+            <!-- Higher Secondary Programs Section -->
+            <section id="higher-secondary" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Higher Secondary Programs (+2)</h2>
+                        <p class="section-subtitle">Specialized streams preparing students for higher education and professional careers</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="programs-grid">
                         <div class="program-card">
-                            <h3>Early Childhood Development</h3>
-                            <ul class="features-list">
-                                <li>PlayGroup to Grade 5</li>
-                                <li>Child-centered learning approach</li>
-                                <li>Focus on foundational skills</li>
-                                <li>Current Enrollment: 459 students</li>
-                            </ul>
+                            <div class="program-header">
+                                <h3 class="program-title">Science Stream</h3>
+                                <p class="program-subtitle">NEB Affiliated Program</p>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li>Physics, Chemistry, Biology</li>
+                                    <li>Advanced Mathematics</li>
+                                    <li>Computer Science</li>
+                                    <li>Laboratory-based learning</li>
+                                    <li>Research project opportunities</li>
+                                </ul>
+                            </div>
                         </div>
+                        
                         <div class="program-card">
-                            <h3>Secondary Education</h3>
-                            <ul class="features-list">
-                                <li>Grade 6 to 10</li>
-                                <li>National Curriculum</li>
-                                <li>Comprehensive education</li>
-                                <li>Current Enrollment: 1429 students</li>
-                            </ul>
+                            <div class="program-header">
+                                <h3 class="program-title">Management Stream</h3>
+                                <p class="program-subtitle">Business & Commerce Focus</p>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li>Accountancy & Financial Management</li>
+                                    <li>Business Studies & Entrepreneurship</li>
+                                    <li>Economics & Market Analysis</li>
+                                    <li>Computer Applications for Business</li>
+                                    <li>Industry partnerships & internships</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card">
+                            <div class="program-header">
+                                <h3 class="program-title">Education Stream</h3>
+                                <p class="program-subtitle">Future Educators Program</p>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li>Teaching Methodology & Pedagogy</li>
+                                    <li>Educational Psychology</li>
+                                    <li>Curriculum Development Studies</li>
+                                    <li>Practical Teaching Experience</li>
+                                    <li>Community service integration</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </section>
-
-                <section>
-                    <h2>Higher Secondary Programs (+2)</h2>
-                    <div class="program-grid">
-                        <div class="program-card">
-                            <h3>Science Stream</h3>
-                            <ul class="features-list">
-                                <li>Physics, Chemistry, Biology</li>
-                                <li>Mathematics</li>
-                                <li>Computer Science</li>
-                                <li>NEB Affiliated</li>
-                            </ul>
-                        </div>
-                        <div class="program-card">
-                            <h3>Management Stream</h3>
-                            <ul class="features-list">
-                                <li>Accountancy</li>
-                                <li>Business Studies</li>
-                                <li>Economics</li>
-                                <li>Computer Applications</li>
-                            </ul>
-                        </div>
-                        <div class="program-card">
-                            <h3>Education Stream</h3>
-                            <ul class="features-list">
-                                <li>Teaching Methodology</li>
-                                <li>Educational Psychology</li>
-                                <li>Curriculum Studies</li>
-                                <li>Teaching Practice</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>Technical Education (CTEVT)</h2>
-                    <div class="program-grid">
-                        <div class="program-card">
-                            <h3>Diploma in Computer Engineering</h3>
-                            <ul class="features-list">
-                                <li>3-year program</li>
-                                <li>48 seats available</li>
-                                <li>Modern computer labs</li>
-                                <li>Industry-focused curriculum</li>
-                            </ul>
-                        </div>
-                        <div class="program-card">
-                            <h3>Diploma in Civil Engineering</h3>
-                            <ul class="features-list">
-                                <li>3-year program</li>
-                                <li>Practical training</li>
-                                <li>Field visits</li>
-                                <li>Project-based learning</li>
-                            </ul>
-                        </div>
-                        <div class="program-card">
-                            <h3>Pre-Diploma Programs</h3>
-                            <ul class="features-list">
-                                <li>Junior Computer Technician (15 months)</li>
-                                <li>Computer Sub-Overseer</li>
-                                <li>Hands-on training</li>
-                                <li>Industry internships</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <div class="admission-cta">
-                    <h2>Ready to Join Us?</h2>
-                    <p>
-                        Take the first step towards your future with Adarsha
-                        Secondary School
-                    </p>
-                    <a href="/admissions" class="btn">Apply Now</a>
                 </div>
-            </div>
+            </section>
+
+            <!-- Technical Education Section -->
+            <section id="technical-education" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Technical Education (CTEVT)</h2>
+                        <p class="section-subtitle">Industry-focused technical programs preparing skilled professionals for the modern workforce</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="programs-grid">
+                        <div class="program-card">
+                            <div class="program-header">
+                                <h3 class="program-title">Diploma in Computer Engineering</h3>
+                                <p class="program-subtitle">3-year comprehensive program</p>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li>Modern computer laboratories</li>
+                                    <li>Industry-focused curriculum</li>
+                                    <li>Programming & software development</li>
+                                    <li>Hardware & network systems</li>
+                                    <li>Internship opportunities</li>
+                                </ul>
+                                <div class="enrollment-highlight">
+                                    48 seats available
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card">
+                            <div class="program-header">
+                                <h3 class="program-title">Diploma in Civil Engineering</h3>
+                                <p class="program-subtitle">3-year professional program</p>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li>Practical construction training</li>
+                                    <li>Field visits & site experience</li>
+                                    <li>Project-based learning approach</li>
+                                    <li>Modern drafting & design tools</li>
+                                    <li>Professional certification prep</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card">
+                            <div class="program-header">
+                                <h3 class="program-title">Pre-Diploma Programs</h3>
+                                <p class="program-subtitle">Specialized technical training</p>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li>Junior Computer Technician (15 months)</li>
+                                    <li>Computer Sub-Overseer certification</li>
+                                    <li>Hands-on practical training</li>
+                                    <li>Industry partnerships</li>
+                                    <li>Job placement assistance</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
+
+        <!-- Call to Action with Third Background Image -->
+        <section class="cta-section">
+            <h2 class="cta-title">Ready to Begin Your Journey?</h2>
+            <p class="cta-text">Join thousands of students who have built their futures at Adarsha Secondary School</p>
+            <a href="/admissions" class="cta-button">Apply Today</a>
+        </section>
 
         <footer>{{template "footer-partial" .}}</footer>
     </body>

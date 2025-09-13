@@ -1,12 +1,26 @@
-{{define "news-partial"}} {{range .News}}
-<div class="news-item">
-    {{if .ImageURL}}
-    <img src="{{.ImageURL}}" class="news-image" alt="{{.Title}}" />
-    {{end}}
-    <div class="news-content">
-        <h3 class="news-title">{{.Title}}</h3>
-        <p class="news-excerpt">{{.Description}}</p>
-        <a href="#" class="read-more">Read More</a>
+{{define "news-partial"}}
+{{if .News}}
+    {{range .News}}
+    <div class="news-item">
+        {{if .ImageURL}}
+        <div class="news-image-container">
+            <img src="{{.ImageURL}}" class="news-image" alt="{{.Title}}" onclick="openImageModal('{{.ImageURL}}', '{{.Title}}')" />
+        </div>
+        {{end}}
+        <div class="news-content">
+            <h3 class="news-title">{{.Title}}</h3>
+            <p class="news-excerpt">{{.Description}}</p>
+            <a href="#" class="read-more">Read More</a>
+        </div>
     </div>
-</div>
-{{end}} {{end}}
+    {{end}}
+{{else}}
+    <div class="not-found-container">
+        <div class="not-found-icon">
+            <img src="/static/logo.jpg" alt="No News" class="not-found-logo" />
+        </div>
+        <h3 class="not-found-title">No Current News</h3>
+        <p class="not-found-message">There are no news articles available at this time. Please check back later for updates.</p>
+    </div>
+{{end}}
+{{end}}

@@ -12,11 +12,12 @@ import (
 )
 
 type SiteData struct {
-	SiteName  string
-	News      []models.NewsData
-	Events    []models.EventData
-	Vacancies []models.VacanciesData
-	IsAdmin   bool
+	SiteName    string
+	News        []models.NewsData
+	Events      []models.EventData
+	Vacancies   []models.VacanciesData
+	IsAdmin     bool
+	CurrentPage string
 }
 
 func rootHandler(templates *Templates) http.HandlerFunc {
@@ -38,11 +39,12 @@ func rootHandler(templates *Templates) http.HandlerFunc {
 		}
 
 		data := &SiteData{
-			SiteName:  "Adarsha Secondary School",
-			News:      FromModel,
-			Events:    eventsFromModel,
-			Vacancies: vacanciesFromModel,
-			IsAdmin: models.IsLoggedIn(r),
+			SiteName:    "Adarsha Secondary School",
+			News:        FromModel,
+			Events:      eventsFromModel,
+			Vacancies:   vacanciesFromModel,
+			IsAdmin:     models.IsLoggedIn(r),
+			CurrentPage: "home",
 		}
 		log.Println("Attempting to render index.html")
 		err = templates.Render(w, "index", data)
@@ -61,8 +63,9 @@ func getNewsHandler(templates *Templates) http.HandlerFunc {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 		data := &SiteData{
-			SiteName: "Adarsha Secondary School",
-			News:     FromModel,
+			SiteName:    "Adarsha Secondary School",
+			News:        FromModel,
+			CurrentPage: "news",
 		}
 		log.Println("Attempting to render news-page.html")
 		err = templates.Render(w, "news-page", data)
@@ -81,8 +84,9 @@ func getVacanciesHandler(templates *Templates) http.HandlerFunc {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 		data := &SiteData{
-			SiteName:  "Adarsha Secondary School",
-			Vacancies: vacanciesFromModel,
+			SiteName:    "Adarsha Secondary School",
+			Vacancies:   vacanciesFromModel,
+			CurrentPage: "vacancies",
 		}
 		log.Println("Attempting to render vacancies-page.html")
 		err = templates.Render(w, "vacancies-page", data)
@@ -101,8 +105,9 @@ func getEventsHandler(templates *Templates) http.HandlerFunc {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 		data := &SiteData{
-			SiteName: "Adarsha Secondary School",
-			Events:   eventsFromModel,
+			SiteName:    "Adarsha Secondary School",
+			Events:      eventsFromModel,
+			CurrentPage: "events",
 		}
 		log.Println("Attempting to render events-page.html")
 		err = templates.Render(w, "events-page", data)
@@ -116,7 +121,8 @@ func getEventsHandler(templates *Templates) http.HandlerFunc {
 func createSimplePageHandler(templates *Templates, templateName string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		data := &SiteData{
-			SiteName: "Adarsha Secondary School",
+			SiteName:    "Adarsha Secondary School",
+			CurrentPage: templateName,
 		}
 		log.Printf("Attempting to render %s.html", templateName)
 		err := templates.Render(w, templateName, data)
@@ -353,7 +359,11 @@ func loginHandler(templates *Templates) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case http.MethodGet:
-			err := templates.Render(w, "login", nil)
+			data := &SiteData{
+				SiteName:    "Adarsha Secondary School",
+				CurrentPage: "login",
+			}
+			err := templates.Render(w, "login", data)
 			if err != nil {
 				log.Printf("Error rendering login template: %v", err)
 				http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -386,8 +396,9 @@ func loginHandler(templates *Templates) http.HandlerFunc {
 func dashboardHandler(templates *Templates) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		data := &SiteData{
-			SiteName: "Adarsha Secondary School",
-			IsAdmin:  true,
+			SiteName:    "Adarsha Secondary School",
+			IsAdmin:     true,
+			CurrentPage: "dashboard",
 		}
 		err := templates.Render(w, "dashboard", data)
 		if err != nil {
@@ -396,6 +407,11 @@ func dashboardHandler(templates *Templates) http.HandlerFunc {
 			return
 		}
 	}
+}
+
+func logoutHandler(w http.ResponseWriter, r *http.Request) {
+	models.ClearSession(w)
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func adminOnly(next http.Handler) http.Handler {

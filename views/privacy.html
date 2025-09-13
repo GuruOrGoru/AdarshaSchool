@@ -1,56 +1,727 @@
 {{define "privacy"}}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Privacy Policy - Adarsha Secondary School</title>
+        <link rel="icon" href="/static/favicon.ico" type="image/jpeg" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Crimson+Text:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --wf-black: #000000;
+                --wf-gold: #9e7e38;
+                --wf-dark-gray: #333333;
+                --wf-medium-gray: #666666;
+                --wf-light-gray: #f5f5f5;
+                --wf-white: #ffffff;
+                --wf-blue: #2c5aa0;
+            }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adarsha University - Privacy Policy</title>
-    <link rel="icon" href="/static/favicon.ico" type="image/jpeg">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
+            body {
+                font-family: 'Source Sans Pro', sans-serif;
+                line-height: 1.6;
+                color: var(--wf-dark-gray);
+                background-color: var(--wf-white);
+            }
 
-        h1 {
-            color: #333;
-            font-family: 'Georgia', serif;
-            margin-bottom: 20px;
-        }
+            /* Parallax Hero Section */
+            .hero-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
+                           url("/static/bg-img11.jpg") center/cover fixed;
+                height: 50vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: var(--wf-white);
+                position: relative;
+            }
 
-        p {
-            color: #555;
-            line-height: 1.6;
-        }
-    </style>
-</head>
+            .hero-content h1 {
+                font-family: 'Crimson Text', serif;
+                font-size: 3.5rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
 
-<body>
-    <nav>
-        {{template "navbar-partial" .}}
-    </nav>
+            .hero-content p {
+                font-size: 1.25rem;
+                font-weight: 300;
+                opacity: 0.9;
+            }
 
-    <main class="container mx-auto py-8">
-        <h1 class="text-3xl font-bold mb-4">Privacy Policy</h1>
-        <p>This is the content for the Privacy Policy page.</p>
-    </main>
+            .main-container {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
 
-    <footer>
-        {{template "footer-partial" .}}
-    </footer>
-</body>
+            .content-section {
+                margin-bottom: 0;
+                scroll-margin-top: 100px;
+                padding: 4rem 0;
+            }
 
+            /* Alternating background images for sections */
+            .content-section:nth-child(odd) {
+                background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+                           url("/static/bg-img6.jpg") center/cover fixed;
+            }
+
+            .content-section:nth-child(even) {
+                background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                           url("/static/bg-img7.jpg") center/cover fixed;
+                color: var(--wf-white);
+            }
+
+            .content-section:nth-child(even) .section-title {
+                color: var(--wf-white);
+            }
+
+            .content-section:nth-child(even) .section-subtitle {
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-family: 'Crimson Text', serif;
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: var(--wf-black);
+                margin-bottom: 1rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+                color: var(--wf-medium-gray);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .privacy-content {
+                background: rgba(255, 255, 255, 0.95);
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+            }
+
+            .content-section:nth-child(even) .privacy-content {
+                background: rgba(0, 0, 0, 0.8);
+                color: var(--wf-white);
+            }
+
+            .privacy-section {
+                margin-bottom: 2.5rem;
+            }
+
+            .privacy-section h3 {
+                font-family: 'Crimson Text', serif;
+                font-size: 1.5rem;
+                color: var(--wf-gold);
+                margin-bottom: 1rem;
+                border-bottom: 2px solid var(--wf-gold);
+                padding-bottom: 0.5rem;
+            }
+
+            .content-section:nth-child(even) .privacy-section h3 {
+                color: var(--wf-gold);
+                border-bottom-color: var(--wf-gold);
+            }
+
+            .privacy-section p {
+                margin-bottom: 1rem;
+                text-align: justify;
+            }
+
+            .privacy-section ul {
+                margin: 1rem 0;
+                padding-left: 2rem;
+            }
+
+            .privacy-section li {
+                margin-bottom: 0.5rem;
+                position: relative;
+            }
+
+            .privacy-section li:before {
+                content: "•";
+                color: var(--wf-gold);
+                font-weight: bold;
+                position: absolute;
+                left: -1rem;
+            }
+
+            .highlight-box {
+                background: rgba(158, 126, 56, 0.1);
+                border: 1px solid var(--wf-gold);
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+                border-radius: 5px;
+            }
+
+            .content-section:nth-child(even) .highlight-box {
+                background: rgba(158, 126, 56, 0.2);
+                border-color: var(--wf-gold);
+            }
+
+            .highlight-box h4 {
+                color: var(--wf-gold);
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .contact-info {
+                background: var(--wf-light-gray);
+                padding: 1.5rem;
+                border-radius: 5px;
+                margin-top: 2rem;
+            }
+
+            .content-section:nth-child(even) .contact-info {
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--wf-white);
+            }
+
+            .contact-info h4 {
+                color: var(--wf-gold);
+                margin-bottom: 1rem;
+            }
+
+            .divider {
+                height: 2px;
+                background: var(--wf-gold);
+                margin: 3rem auto;
+                width: 100px;
+            }
+
+            /* Mobile - Disable parallax */
+            @media (max-width: 768px) {
+                .hero-section,
+                .content-section:nth-child(odd),
+                .content-section:nth-child(even) {
+                    background-attachment: scroll !important;
+                }
+
+                .hero-content h1 {
+                    font-size: 2.5rem;
+                }
+                
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .content-section {
+                    padding: 3rem 0;
+                }
+
+                .privacy-content {
+                    padding: 1.5rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .hero-content h1 {
+                    font-size: 2rem;
+                }
+                
+                .main-container {
+                    padding: 0 15px;
+                }
+
+                .content-section {
+                    padding: 2rem 0;
+                }
+
+                .privacy-content {
+                    padding: 1rem;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>{{template "navbar-partial" .}}</nav>
+
+        <!-- Hero Section with Parallax -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Privacy Policy</h1>
+                <p>Your privacy and data protection are our top priorities</p>
+            </div>
+        </section>
+
+        <main>
+            <!-- Introduction Section -->
+            <section id="introduction" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Our Commitment to Privacy</h2>
+                        <p class="section-subtitle">Adarsha Secondary School is committed to protecting the privacy and security of all personal information we collect and process</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="privacy-content">
+                        <div class="privacy-section">
+                            <p>At Adarsha Secondary School, we understand the importance of privacy and are committed to protecting the personal information of our students, parents, staff, and visitors. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our educational services.</p>
+                            
+                            <div class="highlight-box">
+                                <h4>Last Updated:</h4>
+                                <p>This Privacy Policy was last updated on January 1, 2024. We may update this policy from time to time, and any changes will be posted on this page with a new effective date.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Information Collection Section -->
+            <section id="information-collection" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Information We Collect</h2>
+                        <p class="section-subtitle">We collect various types of information to provide educational services and maintain school operations</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="privacy-content">
+                        <div class="privacy-section">
+                            <h3>Student Information</h3>
+                            <p>We collect personal information about our students, including:</p>
+                            <ul>
+                                <li>Basic identification (full name, date of birth, gender, student ID)</li>
+                                <li>Contact information (home address, phone numbers, email)</li>
+                                <li>Emergency contact details (parents/guardians, relatives)</li>
+                                <li>Academic records (grades, transcripts, attendance records)</li>
+                                <li>Medical information (health conditions, allergies, medications)</li>
+                                <li>Photographs and videos for school activities and yearbook</li>
+                                <li>Disciplinary records and behavioral assessments</li>
+                                <li>Special educational needs and accommodations</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Parent/Guardian Information</h3>
+                            <p>We collect information about parents and guardians, including:</p>
+                            <ul>
+                                <li>Names, contact details, and relationship to student</li>
+                                <li>Employment information and emergency contacts</li>
+                                <li>Financial information for fee payments and financial aid</li>
+                                <li>Communication preferences and language preferences</li>
+                                <li>Volunteer activities and involvement in school events</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Staff Information</h3>
+                            <p>We collect information about our employees and staff, including:</p>
+                            <ul>
+                                <li>Personal identification and contact information</li>
+                                <li>Educational qualifications and certifications</li>
+                                <li>Employment history and performance records</li>
+                                <li>Background check results and references</li>
+                                <li>Emergency contact information</li>
+                                <li>Banking information for payroll purposes</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Website and Digital Information</h3>
+                            <p>When you visit our website or use our digital services, we may collect:</p>
+                            <ul>
+                                <li>IP address, device information, and browser type</li>
+                                <li>Pages visited, time spent on our site, and navigation patterns</li>
+                                <li>Referring website information and search terms</li>
+                                <li>Cookies and similar tracking technologies</li>
+                                <li>Form submissions and online applications</li>
+                                <li>Communication logs and correspondence</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Use of Information Section -->
+            <section id="use-of-information" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">How We Use Your Information</h2>
+                        <p class="section-subtitle">We use collected information to provide educational services and improve our school operations</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="privacy-content">
+                        <div class="privacy-section">
+                            <h3>Educational Services</h3>
+                            <ul>
+                                <li>Providing academic instruction, assessment, and support</li>
+                                <li>Maintaining comprehensive student records and transcripts</li>
+                                <li>Tracking academic progress and performance</li>
+                                <li>Developing individualized education plans (IEPs) when needed</li>
+                                <li>Conducting parent-teacher conferences and meetings</li>
+                                <li>Organizing educational field trips and extracurricular activities</li>
+                                <li>Managing special education services and accommodations</li>
+                                <li>Preparing students for higher education and career readiness</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Student Safety and Well-being</h3>
+                            <ul>
+                                <li>Maintaining a safe and secure school environment</li>
+                                <li>Managing emergency situations and medical emergencies</li>
+                                <li>Monitoring student attendance and truancy</li>
+                                <li>Addressing behavioral issues and disciplinary matters</li>
+                                <li>Providing counseling and mental health support</li>
+                                <li>Conducting background checks for visitors and volunteers</li>
+                                <li>Implementing anti-bullying and harassment prevention programs</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Administrative Operations</h3>
+                            <ul>
+                                <li>Processing admissions applications and enrollment</li>
+                                <li>Managing tuition payments and financial aid programs</li>
+                                <li>Maintaining staff employment records and payroll</li>
+                                <li>Complying with educational regulations and reporting requirements</li>
+                                <li>Managing school facilities and transportation services</li>
+                                <li>Conducting school-wide assessments and evaluations</li>
+                                <li>Maintaining alumni records and communications</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Communication and Engagement</h3>
+                            <ul>
+                                <li>Sending important school announcements and updates</li>
+                                <li>Sharing academic progress reports and report cards</li>
+                                <li>Providing information about school events and activities</li>
+                                <li>Responding to parent and student inquiries</li>
+                                <li>Publishing school newsletters and publications</li>
+                                <li>Managing social media and online presence</li>
+                                <li>Facilitating parent-teacher association communications</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Legal and Regulatory Compliance</h3>
+                            <ul>
+                                <li>Complying with federal and state education laws</li>
+                                <li>Reporting to educational authorities and government agencies</li>
+                                <li>Maintaining records as required by law</li>
+                                <li>Responding to legal requests and court orders</li>
+                                <li>Protecting against fraud and ensuring data integrity</li>
+                                <li>Conducting internal audits and compliance reviews</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Information Sharing Section -->
+            <section id="information-sharing" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Information Sharing and Disclosure</h2>
+                        <p class="section-subtitle">We do not sell personal information and only share it in specific circumstances</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="privacy-content">
+                        <div class="privacy-section">
+                            <h3>Educational Authorities and Government Agencies</h3>
+                            <p>We may share information with:</p>
+                            <ul>
+                                <li><strong>Ministry of Education:</strong> For compliance with educational regulations and reporting requirements</li>
+                                <li><strong>District Education Office:</strong> For student enrollment verification and academic reporting</li>
+                                <li><strong>Examination Boards:</strong> For student registration and examination purposes</li>
+                                <li><strong>Higher Education Institutions:</strong> For student transcripts and recommendation letters</li>
+                                <li><strong>Government Agencies:</strong> As required by law or for statistical purposes</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Service Providers and Vendors</h3>
+                            <p>We may share information with trusted third parties who assist in school operations:</p>
+                            <ul>
+                                <li><strong>Technology Providers:</strong> For student information systems and educational software</li>
+                                <li><strong>Transportation Services:</strong> For school bus and transportation management</li>
+                                <li><strong>Food Service Providers:</strong> For meal planning and dietary accommodations</li>
+                                <li><strong>Security Services:</strong> For campus security and safety monitoring</li>
+                                <li><strong>Financial Institutions:</strong> For fee processing and financial aid management</li>
+                                <li><strong>Healthcare Providers:</strong> For student health services and medical emergencies</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Emergency Situations</h3>
+                            <p>We may share information in emergency situations, including:</p>
+                            <ul>
+                                <li><strong>Medical Emergencies:</strong> With healthcare providers and emergency services</li>
+                                <li><strong>Safety Emergencies:</strong> With law enforcement and emergency responders</li>
+                                <li><strong>Child Protection:</strong> With child welfare agencies when required by law</li>
+                                <li><strong>Natural Disasters:</strong> With emergency management agencies</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Legal Requirements</h3>
+                            <p>We may share information when required by:</p>
+                            <ul>
+                                <li><strong>Court Orders:</strong> When legally compelled to do so</li>
+                                <li><strong>Subpoenas:</strong> When served with valid legal process</li>
+                                <li><strong>Law Enforcement:</strong> When investigating criminal activities</li>
+                                <li><strong>Regulatory Compliance:</strong> When required by educational or government regulations</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>With Parental Consent</h3>
+                            <p>We may share information with third parties when:</p>
+                            <ul>
+                                <li><strong>Explicit Consent:</strong> Written permission is provided by parents/guardians</li>
+                                <li><strong>Educational Partners:</strong> For collaborative educational programs</li>
+                                <li><strong>Scholarship Organizations:</strong> For student scholarship applications</li>
+                                <li><strong>Research Institutions:</strong> For educational research (with appropriate safeguards)</li>
+                            </ul>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>Important Note:</h4>
+                            <p>We never sell, rent, or trade personal information to third parties for marketing purposes. All information sharing is done in accordance with applicable laws, regulations, and our commitment to protecting student privacy. We require all third parties to maintain appropriate security measures and use the information only for the purposes for which it was shared.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Security Section -->
+            <section id="data-security" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Data Security and Protection</h2>
+                        <p class="section-subtitle">We implement appropriate security measures to protect your personal information</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="privacy-content">
+                        <div class="privacy-section">
+                            <h3>Technical Security Measures</h3>
+                            <ul>
+                                <li><strong>Data Encryption:</strong> All sensitive data is encrypted both in transit and at rest using industry-standard encryption protocols</li>
+                                <li><strong>Secure Infrastructure:</strong> Our servers and databases are protected with multiple layers of security controls</li>
+                                <li><strong>Access Controls:</strong> Role-based access controls ensure only authorized personnel can access specific information</li>
+                                <li><strong>Network Security:</strong> Firewalls, intrusion detection systems, and regular security monitoring</li>
+                                <li><strong>Regular Updates:</strong> All systems are regularly updated with the latest security patches</li>
+                                <li><strong>Backup and Recovery:</strong> Regular backups with secure storage and tested recovery procedures</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Administrative Security Measures</h3>
+                            <ul>
+                                <li><strong>Staff Training:</strong> Regular training on data protection practices and privacy policies</li>
+                                <li><strong>Background Checks:</strong> All staff undergo thorough background checks before employment</li>
+                                <li><strong>Confidentiality Agreements:</strong> All staff sign confidentiality agreements regarding student information</li>
+                                <li><strong>Incident Response:</strong> Established procedures for responding to data breaches or security incidents</li>
+                                <li><strong>Regular Audits:</strong> Periodic security audits and compliance reviews</li>
+                                <li><strong>Physical Security:</strong> Secure storage for paper records and restricted access to school facilities</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Data Retention and Disposal</h3>
+                            <p>We follow strict data retention policies:</p>
+                            <ul>
+                                <li><strong>Student Records:</strong> Retained for a minimum of 7 years after graduation or withdrawal</li>
+                                <li><strong>Academic Transcripts:</strong> Permanently retained for official purposes</li>
+                                <li><strong>Financial Records:</strong> Retained for 7 years as required by law</li>
+                                <li><strong>Staff Records:</strong> Retained according to employment law requirements</li>
+                                <li><strong>Secure Disposal:</strong> When data is no longer needed, it is securely destroyed using certified methods</li>
+                                <li><strong>Legal Requirements:</strong> Some records may be retained longer if required by law or regulation</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Student and Parent Rights</h3>
+                            <p>Students and parents have the following rights regarding personal information:</p>
+                            <ul>
+                                <li><strong>Access Rights:</strong> Request access to personal information we maintain about you or your child</li>
+                                <li><strong>Correction Rights:</strong> Request corrections to inaccurate or incomplete information</li>
+                                <li><strong>Deletion Rights:</strong> Request deletion of personal information (subject to legal and educational requirements)</li>
+                                <li><strong>Portability Rights:</strong> Request a copy of personal information in a portable format</li>
+                                <li><strong>Consent Withdrawal:</strong> Withdraw consent for certain data processing activities</li>
+                                <li><strong>Complaint Rights:</strong> File complaints with relevant data protection authorities</li>
+                                <li><strong>Opt-out Rights:</strong> Opt out of certain communications and data uses</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Data Breach Response</h3>
+                            <p>In the event of a data breach, we will:</p>
+                            <ul>
+                                <li>Immediately investigate and contain the breach</li>
+                                <li>Assess the scope and impact of the breach</li>
+                                <li>Notify affected individuals and authorities as required by law</li>
+                                <li>Implement additional security measures to prevent future breaches</li>
+                                <li>Provide support and resources to affected individuals</li>
+                                <li>Conduct a thorough review and update of security procedures</li>
+                            </ul>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>Contact for Privacy Concerns:</h4>
+                            <p>If you have any questions about our data security practices or wish to exercise your privacy rights, please contact our Privacy Officer at privacy@adarshaschool.edu.np or call +977-1-XXXXXXX.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cookies and Tracking Section -->
+            <section id="cookies-tracking" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Cookies and Tracking Technologies</h2>
+                        <p class="section-subtitle">How we use cookies and similar technologies on our website</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="privacy-content">
+                        <div class="privacy-section">
+                            <h3>What Are Cookies?</h3>
+                            <p>Cookies are small text files that are stored on your device when you visit our website. They help us provide you with a better experience and understand how our website is being used.</p>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Types of Cookies We Use</h3>
+                            <ul>
+                                <li><strong>Essential Cookies:</strong> Necessary for the website to function properly</li>
+                                <li><strong>Analytics Cookies:</strong> Help us understand how visitors use our website</li>
+                                <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
+                                <li><strong>Marketing Cookies:</strong> Used to deliver relevant content and advertisements</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Managing Cookies</h3>
+                            <p>You can control cookies through your browser settings. However, disabling certain cookies may affect the functionality of our website. For more information about managing cookies, please visit your browser's help section.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Children's Privacy Section -->
+            <section id="children-privacy" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Children's Privacy Protection</h2>
+                        <p class="section-subtitle">Special protections for students under 18 years of age</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="privacy-content">
+                        <div class="privacy-section">
+                            <h3>Special Protections for Minors</h3>
+                            <p>We recognize that students under 18 years of age require special privacy protections. We have implemented additional safeguards for student data, including:</p>
+                            <ul>
+                                <li>Enhanced parental consent requirements for data collection</li>
+                                <li>Restricted data sharing with third parties</li>
+                                <li>Limited use of student data for marketing purposes</li>
+                                <li>Special procedures for handling student photos and videos</li>
+                                <li>Age-appropriate privacy notices and communications</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Parental Rights and Controls</h3>
+                            <p>Parents and guardians have the right to:</p>
+                            <ul>
+                                <li>Review and request copies of their child's educational records</li>
+                                <li>Request corrections to inaccurate information</li>
+                                <li>Opt out of certain data collection activities</li>
+                                <li>Request deletion of their child's information (subject to legal requirements)</li>
+                                <li>Receive notifications about data breaches affecting their child</li>
+                            </ul>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>Important Note:</h4>
+                            <p>We never knowingly collect personal information from children under 13 without verifiable parental consent. If you believe we have collected information from a child under 13 without proper consent, please contact us immediately.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Information Section -->
+            <section id="contact-information" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Contact Us</h2>
+                        <p class="section-subtitle">Questions about our Privacy Policy or data practices? We're here to help</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="privacy-content">
+                        <div class="contact-info">
+                            <h4>Privacy Officer Contact Information</h4>
+                            <p><strong>Adarsha Secondary School</strong><br>
+                            Privacy Officer<br>
+                            Email: privacy@adarshaschool.edu.np<br>
+                            Phone: +977-1-XXXXXXX<br>
+                            Address: Biratnagar-7, Morang, Nepal</p>
+                            
+                            <p><strong>Office Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM (Nepal Time)</p>
+                            
+                            <p><strong>Response Time:</strong> We will respond to privacy inquiries within 30 days of receipt.</p>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Alternative Contact Methods</h3>
+                            <ul>
+                                <li><strong>In Person:</strong> Visit our main office during business hours</li>
+                                <li><strong>Mail:</strong> Send written correspondence to our school address</li>
+                                <li><strong>Phone:</strong> Call our main office number for urgent privacy concerns</li>
+                                <li><strong>Online Form:</strong> Submit privacy requests through our website contact form</li>
+                            </ul>
+                        </div>
+
+                        <div class="privacy-section">
+                            <h3>Updates to This Policy</h3>
+                            <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, or legal requirements. We will notify you of any significant changes by:</p>
+                            <ul>
+                                <li>Posting the updated policy on our website with a new effective date</li>
+                                <li>Sending email notifications to parents and guardians</li>
+                                <li>Including notices in school newsletters and communications</li>
+                                <li>Providing information during parent-teacher conferences</li>
+                            </ul>
+                            
+                            <p>We encourage you to review this Privacy Policy periodically to stay informed about how we protect your information.</p>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>Effective Date:</h4>
+                            <p>This Privacy Policy is effective as of January 1, 2024, and was last updated on January 1, 2024.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>{{template "footer-partial" .}}</footer>
+    </body>
 </html>
 {{end}}

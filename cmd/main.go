@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/guruorgoru/adarsha-server/internal/db"
+	"github.com/guruorgoru/adarsha-server/internal/models"
 	router "github.com/guruorgoru/adarsha-server/internal/routes"
 	"github.com/joho/godotenv"
 )
@@ -15,6 +16,7 @@ func main() {
 	if err != nil {
 		log.Println("Error loading .env file, proceeding with system environment variables")
 	}
+	models.InitAdmin()
 	db.Init()
 	port := os.Getenv("PORT")
 	if port == ""{

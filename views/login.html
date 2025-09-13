@@ -5,34 +5,264 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Adarsha University</title>
+	<title>Login - Adarsha Secondary School</title>
 	<link rel="icon" href="/static/favicon.ico" type="image/jpeg">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 	<style>
-		body {
-			font-family: Arial, sans-serif;
+		* {
 			margin: 0;
 			padding: 0;
-			background-color: #f4f4f4;
+			box-sizing: border-box;
 		}
 
-		.container {
-			max-width: 1200px;
-			margin: 20px auto;
-			padding: 20px;
-			background-color: #fff;
-			border-radius: 8px;
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+		body {
+			font-family: 'Inter', sans-serif;
+			background: url('/static/bg-img6.jpg') center/cover no-repeat, 
+						url('/static/bg-img7.jpg') center/cover no-repeat;
+			background-blend-mode: overlay;
+			background-color: rgba(0, 0, 0, 0.8);
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			position: relative;
 		}
 
-		h1 {
-			color: #333;
-			font-family: 'Georgia', serif;
+		body::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(184, 134, 11, 0.2) 100%);
+			z-index: 1;
+		}
+
+		nav {
+			position: relative;
+			z-index: 3;
+		}
+
+		main {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 40px 20px;
+			position: relative;
+			z-index: 2;
+		}
+
+		.login-container {
+			background: white;
+			padding: 60px 50px;
+			border: 3px solid #b8860b;
+			box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+			position: relative;
+			max-width: 450px;
+			width: 100%;
+		}
+
+		.login-container::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 6px;
+			background: #b8860b;
+		}
+
+		.login-header {
+			text-align: center;
+			margin-bottom: 40px;
+		}
+
+		.login-header h1 {
+			font-size: 2.5rem;
+			font-weight: 700;
+			color: #1a1a1a;
+			margin-bottom: 10px;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		}
+
+		.login-header p {
+			color: #666;
+			font-size: 1.1rem;
+			font-weight: 500;
+		}
+
+		.login-form {
+			display: flex;
+			flex-direction: column;
+			gap: 25px;
+		}
+
+		.form-group {
+			position: relative;
+		}
+
+		.form-group label {
+			display: block;
+			font-weight: 600;
+			color: #1a1a1a;
+			margin-bottom: 8px;
+			font-size: 0.95rem;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+
+		.form-group input {
+			width: 100%;
+			padding: 15px 20px;
+			border: 2px solid #e0e0e0;
+			border-left: 4px solid #b8860b;
+			font-size: 1rem;
+			font-family: 'Inter', sans-serif;
+			background: #fafafa;
+			transition: all 0.3s ease;
+			outline: none;
+		}
+
+		.form-group input:focus {
+			border-color: #b8860b;
+			background: white;
+			box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.1);
+		}
+
+		.form-group input::placeholder {
+			color: #999;
+			font-weight: 400;
+		}
+
+		.login-button {
+			background: #1a1a1a;
+			color: white;
+			border: 2px solid #1a1a1a;
+			padding: 15px 30px;
+			font-size: 1.1rem;
+			font-weight: 700;
+			font-family: 'Inter', sans-serif;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.login-button::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.3), transparent);
+			transition: left 0.5s ease;
+		}
+
+		.login-button:hover {
+			background: #b8860b;
+			border-color: #b8860b;
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+		}
+
+		.login-button:hover::before {
+			left: 100%;
+		}
+
+		.login-button:active {
+			transform: translateY(0);
+		}
+
+		.login-footer {
+			text-align: center;
+			margin-top: 30px;
+			padding-top: 20px;
+			border-top: 1px solid #e0e0e0;
+		}
+
+		.login-footer p {
+			color: #666;
+			font-size: 0.9rem;
+		}
+
+		.login-footer a {
+			color: #b8860b;
+			text-decoration: none;
+			font-weight: 600;
+			border-bottom: 1px solid transparent;
+			transition: border-bottom 0.3s ease;
+		}
+
+		.login-footer a:hover {
+			border-bottom: 1px solid #b8860b;
+		}
+
+		footer {
+			position: relative;
+			z-index: 3;
+		}
+
+		/* Error/Success Messages */
+		.alert {
+			padding: 15px 20px;
 			margin-bottom: 20px;
+			border: 2px solid;
+			font-weight: 600;
+			text-align: center;
 		}
 
-		p {
-			color: #555;
-			line-height: 1.6;
+		.alert-error {
+			background: #fee;
+			border-color: #e74c3c;
+			color: #c0392b;
+		}
+
+		.alert-success {
+			background: #efe;
+			border-color: #27ae60;
+			color: #27ae60;
+		}
+
+		/* Responsive Design */
+		@media (max-width: 768px) {
+			.login-container {
+				padding: 40px 30px;
+				margin: 20px;
+			}
+
+			.login-header h1 {
+				font-size: 2rem;
+			}
+
+			.form-group input {
+				padding: 12px 15px;
+			}
+
+			.login-button {
+				padding: 12px 25px;
+				font-size: 1rem;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.login-container {
+				padding: 30px 20px;
+				margin: 10px;
+			}
+
+			.login-header h1 {
+				font-size: 1.8rem;
+				letter-spacing: 1px;
+			}
+
+			.login-header p {
+				font-size: 1rem;
+			}
 		}
 	</style>
 </head>
@@ -43,14 +273,30 @@
 	</nav>
 
 	<main>
-		<div class="container">
-			<h1>Login</h1>
+		<div class="login-container">
+			<div class="login-header">
+				<h1>Login</h1>
+				<p>Access your account</p>
+			</div>
+
 			<div id="login-container">
-				<form hx-post="/login" hx-target="#login-container" hx-swap="outerHTML" method="POST">
-					<input type="email" name="email" placeholder="Email" required><br>
-					<input type="password" name="password" placeholder="Password" required><br>
-					<button type="submit">Login</button>
+				<form class="login-form" hx-post="/login" hx-target="#login-container" hx-swap="outerHTML" method="POST">
+					<div class="form-group">
+						<label for="email">Email Address</label>
+						<input type="email" id="email" name="email" placeholder="Enter your email address" required>
+					</div>
+
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" id="password" name="password" placeholder="Enter your password" required>
+					</div>
+
+					<button type="submit" class="login-button">Sign In</button>
 				</form>
+			</div>
+
+			<div class="login-footer">
+				<p>Need help? <a href="/contact">Contact Support</a></p>
 			</div>
 		</div>
 	</main>

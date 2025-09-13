@@ -1,0 +1,668 @@
+{{define "facilities"}}
+<!doctype html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Facilities - Adarsha Secondary School</title>
+        <link rel="icon" href="/static/favicon.ico" type="image/jpeg" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Crimson+Text:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+    <style>
+            :root {
+                --wf-black: #000000;
+                --wf-gold: #9e7e38;
+                --wf-dark-gray: #333333;
+                --wf-medium-gray: #666666;
+                --wf-light-gray: #f5f5f5;
+                --wf-white: #ffffff;
+                --wf-blue: #2c5aa0;
+            }
+
+            * {
+            margin: 0;
+            padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Source Sans Pro', sans-serif;
+                line-height: 1.6;
+                color: var(--wf-dark-gray);
+                background-color: var(--wf-white);
+            }
+
+            /* Parallax Hero Section */
+            .hero-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
+                           url("static/bg-img4.jpg") center/cover fixed;
+                height: 60vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: var(--wf-white);
+                position: relative;
+            }
+
+            .hero-content h1 {
+                font-family: 'Crimson Text', serif;
+                font-size: 4rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .hero-content p {
+                font-size: 1.25rem;
+                font-weight: 300;
+                opacity: 0.9;
+            }
+
+            .main-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Quick Info Banner with Parallax Background */
+            .quick-info-banner {
+                background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                           url("static/bg-img5.jpg") center/cover fixed;
+                color: var(--wf-white);
+                padding: 3rem 0;
+                margin-bottom: 0;
+            }
+
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .info-item {
+                padding: 1.5rem;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .info-icon {
+                font-size: 2.5rem;
+                color: var(--wf-gold);
+                margin-bottom: 1rem;
+            }
+
+            .info-title {
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .info-desc {
+                font-size: 0.9rem;
+                opacity: 0.9;
+            }
+
+            .content-section {
+                margin-bottom: 0;
+                scroll-margin-top: 100px;
+                padding: 4rem 0;
+            }
+
+            /* Alternating background images for sections */
+            .content-section:nth-child(odd) {
+                background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+                           url("static/bg-img7.jpg") center/cover fixed;
+            }
+
+            .content-section:nth-child(even) {
+                background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                           url("static/bg-img7.jpg") center/cover fixed;
+                color: var(--wf-white);
+            }
+
+            .content-section:nth-child(even) .section-title {
+                color: var(--wf-white);
+            }
+
+            .content-section:nth-child(even) .section-subtitle {
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-family: 'Crimson Text', serif;
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: var(--wf-black);
+                margin-bottom: 1rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+                color: var(--wf-medium-gray);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .facilities-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+
+            .facility-card {
+                background: rgba(255, 255, 255, 0.95);
+                border: 2px solid #e0e0e0;
+                overflow: hidden;
+                transition: border-color 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .content-section:nth-child(even) .facility-card {
+                background: rgba(0, 0, 0, 0.8);
+                border-color: rgba(255, 255, 255, 0.2);
+                color: var(--wf-white);
+            }
+
+            .facility-card:hover {
+                border-color: var(--wf-gold);
+            }
+
+            .card-header {
+                background: var(--wf-black);
+                color: var(--wf-white);
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .content-section:nth-child(even) .card-header {
+                background: var(--wf-gold);
+                color: var(--wf-black);
+            }
+
+            .card-title {
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+
+            .card-content {
+                padding: 1.5rem;
+            }
+
+            .facility-image {
+                height: 200px;
+                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                           url("static/construction.jpg") center/cover;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+
+            .facility-image h3 {
+                color: var(--wf-white);
+                font-family: 'Crimson Text', serif;
+                font-size: 1.5rem;
+                font-weight: 600;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                text-align: center;
+            }
+
+
+            .facility-features {
+                list-style: none;
+            }
+
+            .facility-features li {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                position: relative;
+                padding-left: 1.5rem;
+            }
+
+            .content-section:nth-child(even) .facility-features li {
+                border-bottom-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .facility-features li:before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: var(--wf-gold);
+                font-weight: bold;
+            }
+
+            .facility-features li:last-child {
+                border-bottom: none;
+            }
+
+
+            .divider {
+                height: 2px;
+                background: var(--wf-gold);
+                margin: 3rem auto;
+                width: 100px;
+            }
+
+            /* Contact CTA Section */
+            .contact-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                           url("static/bg-img10.jpg") center/cover fixed;
+                color: var(--wf-white);
+                text-align: center;
+                padding: 4rem 2rem;
+                margin-top: 0;
+            }
+
+            .contact-title {
+                font-family: 'Crimson Text', serif;
+                font-size: 2.5rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
+
+            .contact-text {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                opacity: 0.9;
+            }
+
+            .cta-button {
+                display: inline-block;
+                background: var(--wf-gold);
+                color: var(--wf-white);
+                padding: 1rem 2.5rem;
+                text-decoration: none;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: all 0.3s ease;
+                font-size: 0.9rem;
+                border: 2px solid var(--wf-gold);
+                margin: 0 1rem 1rem 0;
+            }
+
+            .cta-button:hover {
+                background: transparent;
+                color: var(--wf-gold);
+                border-color: var(--wf-gold);
+            }
+
+            .cta-button.secondary {
+                background: transparent;
+                color: var(--wf-white);
+                border-color: var(--wf-white);
+            }
+
+            .cta-button.secondary:hover {
+                background: var(--wf-white);
+                color: var(--wf-black);
+            }
+
+            .contact-info {
+                margin-top: 2rem;
+                font-size: 1.1rem;
+            }
+
+            .contact-info strong {
+                color: var(--wf-gold);
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+            /* Mobile - Disable parallax */
+            @media (max-width: 768px) {
+                .hero-section,
+                .quick-info-banner,
+                .content-section:nth-child(odd),
+                .content-section:nth-child(even),
+                .contact-section {
+                    background-attachment: scroll !important;
+                }
+
+                .hero-content h1 {
+                    font-size: 2.5rem;
+                }
+                
+                .facilities-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .info-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .content-section,
+                .contact-section {
+                    padding: 3rem 0;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .hero-content h1 {
+                    font-size: 2rem;
+                }
+                
+                .info-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .main-container {
+                    padding: 0 15px;
+                }
+
+                .content-section,
+                .contact-section {
+                    padding: 2rem 0;
+                }
+
+                .cta-button {
+                    display: block;
+                    margin: 1rem 0;
+                }
+        }
+    </style>
+</head>
+
+<body>
+        <nav>{{template "navbar-partial" .}}</nav>
+
+        <!-- Hero Section with Parallax -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Our Facilities</h1>
+                <p>State-of-the-art infrastructure for quality education</p>
+            </div>
+        </section>
+
+        <!-- Quick Info Banner with Parallax -->
+        <section class="quick-info-banner">
+            <div class="main-container">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">LAB</div>
+                        <div class="info-title">Modern Labs</div>
+                        <div class="info-desc">Well-equipped science laboratories</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">LIB</div>
+                        <div class="info-title">Rich Library</div>
+                        <div class="info-desc">Extensive collection of books and resources</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">TECH</div>
+                        <div class="info-title">Computer Lab</div>
+                        <div class="info-desc">Modern technology and digital learning</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">SPORT</div>
+                        <div class="info-title">Sports Facilities</div>
+                        <div class="info-desc">Comprehensive sports and recreation areas</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <main>
+            <!-- Science Laboratories Section -->
+            <section id="science-labs" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Science Laboratories</h2>
+                        <p class="section-subtitle">Modern, well-equipped laboratories for hands-on learning and scientific exploration</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                        <div class="facilities-grid">
+                            <div class="facility-card">
+                                <div class="facility-image">
+                                    <h3>Physics Laboratory</h3>
+                                </div>
+                            <div class="card-content">
+                                    <p>Our physics laboratory is equipped with modern apparatus for conducting experiments in mechanics, electricity, optics, and thermodynamics. Students can explore fundamental physics concepts through hands-on experimentation.</p>
+                                    <ul class="facility-features">
+                                        <li>Optics and light experiments</li>
+                                        <li>Mechanics and motion studies</li>
+                                        <li>Electricity and magnetism apparatus</li>
+                                        <li>Digital measuring instruments</li>
+                                        <li>Safety equipment and protocols</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="facility-card">
+                                <div class="facility-image">
+                                    <h3>Chemistry Laboratory</h3>
+                                </div>
+                            <div class="card-content">
+                                    <p>The chemistry laboratory provides a safe environment for students to conduct chemical experiments, analyze substances, and understand chemical reactions. All safety protocols are strictly followed.</p>
+                                    <ul class="facility-features">
+                                        <li>Chemical analysis equipment</li>
+                                        <li>Fume hoods and safety stations</li>
+                                        <li>Digital balances and pH meters</li>
+                                        <li>Chemical storage and disposal systems</li>
+                                        <li>Emergency safety equipment</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="facility-card">
+                                <div class="facility-image">
+                                    <h3>Biology Laboratory</h3>
+                                </div>
+                            <div class="card-content">
+                                    <p>Our biology laboratory is designed for studying living organisms, conducting dissections, and exploring biological processes. It includes microscopes, specimens, and all necessary equipment for comprehensive biological studies.</p>
+                                    <ul class="facility-features">
+                                        <li>Compound and stereo microscopes</li>
+                                        <li>Biological specimens and models</li>
+                                        <li>Dissection equipment and tools</li>
+                                        <li>Environmental monitoring devices</li>
+                                        <li>Digital imaging systems</li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Library & Computer Lab Section -->
+            <section id="library" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Library & Computer Lab</h2>
+                        <p class="section-subtitle">Learning resources and digital infrastructure for comprehensive education</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                        <div class="facilities-grid">
+                            <div class="facility-card">
+                                <div class="facility-image">
+                                <h3>Central Library</h3>
+                                </div>
+                            <div class="card-content">
+                                    <p>Our main library houses an extensive collection of books, reference materials, and digital resources. It provides a quiet, comfortable environment for study and research.</p>
+                                    <ul class="facility-features">
+                                        <li>Over 10,000 books and reference materials</li>
+                                        <li>Digital library and e-books</li>
+                                        <li>Quiet study areas and reading corners</li>
+                                        <li>Computer workstations for research</li>
+                                        <li>Librarian assistance and guidance</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="facility-card">
+                                <div class="facility-image">
+                                <h3>Computer Laboratory</h3>
+                                </div>
+                            <div class="card-content">
+                                    <p>Our computer laboratory is equipped with modern computers and software to support digital learning, programming, and research activities. High-speed internet connectivity ensures seamless access to online resources.</p>
+                                    <ul class="facility-features">
+                                        <li>40+ modern desktop computers</li>
+                                        <li>High-speed internet connectivity</li>
+                                        <li>Educational software and applications</li>
+                                        <li>Programming and coding tools</li>
+                                        <li>Multimedia and presentation equipment</li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sports & Ground Section -->
+            <section id="sports-ground" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Sports & Ground</h2>
+                        <p class="section-subtitle">Physical fitness and recreational facilities for students</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="facilities-grid">
+                        <div class="facility-card">
+                            <div class="facility-image">
+                                <h3>Main Playground</h3>
+                            </div>
+                            <div class="card-content">
+                                <p>The main playground provides space for various outdoor activities, sports, and physical education classes. It's designed to accommodate different age groups and activities.</p>
+                                <ul class="facility-features">
+                                    <li>Football/soccer field</li>
+                                    <li>Cricket practice nets</li>
+                                    <li>Running track and fitness area</li>
+                                    <li>Outdoor exercise equipment</li>
+                                    <li>Shaded seating areas</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="facility-card">
+                            <div class="facility-image">
+                                <h3>Sports Complex</h3>
+                            </div>
+                            <div class="card-content">
+                                <p>Our sports complex includes various courts and fields for different sports activities, promoting physical fitness and healthy competition among students.</p>
+                                <ul class="facility-features">
+                                    <li>Basketball court with proper flooring</li>
+                                    <li>Volleyball court with net systems</li>
+                                    <li>Table tennis tables and equipment</li>
+                                    <li>Badminton court with proper lighting</li>
+                                    <li>Equipment storage and changing rooms</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Additional Facilities Section -->
+            <section id="additional-facilities" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Additional Facilities</h2>
+                        <p class="section-subtitle">Supporting infrastructure for comprehensive educational experience</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="facilities-grid">
+                        <div class="facility-card">
+                            <div class="facility-image">
+                                <h3>School Canteen</h3>
+                            </div>
+                            <div class="card-content">
+                                <p>The canteen provides nutritious meals and snacks for students and staff. It's designed to accommodate large numbers while maintaining hygiene and food safety standards.</p>
+                                <ul class="facility-features">
+                                    <li>Spacious dining area</li>
+                                    <li>Modern kitchen equipment</li>
+                                    <li>Healthy meal options</li>
+                                    <li>Hygiene and safety protocols</li>
+                                    <li>Outdoor seating area</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="facility-card">
+                            <div class="facility-image">
+                                <h3>Multi-Purpose Auditorium</h3>
+                            </div>
+                            <div class="card-content">
+                                <p>Our auditorium serves as a venue for school assemblies, cultural events, presentations, and guest lectures. It's equipped with modern audio-visual equipment and comfortable seating.</p>
+                                <ul class="facility-features">
+                                    <li>Seating capacity for 300+ people</li>
+                                    <li>Professional sound system</li>
+                                    <li>Projection and lighting systems</li>
+                                    <li>Stage with dressing rooms</li>
+                                    <li>Air conditioning and ventilation</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="facility-card">
+                            <div class="facility-image">
+                                <h3>Staff Rooms</h3>
+                            </div>
+                            <div class="card-content">
+                                <p>Dedicated staff rooms provide teachers and staff with comfortable spaces for planning, collaboration, and relaxation during breaks.</p>
+                                <ul class="facility-features">
+                                    <li>Individual workstations</li>
+                                    <li>Meeting and discussion areas</li>
+                                    <li>Storage for teaching materials</li>
+                                    <li>Rest and relaxation space</li>
+                                    <li>Staff lounge facilities</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="facility-card">
+                            <div class="facility-image">
+                                <h3>Administrative Offices</h3>
+                            </div>
+                            <div class="card-content">
+                                <p>The administrative offices house the principal's office, administrative departments, and various support services for efficient school management.</p>
+                                <ul class="facility-features">
+                                    <li>Principal and vice-principal offices</li>
+                                    <li>Administrative staff workstations</li>
+                                    <li>Student counseling center</li>
+                                    <li>Records and documentation center</li>
+                                    <li>Reception and visitor area</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+            </section>
+    </main>
+
+        <!-- Contact and Visit Section -->
+        <section id="visit-facilities" class="contact-section">
+            <h2 class="contact-title">Visit Our Facilities</h2>
+            <p class="contact-text">Experience our state-of-the-art facilities and see how we provide quality education</p>
+            <a href="/contact" class="cta-button">Schedule a Visit</a>
+            <a href="/admissions" class="cta-button secondary">Apply Now</a>
+            
+            <div class="contact-info">
+                <strong>For Facility Tours:</strong>
+                Phone: +977-21-522647<br>
+                Email: adarshavidyala1986@gmail.com<br>
+                Office Hours: Sunday - Friday, 10:00 AM - 4:00 PM
+            </div>
+        </section>
+
+        <footer>{{template "footer-partial" .}}</footer>
+</body>
+</html>
+{{end}}

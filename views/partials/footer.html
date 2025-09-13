@@ -8,16 +8,6 @@
                 <li>
                     <a href="/academics" hx-boost="true">Majors & Minors</a>
                 </li>
-                <li><a href="/visit" hx-boost="true">Schedule a Visit</a></li>
-                <li>
-                    <a href="/affordability" hx-boost="true">Affordability</a>
-                </li>
-                <li>
-                    <a href="/apply" hx-boost="true">Apply to {{.SiteName}}</a>
-                </li>
-                <li>
-                    <a href="/schools" hx-boost="true">College & Schools</a>
-                </li>
             </ul>
         </div>
 
@@ -27,20 +17,10 @@
                 <li>
                     <a href="/about" hx-boost="true">About {{.SiteName}}</a>
                 </li>
-                <li><a href="/campus-life" hx-boost="true">Campus Life</a></li>
+                <li><a href="/team" hx-boost="true">Our Team</a></li>
                 <li><a href="/athletics" hx-boost="true">Athletics</a></li>
                 <li>
-                    <a href="/visitor-info" hx-boost="true"
-                        >Visitor Information</a
-                    >
-                </li>
-                <li>
-                    <a href="/downtown" hx-boost="true"
-                        >{{.SiteName}} Downtown</a
-                    >
-                </li>
-                <li>
-                    <a href="/experience" hx-boost="true"
+                    <a href="/admissions" hx-boost="true"
                         >Experience {{.SiteName}}</a
                     >
                 </li>
@@ -50,11 +30,9 @@
         <div class="footer-section">
             <h4>RESOURCES</h4>
             <ul>
-                <li><a href="/hr" hx-boost="true">Human Resources</a></li>
                 <li><a href="/events" hx-boost="true">Event Calendar</a></li>
-                <li><a href="/libraries" hx-boost="true">Libraries</a></li>
-                <li><a href="/wellbeing" hx-boost="true">Wellbeing</a></li>
-                <li><a href="/campus-map" hx-boost="true">Campus Map</a></li>
+                <li><a href="/facilitites" hx-boost="true">Facilities</a></li>
+								<li><a href="/vacancies"hx-boost="true">Vacancies</a></li>
                 <li><a href="/news" hx-boost="true">News & Media</a></li>
             </ul>
         </div>
@@ -66,7 +44,7 @@
                 >
             </div>
             <div class="quick-link-btn">
-                <a href="/directories" class="btn-secondary" hx-boost="true"
+                <a href="/about" class="btn-secondary" hx-boost="true"
                     >DIRECTORIES</a
                 >
             </div>
@@ -83,39 +61,38 @@
             <div class="giving-card">
                 <div class="giving-image">
                     <img
-                        src="/static/logo.jpg"
-                        alt="Support {{.SiteName}}"
+                        src="/static/volleyball.jpg"
+                        alt="Programs of {{.SiteName}}"
                         loading="lazy"
                     />
                 </div>
                 <div class="giving-content">
-                    <h3>Support {{.SiteName}}</h3>
+                    <h3>Sports at {{.SiteName}}</h3>
                     <p>
-                        A gift to the {{.SiteName}} Fund supports student needs
-                        immediately.
+                        View the athletic activitites of {{.SiteName}}'s students.
                     </p>
-                    <a href="/give" class="btn-primary" hx-boost="true"
-                        >GIVE NOW</a
+                    <a href="/athletics" class="btn-primary" hx-boost="true"
+                        >Athletics</a
                     >
                 </div>
             </div>
 
             <div class="giving-card">
                 <div class="giving-image">
-                    <div class="giving-badge">
-                        <span class="badge-text"
-                            >{{.SiteName}}<br />GIVING<br />SOCIETIES</span
-                        >
-                    </div>
+                    <img
+                        src="/static/bg-img8.jpg"
+                        alt="Programs of {{.SiteName}}"
+                        loading="lazy"
+                    />
                 </div>
                 <div class="giving-content">
-                    <h3>{{.SiteName}} Giving Societies</h3>
-                    <p>Where the most loyal {{.SiteName}} supporters belong.</p>
+                    <h3>{{.SiteName}}'s Program</h3>
+					<p>View the wonderful and educational programs of {{.SiteName}}.</p>
                     <a
-                        href="/giving-societies"
+                        href="/events"
                         class="btn-primary"
                         hx-boost="true"
-                        >JOIN TODAY</a
+                        >VIEW EVENTS</a
                     >
                 </div>
             </div>
@@ -131,23 +108,17 @@
                     class="university-logo"
                 />
                 <div class="university-info">
-                    <p>1834 {{.SiteName}} Road, Winston-Salem, NC 27109</p>
+					<p>1930 {{.SiteName}} Biratnagar-7, Morang<br>Website Designed and Developed by Siddhartha Dhakal</p>
                 </div>
             </div>
 
             <div class="footer-links">
-                <a href="/affiliates" hx-boost="true">Affiliates</a>
                 <a href="/privacy" hx-boost="true">Privacy</a>
-                <a href="/emergency" hx-boost="true">Emergency</a>
-                <a href="/non-discrimination" hx-boost="true"
-                    >Non-Discrimination</a
-                >
-                <a href="/ethics" hx-boost="true">Ethics</a>
-                <a href="/hotline" hx-boost="true">Hotline</a>
+								<a href="/contact" hx-boost="true">Contact</a>
             </div>
 
             <div class="social-links">
-                <a href="#" aria-label="Facebook" hx-boost="true">
+                <a href="https://www.facebook.com/adarshavidiyalay" aria-label="Facebook" hx-boost="true">
                     <svg
                         width="20"
                         height="20"
@@ -156,30 +127,6 @@
                     >
                         <path
                             d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                        />
-                    </svg>
-                </a>
-                <a href="#" aria-label="Twitter" hx-boost="true">
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                    >
-                        <path
-                            d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
-                        />
-                    </svg>
-                </a>
-                <a href="#" aria-label="Instagram" hx-boost="true">
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                    >
-                        <path
-                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
                         />
                     </svg>
                 </a>

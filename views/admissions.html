@@ -7,110 +7,397 @@
         <title>Admissions - Adarsha Secondary School</title>
         <link rel="icon" href="/static/favicon.ico" type="image/jpeg" />
         <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Crimson+Text:wght@400;600&display=swap"
             rel="stylesheet"
         />
         <style>
-            body {
-                font-family: "Poppins", sans-serif;
+            :root {
+                --wf-black: #000000;
+                --wf-gold: #9e7e38;
+                --wf-dark-gray: #333333;
+                --wf-medium-gray: #666666;
+                --wf-light-gray: #f5f5f5;
+                --wf-white: #ffffff;
+                --wf-blue: #2c5aa0;
+            }
+
+            * {
                 margin: 0;
                 padding: 0;
-                background: url("/static/images/bg-for-about.jpg") no-repeat
-                    center center fixed;
-                background-size: cover;
-                color: #333;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Source Sans Pro', sans-serif;
                 line-height: 1.6;
+                color: var(--wf-dark-gray);
+                background-color: var(--wf-white);
             }
 
-            .hero {
-                background: rgba(0, 0, 0, 0.7);
-                color: white;
-                padding: 60px 0;
+            /* Parallax Hero Section */
+            .hero-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
+                           url("static/bg-img4.jpg") center/cover fixed;
+                height: 60vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 text-align: center;
-                margin-bottom: 40px;
+                color: var(--wf-white);
+                position: relative;
             }
 
-            .container {
+            .hero-content h1 {
+                font-family: 'Crimson Text', serif;
+                font-size: 4rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .hero-content p {
+                font-size: 1.25rem;
+                font-weight: 300;
+                opacity: 0.9;
+            }
+
+            .main-container {
                 max-width: 1200px;
-                margin: 40px auto;
-                padding: 30px;
-                background-color: rgba(255, 255, 255, 0.95);
-                border-radius: 15px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                margin: 0 auto;
+                padding: 0 20px;
             }
 
-            .admission-grid {
+            /* Quick Info Banner with Parallax Background */
+            .quick-info-banner {
+                background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                           url("static/bg-img5.jpg") center/cover fixed;
+                color: var(--wf-white);
+                padding: 3rem 0;
+                margin-bottom: 0;
+            }
+
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .info-item {
+                padding: 1.5rem;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .info-icon {
+                font-size: 2.5rem;
+                color: var(--wf-gold);
+                margin-bottom: 1rem;
+            }
+
+            .info-title {
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .info-desc {
+                font-size: 0.9rem;
+                opacity: 0.9;
+            }
+
+            .content-section {
+                margin-bottom: 0;
+                scroll-margin-top: 100px;
+                padding: 4rem 0;
+            }
+
+            /* Alternating background images for sections */
+            .content-section:nth-child(odd) {
+                background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+                           url("static/bg-img7.jpg") center/cover fixed;
+            }
+
+            .content-section:nth-child(even) {
+                background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                           url("static/bg-img7.jpg") center/cover fixed;
+                color: var(--wf-white);
+            }
+
+            .content-section:nth-child(even) .section-title {
+                color: var(--wf-white);
+            }
+
+            .content-section:nth-child(even) .section-subtitle {
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-family: 'Crimson Text', serif;
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: var(--wf-black);
+                margin-bottom: 1rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+                color: var(--wf-medium-gray);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .process-grid,
+            .dates-grid,
+            .eligibility-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 30px;
-                margin-top: 40px;
+                gap: 2rem;
+                margin-top: 2rem;
             }
 
-            .admission-card {
-                background: white;
-                border-radius: 10px;
-                padding: 25px;
-                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            .process-card,
+            .date-card,
+            .eligibility-card {
+                background: rgba(255, 255, 255, 0.95);
+                border: 2px solid #e0e0e0;
+                overflow: hidden;
+                transition: border-color 0.3s ease;
+                backdrop-filter: blur(10px);
             }
 
-            h1 {
-                font-size: 2.5em;
-                margin-bottom: 20px;
-                color: white;
+            .content-section:nth-child(even) .process-card,
+            .content-section:nth-child(even) .date-card,
+            .content-section:nth-child(even) .eligibility-card {
+                background: rgba(0, 0, 0, 0.8);
+                border-color: rgba(255, 255, 255, 0.2);
+                color: var(--wf-white);
             }
 
-            h2 {
-                color: #2c3e50;
-                font-size: 1.8em;
-                margin-bottom: 20px;
-                border-bottom: 2px solid #3498db;
-                padding-bottom: 10px;
+            .process-card:hover,
+            .date-card:hover,
+            .eligibility-card:hover {
+                border-color: var(--wf-gold);
             }
 
-            h3 {
-                color: #3498db;
-                margin-bottom: 15px;
+            .card-header {
+                background: var(--wf-black);
+                color: var(--wf-white);
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .content-section:nth-child(even) .card-header {
+                background: var(--wf-gold);
+                color: var(--wf-black);
+            }
+
+            .card-number {
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+                color: var(--wf-gold);
+            }
+
+            .content-section:nth-child(even) .card-number {
+                color: var(--wf-black);
+            }
+
+            .card-title {
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+
+            .card-content {
+                padding: 1.5rem;
             }
 
             .requirements-list {
                 list-style: none;
-                padding: 0;
             }
 
             .requirements-list li {
-                padding: 10px 0;
-                border-bottom: 1px solid #eee;
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
                 position: relative;
-                padding-left: 25px;
+                padding-left: 1.5rem;
+            }
+
+            .content-section:nth-child(even) .requirements-list li {
+                border-bottom-color: rgba(255, 255, 255, 0.2);
             }
 
             .requirements-list li:before {
-                content: "•";
-                color: #3498db;
+                content: "✓";
                 position: absolute;
                 left: 0;
+                color: var(--wf-gold);
+                font-weight: bold;
+            }
+
+            .requirements-list li:last-child {
+                border-bottom: none;
+            }
+
+            /* Important Dates Section */
+            .dates-section {
+                background: linear-gradient(rgba(158, 126, 56, 0.9), rgba(158, 126, 56, 0.9)), 
+                           url("static/bg-img7.jpg") center/cover fixed;
+                color: var(--wf-white);
+                padding: 4rem 0;
+            }
+
+            .dates-section .section-title {
+                color: var(--wf-white);
+            }
+
+            .dates-section .date-card {
+                background: rgba(0, 0, 0, 0.7);
+                border-color: rgba(255, 255, 255, 0.3);
+                color: var(--wf-white);
+            }
+
+            .dates-section .card-header {
+                background: var(--wf-black);
+                color: var(--wf-white);
+            }
+
+            /* Contact CTA Section */
+            .contact-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                           url("static/bg-img10.jpg") center/cover fixed;
+                color: var(--wf-white);
+                text-align: center;
+                padding: 4rem 2rem;
+                margin-top: 0;
+            }
+
+            .contact-title {
+                font-family: 'Crimson Text', serif;
+                font-size: 2.5rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
+
+            .contact-text {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                opacity: 0.9;
             }
 
             .cta-button {
                 display: inline-block;
-                padding: 12px 30px;
-                background: #3498db;
-                color: white;
+                background: var(--wf-gold);
+                color: var(--wf-white);
+                padding: 1rem 2.5rem;
                 text-decoration: none;
-                border-radius: 5px;
-                transition: background 0.3s;
-                margin-top: 20px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: all 0.3s ease;
+                font-size: 0.9rem;
+                border: 2px solid var(--wf-gold);
+                margin: 0 1rem 1rem 0;
             }
 
             .cta-button:hover {
-                background: #2980b9;
+                background: transparent;
+                color: var(--wf-gold);
+                border-color: var(--wf-gold);
             }
 
-            .important-dates {
-                background: #f8f9fa;
-                padding: 20px;
-                border-radius: 8px;
-                margin: 20px 0;
+            .cta-button.secondary {
+                background: transparent;
+                color: var(--wf-white);
+                border-color: var(--wf-white);
+            }
+
+            .cta-button.secondary:hover {
+                background: var(--wf-white);
+                color: var(--wf-black);
+            }
+
+            .contact-info {
+                margin-top: 2rem;
+                font-size: 1.1rem;
+            }
+
+            .contact-info strong {
+                color: var(--wf-gold);
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+            .divider {
+                height: 2px;
+                background: var(--wf-gold);
+                margin: 3rem auto;
+                width: 100px;
+            }
+
+            /* Mobile - Disable parallax */
+            @media (max-width: 768px) {
+                .hero-section,
+                .quick-info-banner,
+                .content-section:nth-child(odd),
+                .content-section:nth-child(even),
+                .dates-section,
+                .contact-section {
+                    background-attachment: scroll !important;
+                }
+
+                .hero-content h1 {
+                    font-size: 2.5rem;
+                }
+                
+                .process-grid,
+                .dates-grid,
+                .eligibility-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .info-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .content-section,
+                .dates-section {
+                    padding: 3rem 0;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .hero-content h1 {
+                    font-size: 2rem;
+                }
+                
+                .info-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .main-container {
+                    padding: 0 15px;
+                }
+
+                .content-section,
+                .dates-section {
+                    padding: 2rem 0;
+                }
+
+                .cta-button {
+                    display: block;
+                    margin: 1rem 0;
+                }
             }
         </style>
     </head>
@@ -118,119 +405,244 @@
     <body>
         <nav>{{template "navbar-partial" .}}</nav>
 
-        <div class="hero">
-            <div class="container">
-                <h1>Admissions</h1>
-                <p>Your Journey to Excellence Begins Here</p>
+        <!-- Hero Section with Parallax -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Join Our Community</h1>
+                <p>Your journey to excellence begins here</p>
             </div>
-        </div>
+        </section>
+
+        <!-- Quick Info Banner with Parallax -->
+        <section class="quick-info-banner">
+            <div class="main-container">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">📋</div>
+                        <div class="info-title">Easy Application</div>
+                        <div class="info-desc">Simple online application process</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🎯</div>
+                        <div class="info-title">Merit-Based</div>
+                        <div class="info-desc">Fair and transparent selection</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-title">Support Available</div>
+                        <div class="info-desc">Guidance throughout the process</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🏆</div>
+                        <div class="info-title">Multiple Programs</div>
+                        <div class="info-desc">Various academic pathways</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <main>
-            <div class="container">
-                <section>
-                    <h2>Admission Process</h2>
-                    <div class="admission-grid">
-                        <div class="admission-card">
-                            <h3>Step 1: Application</h3>
-                            <ul class="requirements-list">
-                                <li>Complete application form</li>
-                                <li>Submit required documents</li>
-                                <li>Pay application fee</li>
-                                <li>Provide previous academic records</li>
-                            </ul>
+            <!-- Admission Process Section -->
+            <section id="admission-process" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Admission Process</h2>
+                        <p class="section-subtitle">Follow these simple steps to secure your place at Adarsha Secondary School</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="process-grid">
+                        <div class="process-card">
+                            <div class="card-header">
+                                <div class="card-number">01</div>
+                                <h3 class="card-title">Application</h3>
+                            </div>
+                            <div class="card-content">
+                                <ul class="requirements-list">
+                                    <li>Complete application form accurately</li>
+                                    <li>Submit all required documents</li>
+                                    <li>Pay application fee as specified</li>
+                                    <li>Provide previous academic records</li>
+                                    <li>Submit recent passport-size photographs</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="admission-card">
-                            <h3>Step 2: Evaluation</h3>
-                            <ul class="requirements-list">
-                                <li>Entrance examination</li>
-                                <li>Document verification</li>
-                                <li>Interview (if required)</li>
-                                <li>Merit-based selection</li>
-                            </ul>
+                        
+                        <div class="process-card">
+                            <div class="card-header">
+                                <div class="card-number">02</div>
+                                <h3 class="card-title">Evaluation</h3>
+                            </div>
+                            <div class="card-content">
+                                <ul class="requirements-list">
+                                    <li>Entrance examination (if applicable)</li>
+                                    <li>Thorough document verification</li>
+                                    <li>Personal interview for senior levels</li>
+                                    <li>Merit-based selection process</li>
+                                    <li>Academic record assessment</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="admission-card">
-                            <h3>Step 3: Admission</h3>
-                            <ul class="requirements-list">
-                                <li>Admission offer</li>
-                                <li>Fee payment</li>
-                                <li>Document submission</li>
-                                <li>Orientation program</li>
-                            </ul>
+                        
+                        <div class="process-card">
+                            <div class="card-header">
+                                <div class="card-number">03</div>
+                                <h3 class="card-title">Admission</h3>
+                            </div>
+                            <div class="card-content">
+                                <ul class="requirements-list">
+                                    <li>Receive admission offer letter</li>
+                                    <li>Complete fee payment process</li>
+                                    <li>Submit original documents</li>
+                                    <li>Attend orientation program</li>
+                                    <li>Begin your academic journey</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section class="important-dates">
-                    <h2>Important Dates</h2>
-                    <div class="admission-grid">
-                        <div class="admission-card">
-                            <h3>School Programs</h3>
-                            <ul class="requirements-list">
-                                <li>Application Start: Falgun</li>
-                                <li>Entrance Exam: Chaitra</li>
-                                <li>Results: Early Baisakh</li>
-                                <li>Classes Begin: Baisakh</li>
-                            </ul>
+            <!-- Important Dates Section -->
+            <section id="important-dates" class="dates-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Important Dates</h2>
+                        <p class="section-subtitle">Mark your calendar with these crucial admission timeline dates</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="dates-grid">
+                        <div class="date-card">
+                            <div class="card-header">
+                                <h3 class="card-title">School Programs</h3>
+                                <p style="opacity: 0.8;">Grades PlayGroup - 10</p>
+                            </div>
+                            <div class="card-content">
+                                <ul class="requirements-list">
+                                    <li>Application Opens: Falgun (February)</li>
+                                    <li>Entrance Examination: Chaitra (March)</li>
+                                    <li>Results Published: Early Baisakh (April)</li>
+                                    <li>Classes Begin: Baisakh (April/May)</li>
+                                    <li>Late admission: Till Jestha</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="admission-card">
-                            <h3>+2 Programs</h3>
-                            <ul class="requirements-list">
-                                <li>Application Start: Post SEE Results</li>
-                                <li>Entrance Exam: Within a week</li>
-                                <li>Results: Within 3 days</li>
-                                <li>Classes Begin: Shrawan</li>
-                            </ul>
+                        
+                        <div class="date-card">
+                            <div class="card-header">
+                                <h3 class="card-title">+2 Programs</h3>
+                                <p style="opacity: 0.8;">Higher Secondary Education</p>
+                            </div>
+                            <div class="card-content">
+                                <ul class="requirements-list">
+                                    <li>Application: Post SEE Results</li>
+                                    <li>Entrance Exam: Within one week</li>
+                                    <li>Merit List: Within 3 days</li>
+                                    <li>Classes Begin: Shrawan (July)</li>
+                                    <li>Document verification: Ongoing</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="date-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Technical Programs</h3>
+                                <p style="opacity: 0.8;">CTEVT Diploma Courses</p>
+                            </div>
+                            <div class="card-content">
+                                <ul class="requirements-list">
+                                    <li>Application: Post SEE Results</li>
+                                    <li>CTEVT Entrance: As per board</li>
+                                    <li>Selection Process: Merit-based</li>
+                                    <li>Classes Begin: Shrawan (July)</li>
+                                    <li>Limited seats available</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section>
-                    <h2>Eligibility Criteria</h2>
-                    <div class="admission-grid">
-                        <div class="admission-card">
-                            <h3>School Level</h3>
-                            <ul class="requirements-list">
-                                <li>Age-appropriate for class</li>
-                                <li>Previous class marksheet</li>
-                                <li>Transfer certificate (if applicable)</li>
-                                <li>Birth certificate</li>
-                            </ul>
+            <!-- Eligibility Criteria Section -->
+            <section id="eligibility-criteria" class="content-section">
+                <div class="main-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Eligibility Criteria</h2>
+                        <p class="section-subtitle">Ensure you meet the requirements for your desired program before applying</p>
+                    </div>
+                    <div class="divider"></div>
+                    
+                    <div class="eligibility-grid">
+                        <div class="eligibility-card">
+                            <div class="card-header">
+                                <h3 class="card-title">School Level</h3>
+                                <p style="opacity: 0.8;">PlayGroup to Grade 10</p>
+                            </div>
+                            <div class="card-content">
+                                <ul class="requirements-list">
+                                    <li>Age-appropriate for respective class</li>
+                                    <li>Previous class marksheet/certificate</li>
+                                    <li>Transfer certificate (if applicable)</li>
+                                    <li>Birth certificate (original & copy)</li>
+                                    <li>Medical fitness certificate</li>
+                                    <li>Guardian consent form</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="admission-card">
-                            <h3>+2 Programs</h3>
-                            <ul class="requirements-list">
-                                <li>SEE passed or equivalent</li>
-                                <li>Minimum GPA requirements</li>
-                                <li>Original documents</li>
-                                <li>Character certificate</li>
-                            </ul>
+                        
+                        <div class="eligibility-card">
+                            <div class="card-header">
+                                <h3 class="card-title">+2 Programs</h3>
+                                <p style="opacity: 0.8;">Science, Management, Education</p>
+                            </div>
+                            <div class="card-content">
+                                <ul class="requirements-list">
+                                    <li>SEE passed or equivalent qualification</li>
+                                    <li>Minimum GPA requirements met</li>
+                                    <li>Original SEE marksheet & certificate</li>
+                                    <li>Character certificate from previous school</li>
+                                    <li>Migration certificate (if required)</li>
+                                    <li>Subject-specific prerequisites</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="admission-card">
-                            <h3>Technical Programs</h3>
-                            <ul class="requirements-list">
-                                <li>SEE with required subjects</li>
-                                <li>CTEVT entrance qualification</li>
-                                <li>Technical aptitude</li>
-                                <li>Required documents</li>
-                            </ul>
+                        
+                        <div class="eligibility-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Technical Programs</h3>
+                                <p style="opacity: 0.8;">CTEVT Diploma Courses</p>
+                            </div>
+                            <div class="card-content">
+                                <ul class="requirements-list">
+                                    <li>SEE with required core subjects</li>
+                                    <li>CTEVT entrance qualification</li>
+                                    <li>Technical aptitude assessment</li>
+                                    <li>All required documents verified</li>
+                                    <li>Medical fitness (for some programs)</li>
+                                    <li>Age limit as per CTEVT norms</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </section>
-
-                <section style="text-align: center; margin-top: 40px">
-                    <h2>Ready to Apply?</h2>
-                    <p>
-                        Start your journey with Adarsha Secondary School today
-                    </p>
-                    <a href="/apply" class="cta-button">Apply Now</a>
-                    <p style="margin-top: 20px">
-                        For more information, contact us at: <br />
-                        Phone: +977-21-522647<br />
-                        Email: adarshavidyala1986@gmail.com
-                    </p>
-                </section>
-            </div>
+                </div>
+            </section>
         </main>
+
+        <!-- Contact and Apply Section -->
+        <section id="apply-now" class="contact-section">
+            <h2 class="contact-title">Ready to Apply?</h2>
+            <p class="contact-text">Take the first step towards your future at Adarsha Secondary School</p>
+            <a href="/apply" class="cta-button">Apply Online Now</a>
+            <a href="/contact" class="cta-button secondary">Get More Information</a>
+            
+            <div class="contact-info">
+                <strong>For Admission Inquiries:</strong>
+                Phone: +977-21-522647<br>
+                Email: adarshavidyala1986@gmail.com<br>
+                Office Hours: Sunday - Friday, 10:00 AM - 4:00 PM
+            </div>
+        </section>
 
         <footer>{{template "footer-partial" .}}</footer>
     </body>

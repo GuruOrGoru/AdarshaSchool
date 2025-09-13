@@ -1,13 +1,27 @@
-{{define "events-partial"}} {{range .Events}}
-<div class="event-item">
-    {{if .ImageURL}}
-    <img src="{{.ImageURL}}" alt="{{.Title}}" class="event-image" />
-    {{end}}
-    <div class="event-content">
-        <h3 class="event-title">{{.Title}}</h3>
-        <h5 class="event-date">{{.Date}}</h5>
-        <p class="event-excerpt">{{.Description}}</p>
-        <a href="#" class="read-more">Learn More</a>
+{{define "events-partial"}}
+{{if .Events}}
+    {{range .Events}}
+    <div class="event-item">
+        {{if .ImageURL}}
+        <div class="event-image-container">
+            <img src="{{.ImageURL}}" alt="{{.Title}}" class="event-image" onclick="openImageModal('{{.ImageURL}}', '{{.Title}}')" />
+        </div>
+        {{end}}
+        <div class="event-content">
+            <h3 class="event-title">{{.Title}}</h3>
+            <h5 class="event-date">{{.Date}}</h5>
+            <p class="event-excerpt">{{.Description}}</p>
+            <a href="#" class="read-more">Learn More</a>
+        </div>
     </div>
-</div>
-{{end}} {{end}}
+    {{end}}
+{{else}}
+    <div class="not-found-container">
+        <div class="not-found-icon">
+            <img src="/static/logo.jpg" alt="No Events" class="not-found-logo" />
+        </div>
+        <h3 class="not-found-title">No Current Events</h3>
+        <p class="not-found-message">There are no events scheduled at this time. Please check back later for updates.</p>
+    </div>
+{{end}}
+{{end}}

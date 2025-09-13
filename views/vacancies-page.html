@@ -69,6 +69,12 @@
                 object-fit: cover;
                 margin-right: 40px;
                 flex-shrink: 0;
+                cursor: pointer;
+                transition: filter 0.3s ease;
+            }
+
+            .vacancies-image:hover {
+                filter: brightness(1.05);
             }
 
             .vacancies-content {
@@ -139,6 +145,87 @@
                     padding: 20px 15px;
                 }
             }
+            /* Image Modal - Facebook Style */
+            .image-modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.95);
+                animation: fadeIn 0.2s ease;
+            }
+
+            .image-modal.show {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .modal-content {
+                position: relative;
+                max-width: 95%;
+                max-height: 95%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                animation: zoomIn 0.2s ease;
+            }
+
+            .modal-image {
+                max-width: 100%;
+                max-height: calc(100vh - 100px);
+                object-fit: contain;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            }
+
+            .modal-title {
+                color: white;
+                text-align: center;
+                margin-top: 1rem;
+                font-size: 1.1rem;
+                font-weight: 500;
+                max-width: 600px;
+                padding: 0 1rem;
+            }
+
+            .modal-close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                color: white;
+                font-size: 2.5rem;
+                font-weight: 300;
+                cursor: pointer;
+                background: rgba(0, 0, 0, 0.6);
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s ease;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+            }
+
+            .modal-close:hover {
+                background: rgba(0, 0, 0, 0.8);
+                border-color: rgba(255, 255, 255, 0.6);
+                transform: scale(1.1);
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            @keyframes zoomIn {
+                from { transform: scale(0.8); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+            }
         </style>
     </head>
 
@@ -153,6 +240,52 @@
                 </div>
             </div>
         </main>
+
+        <!-- Image Modal -->
+        <div id="imageModal" class="image-modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeImageModal()">&times;</span>
+                <img id="modalImage" class="modal-image" alt="">
+                <div id="modalTitle" class="modal-title"></div>
+            </div>
+        </div>
+
+        <script>
+        function openImageModal(imageUrl, title) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            modalImage.src = imageUrl;
+            modalTitle.textContent = title;
+            modal.classList.add('show');
+            
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('show');
+            
+            // Restore body scroll
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeImageModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+        </script>
 
         {{template "footer-partial" .}}
     </body>

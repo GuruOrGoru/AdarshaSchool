@@ -64,21 +64,7 @@
     <div class="container">
         <h2 class="section-title">Latest News</h2>
         <div class="news-grid">
-            {{range .News}}
-            <div class="news-card">
-                {{if .ImageURL}}
-                <div
-                    class="news-image"
-                    style="background-image: url('{{.ImageURL}}')"
-                ></div>
-                {{end}}
-                <div class="news-content">
-                    <h3>{{.Title}}</h3>
-                    <p>{{.Description}}</p>
-                    <a href="/news" class="read-more">Read More »</a>
-                </div>
-            </div>
-            {{end}}
+            {{template "news-partial" .}}
         </div>
     </div>
 </div>
@@ -86,24 +72,9 @@
 <!-- Events Section -->
 <div class="events-section">
     <div class="container">
-        <h2 class="section-title">Upcoming Events</h2>
+        <h2 class="section-title">Past/Ongoing/Upcoming Events</h2>
         <div class="events-grid">
-            {{range .Events}}
-            <div class="event-card">
-                {{if .ImageURL}}
-                <div
-                    class="event-image"
-                    style="background-image: url('{{.ImageURL}}')"
-                ></div>
-                {{end}}
-                <div class="event-content">
-                    <div class="event-date">{{.Date}}</div>
-                    <h3>{{.Title}}</h3>
-                    <p>{{.Description}}</p>
-                    <a href="/events" class="event-link">Learn More »</a>
-                </div>
-            </div>
-            {{end}}
+            {{template "events-partial" .}}
         </div>
     </div>
 </div>
@@ -127,15 +98,7 @@
     <div class="container">
         <h2 class="section-title">Career Opportunities</h2>
         <div class="vacancy-grid">
-            {{range .Vacancies}}
-            <div class="vacancy-card">
-                <div class="vacancy-content">
-                    <h3>{{.Title}}</h3>
-                    <p>{{.Description}}</p>
-                    <a href="/vacancies" class="vacancy-link">View Details »</a>
-                </div>
-            </div>
-            {{end}}
+            {{template "vacancies-partial" .}}
         </div>
     </div>
 </div>
@@ -328,6 +291,58 @@
         padding: 1.5rem;
     }
 
+    /* Individual item styles */
+    .news-item,
+    .event-item,
+    .vacancies-item {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .news-item:hover,
+    .event-item:hover,
+    .vacancies-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .news-title,
+    .event-title,
+    .vacancies-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    .news-excerpt,
+    .event-excerpt,
+    .vacancies-excerpt {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .event-date {
+        color: #c99700;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .read-more {
+        color: #c99700;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .read-more:hover {
+        color: #a67d00;
+    }
+
     /* Events Section */
     .events-grid {
         display: grid;
@@ -371,6 +386,191 @@
         border-radius: 8px;
     }
 
+    /* Image Preview Styles */
+    .event-image-container,
+    .news-image-container,
+    .vacancies-image-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .event-image-container:hover,
+    .news-image-container:hover,
+    .vacancies-image-container:hover {
+        transform: scale(1.02);
+    }
+
+    .event-image,
+    .news-image,
+    .vacancies-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: filter 0.3s ease;
+        cursor: pointer;
+    }
+
+    .event-image:hover,
+    .news-image:hover,
+    .vacancies-image:hover {
+        filter: brightness(1.05);
+    }
+
+    /* Not Found States */
+    .not-found-container {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 3rem 2rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border: 2px dashed #dee2e6;
+    }
+
+    .not-found-icon {
+        margin-bottom: 1.5rem;
+    }
+
+    .not-found-logo {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        opacity: 0.6;
+        border-radius: 50%;
+    }
+
+    .not-found-title {
+        font-size: 1.5rem;
+        color: #6c757d;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .not-found-message {
+        color: #6c757d;
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* Image Modal - Facebook Style */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        animation: fadeIn 0.2s ease;
+    }
+
+    .image-modal.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        position: relative;
+        max-width: 95%;
+        max-height: 95%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: zoomIn 0.2s ease;
+    }
+
+    .modal-image {
+        max-width: 100%;
+        max-height: calc(100vh - 100px);
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-title {
+        color: white;
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+        max-width: 600px;
+        padding: 0 1rem;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 300;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-close:hover {
+        background: rgba(0, 0, 0, 0.8);
+        border-color: rgba(255, 255, 255, 0.6);
+        transform: scale(1.1);
+    }
+
+    /* Navigation arrows for future enhancement */
+    .modal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-nav:hover {
+        background: rgba(0, 0, 0, 0.8);
+        border-color: rgba(255, 255, 255, 0.6);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .modal-nav.prev {
+        left: 20px;
+    }
+
+    .modal-nav.next {
+        right: 20px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
         .parallax-section {
@@ -411,4 +611,50 @@
         }
     }
 </style>
+
+<!-- Image Modal -->
+<div id="imageModal" class="image-modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="modal-image" alt="">
+        <div id="modalTitle" class="modal-title"></div>
+    </div>
+</div>
+
+<script>
+function openImageModal(imageUrl, title) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    
+    modalImage.src = imageUrl;
+    modalTitle.textContent = title;
+    modal.classList.add('show');
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('show');
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside the image
+document.getElementById('imageModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeImageModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeImageModal();
+    }
+});
+</script>
 {{end}}

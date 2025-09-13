@@ -1,12 +1,26 @@
-{{define "vacancies-partial"}} {{range .Vacancies}}
-<div class="vacancies-item">
-    {{if .ImageURL}}
-    <img src="{{.ImageURL}}" class="vacancies-image" alt="{{.Title}}" />
-    {{end}}
-    <div class="vacancies-content">
-        <h3 class="vacancies-title">{{.Title}}</h3>
-        <p class="vacancies-excerpt">{{.Description}}</p>
-        <a href="#" class="read-more">Learn More</a>
+{{define "vacancies-partial"}}
+{{if .Vacancies}}
+    {{range .Vacancies}}
+    <div class="vacancies-item">
+        {{if .ImageURL}}
+        <div class="vacancies-image-container">
+            <img src="{{.ImageURL}}" class="vacancies-image" alt="{{.Title}}" onclick="openImageModal('{{.ImageURL}}', '{{.Title}}')" />
+        </div>
+        {{end}}
+        <div class="vacancies-content">
+            <h3 class="vacancies-title">{{.Title}}</h3>
+            <p class="vacancies-excerpt">{{.Description}}</p>
+            <a href="#" class="read-more">Learn More</a>
+        </div>
     </div>
-</div>
-{{end}} {{end}}
+    {{end}}
+{{else}}
+    <div class="not-found-container">
+        <div class="not-found-icon">
+            <img src="/static/logo.jpg" alt="No Vacancies" class="not-found-logo" />
+        </div>
+        <h3 class="not-found-title">No Current Vacancies</h3>
+        <p class="not-found-message">There are no job openings available at this time. Please check back later for new opportunities.</p>
+    </div>
+{{end}}
+{{end}}
