@@ -1,425 +1,418 @@
 {{define "footer-partial"}}
 <footer class="site-footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h4>WHERE TO START</h4>
-            <ul>
-                <li><a href="/admissions" hx-boost="true">Admissions</a></li>
-                <li>
-                    <a href="/academics" hx-boost="true">Majors & Minors</a>
-                </li>
-            </ul>
-        </div>
+	<div class="footer-content">
+		<div class="footer-section">
+			<h4>WHERE TO START</h4>
+			<ul>
+				<li><a href="/admissions" hx-boost="true">Admissions</a></li>
+				<li>
+					<a href="/academics" hx-boost="true">Majors & Minors</a>
+				</li>
+			</ul>
+		</div>
 
-        <div class="footer-section">
-            <h4>GET TO KNOW {{.SiteName}}</h4>
-            <ul>
-                <li>
-                    <a href="/about" hx-boost="true">About {{.SiteName}}</a>
-                </li>
-                <li><a href="/team" hx-boost="true">Our Team</a></li>
-                <li><a href="/athletics" hx-boost="true">Athletics</a></li>
-                <li>
-                    <a href="/admissions" hx-boost="true"
-                        >Experience {{.SiteName}}</a
-                    >
-                </li>
-            </ul>
-        </div>
+		<div class="footer-section">
+			<h4>GET TO KNOW {{.SiteName}}</h4>
+			<ul>
+				<li>
+					<a href="/about" hx-boost="true">About {{.SiteName}}</a>
+				</li>
+				<li><a href="/team" hx-boost="true">Our Team</a></li>
+				<li><a href="/athletics" hx-boost="true">Athletics</a></li>
+				<li>
+					<a href="/admissions" hx-boost="true">Experience {{.SiteName}}</a>
+				</li>
+			</ul>
+		</div>
 
-        <div class="footer-section">
-            <h4>RESOURCES</h4>
-            <ul>
-                <li><a href="/events" hx-boost="true">Event Calendar</a></li>
-                <li><a href="/facilitites" hx-boost="true">Facilities</a></li>
-								<li><a href="/vacancies"hx-boost="true">Vacancies</a></li>
-                <li><a href="/news" hx-boost="true">News & Media</a></li>
-            </ul>
-        </div>
+		<div class="footer-section">
+			<h4>RESOURCES</h4>
+			<ul>
+				<li><a href="/events" hx-boost="true">Event Calendar</a></li>
+				<li><a href="/facilitites" hx-boost="true">Facilities</a></li>
+				<li><a href="/vacancies" hx-boost="true">Vacancies</a></li>
+				<li><a href="/news" hx-boost="true">News & Media</a></li>
+			</ul>
+		</div>
 
-        <div class="footer-section quick-links">
-            <div class="quick-link-btn">
-                <a href="/vacancies" class="btn-secondary" hx-boost="true"
-                    >WORK AT {{.SiteName}}</a
-                >
-            </div>
-            <div class="quick-link-btn">
-                <a href="/about" class="btn-secondary" hx-boost="true"
-                    >DIRECTORIES</a
-                >
-            </div>
-            <div class="quick-link-btn">
-                <a href="/contact" class="btn-secondary" hx-boost="true"
-                    >CONTACT</a
-                >
-            </div>
-        </div>
-    </div>
+		<div class="footer-section contact-info">
+			<h4>CONTACT INFORMATION</h4>
+			<div class="contact-details">
+				<div class="contact-group">
+					<b>Administration</b>
+					<p>
+						<i class="fa-solid fa-phone"></i> &nbsp; 021512647<br>
+						<i class="fa-solid fa-envelope"></i> &nbsp; adarshavidyala1986@gmail.com
+					</p>
+				</div>
+				<div class="contact-group">
+					<b>Principal</b>
+					<p>
+						<i class="fa-solid fa-phone"></i> &nbsp; 9852074408<br>
+						<i class="fa-solid fa-envelope"></i> &nbsp; adarshavidyala1986@gmail.com
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="footer-giving">
-        <div class="giving-section">
-            <div class="giving-card">
-                <div class="giving-image">
-                    <img
-                        src="/static/volleyball.jpg"
-                        alt="Programs of {{.SiteName}}"
-                        loading="lazy"
-                    />
-                </div>
-                <div class="giving-content">
-                    <h3>Sports at {{.SiteName}}</h3>
-                    <p>
-                        View the athletic activitites of {{.SiteName}}'s students.
-                    </p>
-                    <a href="/athletics" class="btn-primary" hx-boost="true"
-                        >Athletics</a
-                    >
-                </div>
-            </div>
+	<div class="footer-map-section">
+		<div class="footer-map-container">
+			<h4>OUR LOCATION</h4>
+			<div class="google-map">
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.780253823647!2d87.28238371494743!3d26.46281138568358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef743e496e0069%3A0x33b3089b94465f45!2sAdarsha%20Secondary%20School!5e0!3m2!1sen!2snp!4v1650624331659!5m2!1sen!2snp"
+					width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+		</div>
+	</div>
 
-            <div class="giving-card">
-                <div class="giving-image">
-                    <img
-                        src="/static/bg-img8.jpg"
-                        alt="Programs of {{.SiteName}}"
-                        loading="lazy"
-                    />
-                </div>
-                <div class="giving-content">
-                    <h3>{{.SiteName}}'s Program</h3>
-					<p>View the wonderful and educational programs of {{.SiteName}}.</p>
-                    <a
-                        href="/events"
-                        class="btn-primary"
-                        hx-boost="true"
-                        >VIEW EVENTS</a
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="footer-bottom">
+		<div class="footer-bottom-content">
+			<div class="footer-address">
+				<h4>ADDRESS</h4>
+				<p>
+					{{.SiteName}}<br>
+					Biratnagar-7, Morang, Nepal<br>
+					Post box no:
+				</p>
+				<div class="visitor-count">
+					Visitor: <span>27510</span>
+				</div>
+			</div>
 
-    <div class="footer-bottom">
-        <div class="footer-bottom-content">
-            <div class="footer-logo">
-                <img
-                    src="/static/logo.jpg"
-                    alt="{{.SiteName}}"
-                    class="university-logo"
-                />
-                <div class="university-info">
-					<p>1930 {{.SiteName}} Biratnagar-7, Morang<br>Website Designed and Developed by Siddhartha Dhakal</p>
-                </div>
-            </div>
+			<div class="footer-logo">
+				<img src="/static/logo.jpg" alt="{{.SiteName}}" class="university-logo" />
+				<div class="quick-link-buttons">
+					<a href="/vacancies" class="btn-secondary" hx-boost="true">WORK AT {{.SiteName}}</a>
+					<a href="/about" class="btn-secondary" hx-boost="true">DIRECTORIES</a>
+					<a href="/contact" class="btn-secondary" hx-boost="true">CONTACT</a>
+				</div>
+			</div>
 
-            <div class="footer-links">
-                <a href="/privacy" hx-boost="true">Privacy</a>
-								<a href="/contact" hx-boost="true">Contact</a>
-            </div>
+			<div class="footer-social">
+				<h4>CONNECT WITH US</h4>
+				<div class="social-links">
+					<a href="https://www.facebook.com/adarshavidiyalay" aria-label="Facebook" target="_blank" hx-boost="true">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+							<path
+								d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-            <div class="social-links">
-                <a href="https://www.facebook.com/adarshavidiyalay" aria-label="Facebook" hx-boost="true">
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                    >
-                        <path
-                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                        />
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </div>
+	<div class="footer-copyright">
+		<div class="copyright-content">
+			<div class="copyright-text">
+				© {{.SiteName}} <span id="current_year">2025</span>. All Rights Reserved.
+			</div>
+			<div class="developer-credit">
+				Website Designed and Developed by Siddhartha Dhakal<br>
+				Powered by: <a href="https://pdmt.com.np" target="_blank">Sarathi Technosoft Pvt. Ltd.</a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 <style>
-    .site-footer {
-        background-color: #2c2c2c;
-        color: #ffffff;
-        font-family: "Arial", sans-serif;
-    }
+	.site-footer {
+		background-color: #2c2c2c;
+		color: #ffffff;
+		font-family: "Arial", sans-serif;
+	}
 
-    .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 60px 20px 40px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 40px;
-    }
+	.footer-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 60px 20px 40px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 40px;
+	}
 
-    .footer-section h4 {
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        margin-bottom: 20px;
-        color: #ffffff;
-    }
+	.footer-section h4 {
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		margin-bottom: 20px;
+		color: #ffffff;
+		text-transform: uppercase;
+	}
 
-    .footer-section ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+	.footer-section ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 
-    .footer-section ul li {
-        margin-bottom: 12px;
-    }
+	.footer-section ul li {
+		margin-bottom: 12px;
+	}
 
-    .footer-section ul li a {
-        color: #cccccc;
-        text-decoration: none;
-        font-size: 14px;
-        line-height: 1.4;
-        transition: color 0.3s ease;
-    }
+	.footer-section ul li a {
+		color: #cccccc;
+		text-decoration: none;
+		font-size: 14px;
+		line-height: 1.4;
+		transition: color 0.3s ease;
+	}
 
-    .footer-section ul li a:hover {
-        color: #ffffff;
-    }
+	.footer-section ul li a:hover {
+		color: #daa520;
+	}
 
-    .quick-links {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+	.contact-info .contact-group {
+		margin-bottom: 20px;
+	}
 
-    .quick-link-btn .btn-secondary {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color: #555555;
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        border-radius: 4px;
-        transition: background-color 0.3s ease;
-        text-align: center;
-        width: 100%;
-        box-sizing: border-box;
-    }
+	.contact-info b {
+		color: #daa520;
+		font-size: 14px;
+		display: block;
+		margin-bottom: 8px;
+	}
 
-    .quick-link-btn .btn-secondary:hover {
-        background-color: #666666;
-    }
+	.contact-info p {
+		color: #cccccc;
+		font-size: 14px;
+		line-height: 1.5;
+		margin: 0;
+	}
 
-    .footer-giving {
-        background-color: #333333;
-        padding: 40px 20px;
-    }
+	.contact-info i {
+		width: 16px;
+		text-align: center;
+	}
 
-    .giving-section {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 40px;
-    }
+	.footer-map-section {
+		background-color: #333333;
+		padding: 40px 20px;
+	}
 
-    .giving-card {
-        display: flex;
-        background-color: #404040;
-        border-radius: 8px;
-        overflow: hidden;
-        min-height: 200px;
-    }
+	.footer-map-container {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
 
-    .giving-image {
-        flex: 1;
-        position: relative;
-        background-size: cover;
-        background-position: center;
-        min-height: 200px;
-    }
+	.footer-map-container h4 {
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		margin-bottom: 20px;
+		color: #ffffff;
+		text-transform: uppercase;
+	}
 
-    .giving-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+	.google-map {
+		border-radius: 8px;
+		overflow: hidden;
+	}
 
-    .giving-badge {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #b8860b, #daa520);
-        color: #000000;
-    }
+	.footer-bottom {
+		padding: 40px 20px;
+		background-color: #3a3a3a;
+	}
 
-    .badge-text {
-        font-size: 12px;
-        font-weight: 700;
-        text-align: center;
-        line-height: 1.3;
-        letter-spacing: 1px;
-    }
+	.footer-bottom-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 40px;
+		align-items: start;
+	}
 
-    .giving-content {
-        flex: 1;
-        padding: 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+	.footer-address h4,
+	.footer-social h4 {
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		margin-bottom: 20px;
+		color: #ffffff;
+		text-transform: uppercase;
+	}
 
-    .giving-content h3 {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 12px;
-        color: #ffffff;
-    }
+	.footer-address p {
+		color: #cccccc;
+		font-size: 14px;
+		line-height: 1.5;
+		margin-bottom: 20px;
+	}
 
-    .giving-content p {
-        color: #cccccc;
-        font-size: 14px;
-        line-height: 1.5;
-        margin-bottom: 20px;
-    }
+	.visitor-count {
+		color: #cccccc;
+		font-size: 14px;
+	}
 
-    .btn-primary {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color: #daa520;
-        color: #000000;
-        text-decoration: none;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        border-radius: 4px;
-        transition: background-color 0.3s ease;
-        text-align: center;
-        align-self: flex-start;
-    }
+	.visitor-count span {
+		color: #daa520;
+		font-weight: bold;
+	}
 
-    .btn-primary:hover {
-        background-color: #b8860b;
-    }
+	.footer-logo {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+	}
 
-    .footer-bottom {
-        background-color: #1a1a1a;
-        padding: 30px 20px;
-    }
+	.university-logo {
+		height: 60px;
+		width: auto;
+	}
 
-    .footer-bottom-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 30px;
-    }
+	.quick-link-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		width: 100%;
+		max-width: 250px;
+	}
 
-    .footer-logo {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
+	.btn-secondary {
+		display: inline-block;
+		padding: 12px 16px;
+		background-color: #555555;
+		color: #ffffff;
+		text-decoration: none;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		border-radius: 4px;
+		transition: background-color 0.3s ease;
+		text-align: center;
+		text-transform: uppercase;
+	}
 
-    .university-logo {
-        height: 40px;
-        width: auto;
-    }
+	.btn-secondary:hover {
+		background-color: #daa520;
+		color: #000000;
+	}
 
-    .university-info p {
-        color: #cccccc;
-        font-size: 12px;
-        margin: 0;
-    }
+	.footer-social {
+		text-align: center;
+	}
 
-    .footer-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
+	.social-links {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+	}
 
-    .footer-links a {
-        color: #cccccc;
-        text-decoration: none;
-        font-size: 12px;
-        transition: color 0.3s ease;
-    }
+	.social-links a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		background-color: #555555;
+		color: #ffffff;
+		border-radius: 50%;
+		text-decoration: none;
+		transition: all 0.3s ease;
+		font-size: 18px;
+	}
 
-    .footer-links a:hover {
-        color: #ffffff;
-    }
+	.social-links a:hover {
+		background-color: #daa520;
+		color: #000000;
+		transform: translateY(-3px);
+	}
 
-    .social-links {
-        display: flex;
-        gap: 15px;
-    }
+	.footer-copyright {
+		background-color: #1a1a1a;
+		padding: 20px;
+	}
 
-    .social-links a {
-        color: #cccccc;
-        transition: color 0.3s ease;
-    }
+	.copyright-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		gap: 20px;
+	}
 
-    .social-links a:hover {
-        color: #daa520;
-    }
+	.copyright-text {
+		color: #cccccc;
+		font-size: 14px;
+	}
 
-    @media (max-width: 768px) {
-        .footer-content {
-            grid-template-columns: 1fr;
-            gap: 30px;
-            padding: 40px 20px 30px;
-        }
+	.developer-credit {
+		color: #cccccc;
+		font-size: 14px;
+		text-align: right;
+	}
 
-        .giving-section {
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
+	.developer-credit a {
+		color: #daa520;
+		text-decoration: none;
+	}
 
-        .giving-card {
-            flex-direction: column;
-            min-height: auto;
-        }
+	.developer-credit a:hover {
+		text-decoration: underline;
+	}
 
-        .giving-image {
-            min-height: 150px;
-        }
+	@media (max-width: 992px) {
+		.footer-bottom-content {
+			grid-template-columns: 1fr 1fr;
+		}
 
-        .footer-bottom-content {
-            flex-direction: column;
-            text-align: center;
-            gap: 20px;
-        }
+		.footer-social {
+			grid-column: span 2;
+			margin-top: 20px;
+		}
+	}
 
-        .footer-logo {
-            flex-direction: column;
-            gap: 10px;
-        }
+	@media (max-width: 768px) {
+		.footer-content {
+			grid-template-columns: 1fr;
+			gap: 30px;
+			padding: 40px 20px 30px;
+		}
 
-        .footer-links {
-            justify-content: center;
-        }
-    }
+		.footer-bottom-content {
+			grid-template-columns: 1fr;
+			gap: 30px;
+		}
 
-    @media (max-width: 480px) {
-        .quick-links {
-            gap: 10px;
-        }
+		.footer-social {
+			grid-column: span 1;
+		}
 
-        .quick-link-btn .btn-secondary {
-            padding: 10px 20px;
-            font-size: 11px;
-        }
+		.copyright-content {
+			flex-direction: column;
+			text-align: center;
+			gap: 10px;
+		}
 
-        .giving-content {
-            padding: 20px;
-        }
+		.developer-credit {
+			text-align: center;
+		}
+	}
 
-        .footer-links {
-            flex-direction: column;
-            gap: 10px;
-            text-align: center;
-        }
-    }
+	@media (max-width: 480px) {
+		.quick-link-buttons {
+			max-width: 100%;
+		}
+
+		.social-links {
+			gap: 15px;
+		}
+
+		.social-links a {
+			width: 35px;
+			height: 35px;
+			font-size: 16px;
+		}
+	}
 </style>
+
+<!-- Font Awesome Kit (add this to your head section in your base template) -->
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
 {{end}}

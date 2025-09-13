@@ -4,12 +4,15 @@
 		--wf-gold: #d4af37;
 		--wf-black: #000000;
 		--wf-dark-gray: #2c2c2c;
+		--wf-medium-gray: #666666;
 		--wf-light-gray: #f8f8f8;
 		--wf-white: #ffffff;
-		--navbar-height: 70px;
+		--wf-border-gray: #e0e0e0;
+		--navbar-height: 200px;
+		--nav-height: 70px;
 		--font-primary: "Georgia", serif;
 		--font-secondary: "Arial", sans-serif;
-		--shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		--shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 		--transition: all 0.3s ease;
 	}
 
@@ -19,30 +22,41 @@
 		box-sizing: border-box;
 	}
 
-	.navbar {
-		background: var(--wf-white);
-		box-shadow: var(--shadow);
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 1000;
-		height: var(--navbar-height);
+	body {
+		font-family: var(--font-secondary);
 	}
 
-	.navbar-container {
+	.navbar-wrapper {
+		position: relative;
+		z-index: 1000;
+		background: var(--wf-white);
+		box-shadow: var(--shadow);
+	}
+
+	/* Header Section */
+	.navbar-header {
+		position: static;
+		background: var(--wf-white);
+		padding: 15px 0;
+		border-bottom: 1px solid var(--wf-border-gray);
+	}
+
+	.header-container {
 		max-width: 1200px;
 		margin: 0 auto;
+		padding: 0 20px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 100%;
-		padding: 0 20px;
+		flex-wrap: wrap;
+		gap: 20px;
 	}
 
-	.navbar-brand {
+	.brand-section {
 		display: flex;
 		align-items: center;
+		flex: 1;
+		min-width: 300px;
 	}
 
 	.brand-link {
@@ -50,28 +64,181 @@
 		align-items: center;
 		text-decoration: none;
 		color: var(--wf-black);
-		font-family: var(--font-primary);
-		font-weight: bold;
-		font-size: 1.2rem;
 		transition: var(--transition);
 	}
 
 	.brand-link:hover {
-		opacity: 0.8;
+		opacity: 0.9;
 	}
 
 	.brand-logo {
-		height: 40px;
+		height: 60px;
 		width: auto;
-		margin-right: 12px;
+		margin-right: 15px;
+		border-radius: 6px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	}
 
-	.brand-text {
-		white-space: nowrap;
+	.brand-content {
+		display: flex;
+		flex-direction: column;
 	}
 
-	/* Mobile toggle */
+	.brand-title {
+		font-family: var(--font-primary);
+		font-size: 1.6rem;
+		font-weight: bold;
+		color: var(--wf-black);
+		margin-bottom: 2px;
+		line-height: 1.2;
+	}
+
+	.brand-subtitle {
+		font-family: var(--font-primary);
+		font-size: 1.1rem;
+		color: var(--wf-medium-gray);
+		margin-bottom: 3px;
+		line-height: 1.2;
+	}
+
+	.brand-location {
+		font-size: 0.85rem;
+		color: var(--wf-medium-gray);
+		font-style: italic;
+	}
+
+	/* Header Actions */
+	.header-actions {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 12px;
+		min-width: 250px;
+	}
+
+	.auth-menu {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 0.9rem;
+	}
+
+	.auth-link {
+		color: var(--wf-medium-gray);
+		text-decoration: none;
+		padding: 5px 10px;
+		border-radius: 4px;
+		transition: var(--transition);
+	}
+
+	.auth-link:hover {
+		color: var(--wf-gold);
+		background: var(--wf-light-gray);
+	}
+
+	.auth-separator {
+		color: var(--wf-medium-gray);
+		margin: 0 3px;
+	}
+
+	.language-selector {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-size: 0.85rem;
+		color: var(--wf-medium-gray);
+	}
+
+	.lang-option {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		text-decoration: none;
+		color: var(--wf-medium-gray);
+		padding: 4px 8px;
+		border-radius: 4px;
+		transition: var(--transition);
+	}
+
+	.lang-option.active,
+	.lang-option:hover {
+		color: var(--wf-gold);
+		background: var(--wf-light-gray);
+	}
+
+	.lang-flag {
+		width: 16px;
+		height: 12px;
+		object-fit: cover;
+		border-radius: 2px;
+	}
+
+	.search-container {
+		display: flex;
+		align-items: center;
+		background: var(--wf-light-gray);
+		border-radius: 25px;
+		padding: 8px 15px;
+		gap: 10px;
+		min-width: 200px;
+		transition: var(--transition);
+	}
+
+	.search-container:focus-within {
+		background: var(--wf-white);
+		box-shadow: 0 0 0 2px var(--wf-gold);
+	}
+
+	.search-input {
+		flex: 1;
+		border: none;
+		background: transparent;
+		outline: none;
+		font-size: 0.9rem;
+		color: var(--wf-dark-gray);
+	}
+
+	.search-input::placeholder {
+		color: var(--wf-medium-gray);
+	}
+
+	.search-btn {
+		background: none;
+		border: none;
+		color: var(--wf-medium-gray);
+		cursor: pointer;
+		padding: 4px;
+		border-radius: 50%;
+		transition: var(--transition);
+	}
+
+	.search-btn:hover {
+		color: var(--wf-gold);
+		background: rgba(212, 175, 55, 0.1);
+	}
+
+	/* Navigation Section */
+	.navbar-nav-section {
+		position: sticky;
+		top: 0;
+		background: var(--wf-white);
+		border-top: 1px solid var(--wf-border-gray);
+	}
+
+	.nav-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: var(--nav-height);
+	}
+
+	/* Mobile Toggle */
 	.mobile-toggle {
+		position: relative;
+		right: -280px;
 		display: none;
 		flex-direction: column;
 		background: none;
@@ -89,7 +256,7 @@
 		transition: var(--transition);
 	}
 
-	/* Navigation menu */
+	/* Navigation Menu */
 	.navbar-menu {
 		display: flex;
 		align-items: center;
@@ -115,7 +282,7 @@
 		font-family: var(--font-secondary);
 		font-weight: 500;
 		font-size: 1rem;
-		padding: 10px 0;
+		padding: 18px 0;
 		transition: var(--transition);
 		position: relative;
 	}
@@ -130,7 +297,7 @@
 		bottom: 0;
 		left: 0;
 		width: 0;
-		height: 2px;
+		height: 3px;
 		background: var(--wf-gold);
 		transition: width 0.3s ease;
 	}
@@ -139,7 +306,7 @@
 		width: 100%;
 	}
 
-	/* Dropdown menus */
+	/* Dropdown Menus */
 	.dropdown {
 		position: relative;
 	}
@@ -151,13 +318,14 @@
 		min-width: 200px;
 		background: var(--wf-white);
 		box-shadow: var(--shadow);
-		border-radius: 6px;
-		padding: 10px 0;
+		border-radius: 8px;
+		padding: 12px 0;
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(-10px);
 		transition: var(--transition);
 		z-index: 1000;
+		border: 1px solid var(--wf-border-gray);
 	}
 
 	.dropdown:hover .dropdown-menu {
@@ -174,49 +342,36 @@
 		font-family: var(--font-secondary);
 		font-size: 0.9rem;
 		transition: var(--transition);
+		border-left: 3px solid transparent;
 	}
 
 	.dropdown-item:hover {
 		background: var(--wf-light-gray);
 		color: var(--wf-gold);
+		border-left-color: var(--wf-gold);
 	}
 
-	/* Navbar actions */
+	/* Action Buttons */
 	.navbar-actions {
 		display: flex;
 		align-items: center;
 		gap: 15px;
 	}
 
-	.action-link {
-		display: flex;
+	.btn {
+		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--wf-black);
-		text-decoration: none;
-		transition: var(--transition);
-		padding: 8px;
-		border-radius: 4px;
-	}
-
-	.action-link:hover {
-		color: var(--wf-gold);
-		background: var(--wf-light-gray);
-	}
-
-	/* Buttons */
-	.btn {
-		display: inline-block;
 		padding: 10px 20px;
 		text-decoration: none;
-		border-radius: 25px;
+		border-radius: 6px;
 		font-family: var(--font-secondary);
 		font-weight: 600;
 		font-size: 0.9rem;
 		transition: var(--transition);
 		border: 2px solid transparent;
-		text-align: center;
 		cursor: pointer;
+		gap: 8px;
 	}
 
 	.btn-primary {
@@ -229,23 +384,63 @@
 		background: transparent;
 		color: var(--wf-gold);
 		border-color: var(--wf-gold);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 	}
 
 	.btn-secondary {
 		background: transparent;
-		color: var(--wf-black);
-		border-color: var(--wf-black);
+		color: var(--wf-dark-gray);
+		border-color: var(--wf-border-gray);
 	}
 
 	.btn-secondary:hover {
-		background: var(--wf-black);
+		background: var(--wf-dark-gray);
 		color: var(--wf-white);
+		border-color: var(--wf-dark-gray);
+		transform: translateY(-1px);
 	}
 
-	/* Mobile styles */
+	/* Mobile Styles */
 	@media (max-width: 768px) {
+		:root {
+			--navbar-height: 120px;
+		}
+
 		.mobile-toggle {
 			display: flex;
+		}
+
+		.header-container {
+			flex-direction: column;
+			gap: 15px;
+			text-align: center;
+		}
+
+		.brand-section {
+			justify-content: center;
+			min-width: unset;
+		}
+
+		.brand-title {
+			font-size: 1.3rem;
+		}
+
+		.brand-subtitle {
+			font-size: 1rem;
+		}
+
+		.header-actions {
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			min-width: unset;
+			gap: 15px;
+		}
+
+		.search-container {
+			min-width: 180px;
 		}
 
 		.navbar-menu {
@@ -261,7 +456,7 @@
 			transition: transform 0.3s ease;
 			height: calc(100vh - var(--navbar-height));
 			overflow-y: auto;
-			gap: 20px;
+			gap: 0;
 		}
 
 		.navbar-menu.active {
@@ -276,25 +471,12 @@
 
 		.nav-item {
 			width: 100%;
-			border-bottom: 1px solid var(--wf-light-gray);
-			position: relative;
+			border-bottom: 1px solid var(--wf-border-gray);
 		}
 
 		.nav-link {
-			padding: 15px 0;
+			padding: 18px 0;
 			font-size: 1.1rem;
-			color: var(--wf-dark-gray);
-			text-decoration: none;
-			display: block;
-			transition: color 0.3s ease;
-		}
-
-		.nav-link:hover {
-			color: var(--wf-gold);
-		}
-
-		.dropdown {
-			position: relative;
 		}
 
 		.dropdown-menu {
@@ -304,12 +486,12 @@
 			transform: none;
 			box-shadow: none;
 			background: var(--wf-light-gray);
-			margin-top: 0;
+			margin: 0;
 			border: none;
+			border-radius: 0;
 			max-height: 0;
 			overflow: hidden;
 			transition: max-height 0.3s ease;
-			border-left: 3px solid var(--wf-gold);
 		}
 
 		.dropdown:hover .dropdown-menu,
@@ -317,72 +499,19 @@
 			max-height: 300px;
 		}
 
-		.dropdown-item {
-			display: block;
-			padding: 12px 20px;
-			color: var(--wf-medium-gray);
-			text-decoration: none;
-			font-size: 0.95rem;
-			transition: all 0.3s ease;
-			border-bottom: 1px solid #e0e0e0;
-		}
-
-		.dropdown-item:last-child {
-			border-bottom: none;
-		}
-
-		.dropdown-item:hover {
-			background: var(--wf-white);
-			color: var(--wf-gold);
-			padding-left: 25px;
-		}
-
-		/* Active state for current section */
-		.dropdown-item.active {
-			background: var(--wf-gold);
-			color: var(--wf-white);
-			font-weight: 600;
-		}
-
-		/* Mobile responsiveness */
-		@media (min-width: 769px) {
-			.dropdown-menu {
-				position: absolute;
-				top: 100%;
-				left: 0;
-				background: var(--wf-white);
-				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-				border: 1px solid #e0e0e0;
-				min-width: 250px;
-				z-index: 1000;
-				opacity: 0;
-				visibility: hidden;
-				transform: translateY(-10px);
-				transition: all 0.3s ease;
-			}
-
-			.dropdown:hover .dropdown-menu {
-				opacity: 1;
-				visibility: visible;
-				transform: translateY(0);
-				max-height: none;
-			}
-		}
-
 		.navbar-actions {
 			flex-direction: column;
 			width: 100%;
-			gap: 10px;
+			gap: 12px;
 			margin-top: 20px;
 			padding-top: 20px;
-			border-top: 1px solid var(--wf-light-gray);
+			border-top: 1px solid var(--wf-border-gray);
 		}
 
 		.btn {
 			width: 100%;
 		}
 
-		/* Hamburger animation */
 		.mobile-toggle.active .hamburger-line:nth-child(1) {
 			transform: rotate(45deg) translate(5px, 5px);
 		}
@@ -397,31 +526,35 @@
 	}
 
 	@media (max-width: 480px) {
-		.navbar-container {
+		.header-container {
 			padding: 0 15px;
 		}
 
-		.brand-text {
-			font-size: 1rem;
-		}
-
 		.brand-logo {
-			height: 32px;
-			margin-right: 8px;
+			height: 45px;
 		}
-	}
 
-	/* Body offset for fixed navbar */
-	body {
-		padding-top: var(--navbar-height);
+		.brand-title {
+			font-size: 1.1rem;
+		}
+
+		.brand-subtitle {
+			font-size: 0.9rem;
+		}
+
+		.search-container {
+			min-width: 150px;
+		}
 	}
 </style>
+
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
 		const mobileToggle = document.getElementById("mobile-toggle");
 		const navbarMenu = document.getElementById("navbar-menu");
 		const dropdowns = document.querySelectorAll(".dropdown");
 
+		// Mobile menu toggle
 		if (mobileToggle && navbarMenu) {
 			mobileToggle.addEventListener("click", function () {
 				this.classList.toggle("active");
@@ -429,11 +562,12 @@
 			});
 		}
 
+		// Mobile dropdown functionality
 		dropdowns.forEach((dropdown) => {
 			const navLink = dropdown.querySelector(".nav-link");
-			if (navLink && window.innerWidth <= 768) {
+			if (navLink) {
 				navLink.addEventListener("click", function (e) {
-					if (dropdown.querySelector(".dropdown-menu")) {
+					if (window.innerWidth <= 768 && dropdown.querySelector(".dropdown-menu")) {
 						e.preventDefault();
 						dropdown.classList.toggle("active");
 					}
@@ -441,202 +575,61 @@
 			}
 		});
 
+		// Close menu when clicking outside
 		document.addEventListener("click", function (e) {
-			if (!e.target.closest(".navbar")) {
+			if (!e.target.closest(".navbar-wrapper")) {
 				if (navbarMenu) navbarMenu.classList.remove("active");
 				if (mobileToggle) mobileToggle.classList.remove("active");
-			}
-		});
-
-		window.addEventListener("resize", function () {
-			if (window.innerWidth > 768) {
-				if (navbarMenu) navbarMenu.classList.remove("active");
-				if (mobileToggle) mobileToggle.classList.remove("active");
-
 				dropdowns.forEach((dropdown) => {
 					dropdown.classList.remove("active");
 				});
 			}
 		});
-	});
-</script>
 
-<nav class="navbar">
-	<div class="navbar-container">
-		<div class="navbar-brand">
-			<a href="/" class="brand-link">
-				<img src="/static/logo.jpg" alt="{{.SiteName}}" class="brand-logo" />
-				<span class="brand-text">{{.SiteName}}</span>
-			</a>
-		</div>
+		// Handle window resize
+		window.addEventListener("resize", function () {
+			if (window.innerWidth > 768) {
+				if (navbarMenu) navbarMenu.classList.remove("active");
+				if (mobileToggle) mobileToggle.classList.remove("active");
+				dropdowns.forEach((dropdown) => {
+					dropdown.classList.remove("active");
+				});
+			}
+		});
 
-		<button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
-			<span class="hamburger-line"></span>
-			<span class="hamburger-line"></span>
-			<span class="hamburger-line"></span>
-		</button>
-
-		<div class="navbar-menu" id="navbar-menu">
-			<ul class="navbar-nav">
-				<li class="nav-item dropdown">
-					<a href="/academics" class="nav-link">Academics</a>
-					<div class="dropdown-menu">
-						<a href="/academics#school-programs" class="dropdown-item" data-scroll="school-programs">School Programs</a>
-						<a href="/academics#higher-secondary" class="dropdown-item" data-scroll="higher-secondary">Higher Secondary (+2)</a>
-						<a href="/academics#technical-education" class="dropdown-item" data-scroll="technical-education">Technical
-							Education</a>
-					</div>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a href="/admissions" class="nav-link">Admissions</a>
-					<div class="dropdown-menu">
-						<a href="/admissions#admission-process" class="dropdown-item" data-scroll="admission-process">Admission Process</a>
-						<a href="/admissions#important-dates" class="dropdown-item" data-scroll="important-dates">Important Dates</a>
-						<a href="/admissions#eligibility-criteria" class="dropdown-item" data-scroll="eligibility-criteria">Eligibility
-							Criteria</a>
-						<a href="/admissions#apply-now" class="dropdown-item" data-scroll="apply-now">Apply Now</a>
-					</div>
-				</li>
-
-				<li class="nav-item">
-					<a href="/facilities" class="nav-link">Facilities</a>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a href="/athletics" class="nav-link">Athletics</a>
-					<div class="dropdown-menu">
-						<a href="/athletics#cricket" class="dropdown-item">Football</a>
-						<a href="/athletics#volleyball" class="dropdown-item">Basketball</a>
-						<a href="/athletics#table-tennis" class="dropdown-item">All Sports</a>
-						<a href="/athletics#creative" class="dropdown-item">Tickets</a>
-					</div>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a href="/about" class="nav-link">About</a>
-					<div class="dropdown-menu">
-						<a href="/team" class="dropdown-item">Our Team</a>
-						<a href="/events" class="dropdown-item">Events</a>
-						<a href="/vacancies" class="dropdown-item">Vacancies</a>
-						<a href="/news" class="dropdown-item">News</a>
-					</div>
-				</li>
-			</ul>
-
-			{{/* Secondary actions */}}
-			<div class="navbar-actions">
-				<a href="/search" class="action-link search-link" aria-label="Search" title="Search">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-						<path
-							d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-					</svg>
-				</a>
-				<a href="/contact" class="btn btn-primary">Contact</a>
-				{{if or (eq .CurrentPage "home") (eq .CurrentPage "dashboard")}}
-					{{if .IsAdmin}}
-						{{if eq .CurrentPage "dashboard"}}
-						<a href="/logout" class="btn btn-secondary">Logout</a>
-						{{else}}
-						<a href="/dashboard" class="btn btn-secondary">Dashboard</a>
-						{{end}}
-					{{else}}
-					<a href="/login" class="btn btn-secondary">Log In</a>
-					{{end}}
-				{{end}}
-			</div>
-		</div>
-	</div>
-</nav>
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		// Get all dropdown items with scroll functionality
+		// Smooth scrolling for anchor links
 		const scrollLinks = document.querySelectorAll('[data-scroll]');
-
-		// Add click event listeners
 		scrollLinks.forEach(link => {
 			link.addEventListener('click', function (e) {
 				const targetId = this.getAttribute('data-scroll');
 				const targetElement = document.getElementById(targetId);
 
-				// If target element exists on current page, do SPA scroll
 				if (targetElement) {
 					e.preventDefault();
-
-					// Calculate offset for fixed header (adjust as needed)
-					const headerOffset = 80;
+					const headerOffset = 140;
 					const elementPosition = targetElement.getBoundingClientRect().top;
 					const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-					// Smooth scroll to target
 					window.scrollTo({
 						top: offsetPosition,
 						behavior: 'smooth'
 					});
 
-					// Update active states
-					updateActiveStates(targetId);
-
-					// Close dropdown on mobile
-					closeDropdown();
-				} else {
-					// Target doesn't exist on current page, allow normal navigation
-					// The href will handle the cross-page navigation
-					// Don't prevent default - let the browser navigate normally
+					// Close mobile menu
+					if (navbarMenu) navbarMenu.classList.remove("active");
+					if (mobileToggle) mobileToggle.classList.remove("active");
 				}
 			});
 		});
 
-		// Function to update active states
-		function updateActiveStates(activeId) {
-			scrollLinks.forEach(link => {
-				const linkTargetId = link.getAttribute('data-scroll');
-				if (linkTargetId === activeId) {
-					link.classList.add('active');
-				} else {
-					link.classList.remove('active');
-				}
-			});
-		}
-
-		// Function to close dropdown (for mobile)
-		function closeDropdown() {
-			const dropdown = document.querySelector('.dropdown');
-			if (dropdown) {
-				dropdown.classList.remove('active');
-			}
-		}
-
-		// Intersection Observer for automatic active state updates
-		const observerOptions = {
-			root: null,
-			rootMargin: '-100px 0px -50% 0px',
-			threshold: 0.1
-		};
-
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					const sectionId = entry.target.id;
-					updateActiveStates(sectionId);
-				}
-			});
-		}, observerOptions);
-
-		// Observe all sections
-		const sections = document.querySelectorAll('section[id]');
-		sections.forEach(section => {
-			observer.observe(section);
-		});
-
-		// Handle direct navigation to page with hash
+		// Handle hash navigation on page load
 		if (window.location.hash) {
 			const targetId = window.location.hash.substring(1);
 			const targetElement = document.getElementById(targetId);
 
 			if (targetElement) {
 				setTimeout(() => {
-					const headerOffset = 80;
+					const headerOffset = 60; /* Adjusted for sticky nav only */
 					const elementPosition = targetElement.getBoundingClientRect().top;
 					const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -644,54 +637,129 @@
 						top: offsetPosition,
 						behavior: 'smooth'
 					});
-
-					updateActiveStates(targetId);
 				}, 100);
 			}
 		}
-
-		// Handle dropdown toggle for mobile
-		const dropdownToggle = document.querySelector('.dropdown .nav-link');
-		if (dropdownToggle) {
-			dropdownToggle.addEventListener('click', function (e) {
-				// Only prevent default on mobile
-				if (window.innerWidth <= 768) {
-					e.preventDefault();
-					const dropdown = this.closest('.dropdown');
-					dropdown.classList.toggle('active');
-				}
-			});
-		}
-
-		// Handle window resize to close mobile dropdown
-		window.addEventListener('resize', function () {
-			if (window.innerWidth > 768) {
-				const dropdown = document.querySelector('.dropdown');
-				if (dropdown) {
-					dropdown.classList.remove('active');
-				}
-			}
-		});
-
-		// Add smooth scrolling for any anchor links on the page
-		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-			anchor.addEventListener('click', function (e) {
-				e.preventDefault();
-				const targetId = this.getAttribute('href').substring(1);
-				const targetElement = document.getElementById(targetId);
-
-				if (targetElement) {
-					const headerOffset = 80;
-					const elementPosition = targetElement.getBoundingClientRect().top;
-					const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-					window.scrollTo({
-						top: offsetPosition,
-						behavior: 'smooth'
-					});
-				}
-			});
-		});
 	});
 </script>
+
+<div class="navbar-wrapper">
+	<!-- Header Section -->
+	<div class="navbar-header">
+		<div class="header-container">
+			<div class="brand-section">
+				<a href="/" class="brand-link">
+					<img src="/static/logo.jpg" alt="{{.SiteName}}" class="brand-logo" />
+					<div class="brand-content">
+						<h1 class="brand-title">{{.SiteName}}</h1>
+						<h2 class="brand-subtitle">आदर्श माध्यमिक विद्यालय</h2>
+						<span class="brand-location">Biratnagar-7, Morang, Nepal</span>
+					</div>
+				</a>
+			</div>
+
+			<div class="header-actions">
+				<div class="auth-menu">
+					{{if .IsAdmin}}
+						{{if eq .CurrentPage "dashboard"}}
+							<a href="/logout" class="auth-link">Logout</a>
+						{{else}}
+							<a href="/dashboard" class="auth-link">Dashboard</a>
+						{{end}}
+					{{else}}
+						<a href="/login" class="auth-link">Login</a>
+					{{end}}
+				</div>
+
+				<div class="language-selector">
+					<span>Language:</span>
+					<a href="#" class="lang-option">
+						<img src="https://www.adarshaschool.edu.np/assets/images/np.png" alt="Nepali" class="lang-flag">
+						Nepali
+					</a>
+					<a href="#" class="lang-option active">
+						<img src="https://www.adarshaschool.edu.np/assets/images/en.png" alt="English" class="lang-flag">
+						English
+					</a>
+				</div>
+
+				<div class="search-container">
+					<input type="text" class="search-input" placeholder="Search...">
+					<button class="search-btn" aria-label="Search">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Navigation Section -->
+	<div class="navbar-nav-section">
+		<div class="nav-container">
+			<button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</button>
+
+			<div class="navbar-menu" id="navbar-menu">
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown">
+						<a href="/academics" class="nav-link">Academics</a>
+						<div class="dropdown-menu">
+							<a href="/academics#school-programs" class="dropdown-item" data-scroll="school-programs">School Programs</a>
+							<a href="/academics#higher-secondary" class="dropdown-item" data-scroll="higher-secondary">Higher Secondary (+2)</a>
+							<a href="/academics#technical-education" class="dropdown-item" data-scroll="technical-education">Technical Education</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a href="/admissions" class="nav-link">Admissions</a>
+						<div class="dropdown-menu">
+							<a href="/admissions#admission-process" class="dropdown-item" data-scroll="admission-process">Admission Process</a>
+							<a href="/admissions#important-dates" class="dropdown-item" data-scroll="important-dates">Important Dates</a>
+							<a href="/admissions#eligibility-criteria" class="dropdown-item" data-scroll="eligibility-criteria">Eligibility Criteria</a>
+							<a href="/admissions#apply-now" class="dropdown-item" data-scroll="apply-now">Apply Now</a>
+						</div>
+					</li>
+
+					<li class="nav-item">
+						<a href="/facilities" class="nav-link">Facilities</a>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a href="/athletics" class="nav-link">Athletics</a>
+						<div class="dropdown-menu">
+							<a href="/athletics#football" class="dropdown-item">Football</a>
+							<a href="/athletics#basketball" class="dropdown-item">Basketball</a>
+							<a href="/athletics#all-sports" class="dropdown-item">All Sports</a>
+							<a href="/athletics#tickets" class="dropdown-item">Tickets</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a href="/about" class="nav-link">About</a>
+						<div class="dropdown-menu">
+							<a href="/team" class="dropdown-item">Our Team</a>
+							<a href="/events" class="dropdown-item">Events</a>
+							<a href="/vacancies" class="dropdown-item">Vacancies</a>
+							<a href="/news" class="dropdown-item">News</a>
+						</div>
+					</li>
+				</ul>
+
+				<div class="navbar-actions">
+					<a href="/contact" class="btn btn-primary">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+						</svg>
+						Contact
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {{end}}
