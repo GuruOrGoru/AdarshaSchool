@@ -20,3 +20,12 @@ func GetAllVacancies() ([]VacanciesData, error) {
 	err := db.SupabaseClient.DB.From("vacancies").Select("*").Execute(&results)
 	return results, err
 }
+
+func SearchVacancies(query string) ([]VacanciesData, error) {
+	var results []VacanciesData
+	err := db.SupabaseClient.DB.From("vacancies").
+		Select("*").
+		Filter("title", "ilike", "%"+query+"%").
+		Execute(&results)
+	return results, err
+}

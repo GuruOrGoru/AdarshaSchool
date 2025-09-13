@@ -23,3 +23,12 @@ func GetAllEvent() ([]EventData, error) {
 	err := db.SupabaseClient.DB.From("events").Select("*").Execute(&results)
 	return results, err
 }
+
+func SearchEvents(query string) ([]EventData, error) {
+	var results []EventData
+	err := db.SupabaseClient.DB.From("events").
+		Select("*").
+		Filter("title", "ilike", "%"+query+"%").
+		Execute(&results)
+	return results, err
+}

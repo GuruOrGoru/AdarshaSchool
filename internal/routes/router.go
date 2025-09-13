@@ -21,12 +21,21 @@ func (t *Templates) Render(w http.ResponseWriter, name string, data any) error {
 }
 
 func NewTemplates() *Templates {
-	tmpl := template.New("")
-	tmpl = template.Must(template.ParseGlob("views/*.html"))
+	funcMap := template.FuncMap{
+		"add": add,
+	}
+
+	tmpl := template.New("").Funcs(funcMap)
+	tmpl = template.Must(tmpl.ParseGlob("views/*.html"))
 	tmpl = template.Must(tmpl.ParseGlob("views/partials/*.html"))
+
 	return &Templates{
 		templates: tmpl,
 	}
+}
+
+func add(a, b, c, d int) int {
+	return a + b + c + d 
 }
 
 func NewRouter(templates *Templates) http.Handler {
@@ -50,7 +59,8 @@ func NewRouter(templates *Templates) http.Handler {
 	r.Get("/events", getEventsHandler(templates))
 	r.Get("/login", loginHandler(templates))
 	r.Get("/logout", logoutHandler)
-	
+	r.Get("/search", searchHandler(templates))
+
 	r.Group(func(r chi.Router) {
 		r.Use(adminOnly)
 		r.Get("/dashboard", dashboardHandler(templates))
@@ -69,7 +79,6 @@ func NewRouter(templates *Templates) http.Handler {
 	r.Get("/facilities", createSimplePageHandler(templates, "facilities"))
 	r.Get("/privacy", createSimplePageHandler(templates, "privacy"))
 	r.Get("/team", createSimplePageHandler(templates, "team"))
-	r.Get("/search", createSimplePageHandler(templates, "search"))
 
 	cwd, err := os.Getwd()
 	if err != nil {

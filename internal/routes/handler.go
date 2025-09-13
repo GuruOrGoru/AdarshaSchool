@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/guruorgoru/adarsha-server/internal/models"
 )
@@ -18,6 +19,23 @@ type SiteData struct {
 	Vacancies   []models.VacanciesData
 	IsAdmin     bool
 	CurrentPage string
+}
+
+type SearchResults struct {
+	SiteName    string
+	Query       string
+	News        []models.NewsData
+	Events      []models.EventData
+	Vacancies   []models.VacanciesData
+	Pages       []PageResult
+	IsAdmin     bool
+	CurrentPage string
+}
+
+type PageResult struct {
+	Title       string
+	URL         string
+	Description string
 }
 
 func rootHandler(templates *Templates) http.HandlerFunc {
@@ -412,6 +430,71 @@ func dashboardHandler(templates *Templates) http.HandlerFunc {
 func logoutHandler(w http.ResponseWriter, r *http.Request) {
 	models.ClearSession(w)
 	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+
+func searchHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		query := r.URL.Query().Get("q")
+
+		// Define static pages for search
+		pages := []PageResult{
+			{Title: "About Us", URL: "/about", Description: "Learn more about Adarsha Secondary School"},
+			{Title: "Academics", URL: "/academics", Description: "Academic programs and courses offered"},
+			{Title: "Admissions", URL: "/admissions", Description: "Admission process and requirements"},
+			{Title: "Athletics", URL: "/athletics", Description: "Sports and athletic programs"},
+			{Title: "Contact", URL: "/contact", Description: "Get in touch with us"},
+			{Title: "Facilities", URL: "/facilities", Description: "School facilities and infrastructure"},
+			{Title: "Our Team", URL: "/team", Description: "Meet our faculty and staff"},
+			{Title: "Events", URL: "/events", Description: "Upcoming events and activities"},
+			{Title: "News", URL: "/news", Description: "Latest news and announcements"},
+			{Title: "Vacancies", URL: "/vacancies", Description: "Job openings and career opportunities"},
+		}
+
+		var newsResults []models.NewsData
+		var eventsResults []models.EventData
+		var vacanciesResults []models.VacanciesData
+		var filteredPages []PageResult
+
+		if query != "" {
+			// Search news
+			newsResults, _ = models.SearchNews(query)
+
+			// Search events
+			eventsResults, _ = models.SearchEvents(query)
+
+			// Search vacancies
+			vacanciesResults, _ = models.SearchVacancies(query)
+
+			// Filter pages based on query
+			for _, page := range pages {
+				if containsIgnoreCase(page.Title, query) || containsIgnoreCase(page.Description, query) {
+					filteredPages = append(filteredPages, page)
+				}
+			}
+		}
+
+		data := &SearchResults{
+			SiteName:    "Adarsha Secondary School",
+			Query:       query,
+			News:        newsResults,
+			Events:      eventsResults,
+			Vacancies:   vacanciesResults,
+			Pages:       filteredPages,
+			IsAdmin:     models.IsLoggedIn(r),
+			CurrentPage: "search",
+		}
+
+		err := templates.Render(w, "search", data)
+		if err != nil {
+			log.Printf("Error rendering search template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+	}
+}
+
+// Helper function for case-insensitive string contains
+func containsIgnoreCase(s, substr string) bool {
+	return strings.Contains(strings.ToLower(s), strings.ToLower(substr))
 }
 
 func adminOnly(next http.Handler) http.Handler {

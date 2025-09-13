@@ -20,3 +20,12 @@ func GetAllNews() ([]NewsData, error) {
 	err := db.SupabaseClient.DB.From("news").Select("*").Execute(&results)
 	return results, err
 }
+
+func SearchNews(query string) ([]NewsData, error) {
+	var results []NewsData
+	err := db.SupabaseClient.DB.From("news").
+		Select("*").
+		Filter("title", "ilike", "%"+query+"%").
+		Execute(&results)
+	return results, err
+}
