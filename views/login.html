@@ -17,8 +17,8 @@
 
 		body {
 			font-family: 'Inter', sans-serif;
-			background: url('/static/bg-img6.jpg') center/cover no-repeat, 
-						url('/static/bg-img7.jpg') center/cover no-repeat;
+			background: url('/static/bg-img6.jpg') center/cover no-repeat,
+				url('/static/bg-img7.jpg') center/cover no-repeat;
 			background-blend-mode: overlay;
 			background-color: rgba(0, 0, 0, 0.8);
 			min-height: 100vh;
@@ -280,7 +280,7 @@
 			</div>
 
 			<div id="login-container">
-				<form class="login-form" hx-post="/login" hx-target="#login-container" hx-swap="outerHTML" method="POST">
+				<form class="login-form" action="/login" method="POST">
 					<div class="form-group">
 						<label for="email">Email Address</label>
 						<input type="email" id="email" name="email" placeholder="Enter your email address" required>

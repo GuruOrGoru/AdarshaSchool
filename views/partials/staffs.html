@@ -1,0 +1,25 @@
+{{define "staffs-partial"}}
+{{if .Staffs}}
+    {{range .Staffs}}
+    <div class="staffs-item">
+        {{if .ImageURL}}
+        <div class="staffs-image-container">
+            <img src="{{.ImageURL}}" class="staffs-image" alt="{{.Name}}" onclick="openImageModal('{{.ImageURL}}', '{{.Name}}')" />
+        </div>
+        {{end}}
+        <div class="staffs-content">
+            <h3 class="staffs-title">{{.Name}}</h3>
+            <h4 class="staffs-excerpt">{{.Position}}</h4>
+        </div>
+    </div>
+    {{end}}
+{{else}}
+    <div class="not-found-container">
+        <div class="not-found-icon">
+            <img src="/static/logo.jpg" alt="No Staffs" class="not-found-logo" />
+        </div>
+        <h3 class="not-found-title">No Current Staffs</h3>
+        <p class="not-found-message">More staff data will be added</p>
+    </div>
+{{end}}
+{{end}}

@@ -201,12 +201,22 @@
 
             .facility-image {
                 height: 200px;
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
-                           url("static/construction.jpg") center/cover;
+                background-size: cover;
+                background-position: center;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 position: relative;
+            }
+
+            .facility-image::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
             }
 
             .facility-image h3 {
@@ -216,6 +226,7 @@
                 font-weight: 600;
                 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
                 text-align: center;
+                z-index: 1;
             }
 
 
@@ -429,7 +440,7 @@
                     
                         <div class="facilities-grid">
                             <div class="facility-card">
-                                <div class="facility-image">
+                                <div class="facility-image" style="background-image: url('static/physics-lab.jpg');">
                                     <h3>Physics Laboratory</h3>
                                 </div>
                             <div class="card-content">
@@ -445,7 +456,7 @@
                             </div>
 
                             <div class="facility-card">
-                                <div class="facility-image">
+                                <div class="facility-image" style="background-image: url('static/chem-lab.jpg');">
                                     <h3>Chemistry Laboratory</h3>
                                 </div>
                             <div class="card-content">
@@ -461,7 +472,7 @@
                             </div>
 
                             <div class="facility-card">
-                                <div class="facility-image">
+                                <div class="facility-image" style="background-image: url('static/bio-lab.jpg');">
                                     <h3>Biology Laboratory</h3>
                                 </div>
                             <div class="card-content">
@@ -490,7 +501,7 @@
                     
                         <div class="facilities-grid">
                             <div class="facility-card">
-                                <div class="facility-image">
+                                <div class="facility-image" style="background-image: url('static/library.jpg');">
                                 <h3>Central Library</h3>
                                 </div>
                             <div class="card-content">
@@ -506,7 +517,7 @@
                             </div>
 
                             <div class="facility-card">
-                                <div class="facility-image">
+                                <div class="facility-image" style="background-image: url('static/computer.jpg');">
                                 <h3>Computer Laboratory</h3>
                                 </div>
                             <div class="card-content">
@@ -535,7 +546,7 @@
                     
                     <div class="facilities-grid">
                         <div class="facility-card">
-                            <div class="facility-image">
+                            <div class="facility-image" style="background-image: url('static/playground.jpg');">
                                 <h3>Main Playground</h3>
                             </div>
                             <div class="card-content">
@@ -551,7 +562,7 @@
                         </div>
 
                         <div class="facility-card">
-                            <div class="facility-image">
+                            <div class="facility-image" style="background-image: url('static/sports.jpg');">
                                 <h3>Sports Complex</h3>
                             </div>
                             <div class="card-content">
@@ -580,7 +591,7 @@
                     
                     <div class="facilities-grid">
                         <div class="facility-card">
-                            <div class="facility-image">
+                            <div class="facility-image" style="background-image: url('static/canteen.jpg');">
                                 <h3>School Canteen</h3>
                             </div>
                             <div class="card-content">
@@ -596,7 +607,7 @@
                         </div>
 
                         <div class="facility-card">
-                            <div class="facility-image">
+                            <div class="facility-image" style="background-image: url('static/auditorium.jpg');">
                                 <h3>Multi-Purpose Auditorium</h3>
                             </div>
                             <div class="card-content">
@@ -612,7 +623,7 @@
                         </div>
 
                         <div class="facility-card">
-                            <div class="facility-image">
+                            <div class="facility-image" style="background-image: url('static/staff-room.jpg');">
                                 <h3>Staff Rooms</h3>
                             </div>
                             <div class="card-content">
@@ -628,7 +639,7 @@
                         </div>
 
                         <div class="facility-card">
-                            <div class="facility-image">
+                            <div class="facility-image" style="background-image: url('static/office.jpg');">
                                 <h3>Administrative Offices</h3>
                             </div>
                             <div class="card-content">

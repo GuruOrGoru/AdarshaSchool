@@ -48,6 +48,6 @@ func ClearSession(w http.ResponseWriter) {
 		Value:    "",
 		Path:     "/",
 		HttpOnly: true,
-		MaxAge:   -1, // This will delete the cookie
+		MaxAge:   -1,
 	})
 }

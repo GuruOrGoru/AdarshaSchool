@@ -32,3 +32,14 @@ func SearchEvents(query string) ([]EventData, error) {
 		Execute(&results)
 	return results, err
 }
+
+func UpdateEvent(id string, news EventData) ([]EventData, error) {
+	var results []EventData
+	err := db.SupabaseClient.DB.From("events").Update(news).Eq("id", id).Execute(&results)
+	return results, err
+}
+
+func DeleteEvent(id string) error {
+	err := db.SupabaseClient.DB.From("events").Delete().Eq("id", id).Execute(nil)
+	return err
+}

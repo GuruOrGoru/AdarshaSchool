@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/guruorgoru/adarsha-server/internal/models"
@@ -17,6 +18,7 @@ type SiteData struct {
 	News        []models.NewsData
 	Events      []models.EventData
 	Vacancies   []models.VacanciesData
+	Staffs      []models.StaffData
 	IsAdmin     bool
 	CurrentPage string
 }
@@ -55,12 +57,18 @@ func rootHandler(templates *Templates) http.HandlerFunc {
 			log.Printf("Error during  retrival: %v", err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
+		staffsFromModel, err := models.GetAllStaff()
+		if err != nil {
+			log.Printf("Error during  retrival: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
 
 		data := &SiteData{
 			SiteName:    "Adarsha Secondary School",
 			News:        FromModel,
 			Events:      eventsFromModel,
 			Vacancies:   vacanciesFromModel,
+			Staffs:      staffsFromModel,
 			IsAdmin:     models.IsLoggedIn(r),
 			CurrentPage: "home",
 		}
@@ -76,7 +84,11 @@ func rootHandler(templates *Templates) http.HandlerFunc {
 func healthHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("OK"))
+		_, err := w.Write([]byte("OK"))
+		if err != nil {
+			log.Printf("Error writing response: %v", err)
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		}
 	}
 }
 
@@ -136,6 +148,28 @@ func getEventsHandler(templates *Templates) http.HandlerFunc {
 		}
 		log.Println("Attempting to render events-page.html")
 		err = templates.Render(w, "events-page", data)
+		if err != nil {
+			log.Printf("Error rendering template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+	}
+}
+
+func getStaffsHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		staffsFromModel, err := models.GetAllStaff()
+		if err != nil {
+			log.Printf("Error during  retrival: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+		log.Printf("Retrieved staffs: %+v", staffsFromModel)
+		data := &SiteData{
+			SiteName:    "Adarsha Secondary School",
+			Staffs:      staffsFromModel,
+			CurrentPage: "team",
+		}
+		log.Println("Attempting to render our-team.html")
+		err = templates.Render(w, "team", data)
 		if err != nil {
 			log.Printf("Error rendering template: %v", err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -402,7 +436,6 @@ func loginHandler(templates *Templates) http.HandlerFunc {
 			}
 			email := r.FormValue("email")
 			password := r.FormValue("password")
-
 			if models.IsAdmin(email, password) {
 				models.SetSession(w)
 				http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
@@ -420,12 +453,37 @@ func loginHandler(templates *Templates) http.HandlerFunc {
 
 func dashboardHandler(templates *Templates) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		FromModel, err := models.GetAllNews()
+		if err != nil {
+			log.Printf("Error during  retrieval: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+		eventsFromModel, err := models.GetAllEvent()
+		if err != nil {
+			log.Printf("Error during  retrival: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+		vacanciesFromModel, err := models.GetAllVacancies()
+		if err != nil {
+			log.Printf("Error during  retrival: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+		staffsFromModel, err := models.GetAllStaff()
+		if err != nil {
+			log.Printf("Error during  retrival: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+
 		data := &SiteData{
 			SiteName:    "Adarsha Secondary School",
+			News:        FromModel,
+			Events:      eventsFromModel,
+			Vacancies:   vacanciesFromModel,
+			Staffs:      staffsFromModel,
 			IsAdmin:     true,
 			CurrentPage: "dashboard",
 		}
-		err := templates.Render(w, "dashboard", data)
+		err = templates.Render(w, "dashboard", data)
 		if err != nil {
 			log.Printf("Error rendering dashboard template: %v", err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -443,7 +501,6 @@ func searchHandler(templates *Templates) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query().Get("q")
 
-		// Define static pages for search
 		pages := []PageResult{
 			{Title: "About Us", URL: "/about", Description: "Learn more about Adarsha Secondary School"},
 			{Title: "Academics", URL: "/academics", Description: "Academic programs and courses offered"},
@@ -463,16 +520,12 @@ func searchHandler(templates *Templates) http.HandlerFunc {
 		var filteredPages []PageResult
 
 		if query != "" {
-			// Search news
 			newsResults, _ = models.SearchNews(query)
 
-			// Search events
 			eventsResults, _ = models.SearchEvents(query)
 
-			// Search vacancies
 			vacanciesResults, _ = models.SearchVacancies(query)
 
-			// Filter pages based on query
 			for _, page := range pages {
 				if containsIgnoreCase(page.Title, query) || containsIgnoreCase(page.Description, query) {
 					filteredPages = append(filteredPages, page)
@@ -499,7 +552,83 @@ func searchHandler(templates *Templates) http.HandlerFunc {
 	}
 }
 
-// Helper function for case-insensitive string contains
+func postStaffHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+
+		err := r.ParseMultipartForm(10 << 20)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		name := r.FormValue("name")
+		position := r.FormValue("position")
+
+		file, header, err := r.FormFile("image")
+		var imageUrl string
+		if err != nil {
+			imageUrl = ""
+		} else {
+			defer file.Close()
+			err = os.MkdirAll("./uploads", os.ModePerm)
+			if err != nil {
+				log.Printf("Error creating uploads directory: %v", err)
+				http.Error(w, "Internal server error", 500)
+				return
+			}
+
+			rawFileName := "staff-" + header.Filename
+
+			filename := filepath.Join("uploads", rawFileName)
+			dst, err := os.Create(filename)
+			if err != nil {
+				log.Printf("Error saving file: %v", err)
+				http.Error(w, "Error saving file: "+err.Error(), 500)
+				return
+			}
+			defer dst.Close()
+			_, err = io.Copy(dst, file)
+			if err != nil {
+				log.Printf("Error saving file: %v", err)
+				http.Error(w, "Error saving file: "+err.Error(), 500)
+				return
+			}
+			imageUrl = "/" + filename
+		}
+
+		Item := models.StaffData{
+			Id:       rand.Intn(900000000) + 100000000,
+			Name:     name,
+			Position: position,
+			ImageURL: imageUrl,
+		}
+
+		List, err := models.InsertStaff(Item)
+		if err != nil {
+			log.Printf("Error inserting staff: %v", err)
+			http.Error(w, "Failed to insert : "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		data := &SiteData{
+			Staffs: List,
+		}
+
+		err = templates.Render(w, "staffs-partial", data)
+		if err != nil {
+			log.Printf("Error rendering staffs-partial template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		log.Printf("Staff item created: %+v", Item)
+	}
+}
+
 func containsIgnoreCase(s, substr string) bool {
 	return strings.Contains(strings.ToLower(s), strings.ToLower(substr))
 }
@@ -512,4 +641,459 @@ func adminOnly(next http.Handler) http.Handler {
 		}
 		next.ServeHTTP(w, r)
 	})
+}
+
+func deleteNewsHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodDelete {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+		idStr := r.URL.Query().Get("id")
+		if idStr == "" {
+			http.Error(w, "Missing id parameter", http.StatusBadRequest)
+			return
+		}
+		err := models.DeleteNews(idStr)
+		if err != nil {
+			log.Printf("Error deleting news: %v", err)
+			http.Error(w, "Failed to delete news: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+		FromModel, err := models.GetAllNews()
+		if err != nil {
+			log.Printf("Error during retrieval: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		data := &SiteData{
+			News: FromModel,
+		}
+		err = templates.Render(w, "news-partial", data)
+		if err != nil {
+			log.Printf("Error rendering news-partial template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		log.Printf("News item with ID %s deleted", idStr)
+	}
+}
+
+func deleteEventHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodDelete {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+		idStr := r.URL.Query().Get("id")
+		if idStr == "" {
+			http.Error(w, "Missing id parameter", http.StatusBadRequest)
+			return
+		}
+		err := models.DeleteEvent(idStr)
+		if err != nil {
+			log.Printf("Error deleting events: %v", err)
+			http.Error(w, "Failed to delete events: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+		FromModel, err := models.GetAllEvent()
+		if err != nil {
+			log.Printf("Error during retrieval: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		data := &SiteData{
+			Events: FromModel,
+		}
+		err = templates.Render(w, "events-partial", data)
+		if err != nil {
+			log.Printf("Error rendering events-partial template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		log.Printf("Event item with ID %s deleted", idStr)
+	}
+}
+
+func deleteVacanciesHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodDelete {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+		idStr := r.URL.Query().Get("id")
+		if idStr == "" {
+			http.Error(w, "Missing id parameter", http.StatusBadRequest)
+			return
+		}
+		err := models.DeleteVacancies(idStr)
+		if err != nil {
+			log.Printf("Error deleting news: %v", err)
+			http.Error(w, "Failed to delete news: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+		FromModel, err := models.GetAllVacancies()
+		if err != nil {
+			log.Printf("Error during retrieval: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		data := &SiteData{
+			Vacancies: FromModel,
+		}
+		err = templates.Render(w, "vacancies-partial", data)
+		if err != nil {
+			log.Printf("Error rendering vacancies-partial template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		log.Printf("Vacancies item with ID %s deleted", idStr)
+	}
+}
+
+func deleteStaffsHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodDelete {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+		idStr := r.URL.Query().Get("id")
+		if idStr == "" {
+			http.Error(w, "Missing id parameter", http.StatusBadRequest)
+			return
+		}
+		err := models.DeleteStaffs(idStr)
+		if err != nil {
+			log.Printf("Error deleting staffs: %v", err)
+			http.Error(w, "Failed to delete staffs: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+		FromModel, err := models.GetAllStaff()
+		if err != nil {
+			log.Printf("Error during retrieval: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		data := &SiteData{
+			Staffs: FromModel,
+		}
+		err = templates.Render(w, "staffs-partial", data)
+		if err != nil {
+			log.Printf("Error rendering staffs-partial template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		log.Printf("Staffs item with ID %s deleted", idStr)
+	}
+}
+
+func updateNewsHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPut {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+
+		err := r.ParseMultipartForm(10 << 20)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		idStr := r.FormValue("id")
+		title := r.FormValue("title")
+		description := r.FormValue("description")
+
+		file, header, err := r.FormFile("image")
+		var imageUrl string
+		if err != nil {
+			imageUrl = ""
+		} else {
+			defer file.Close()
+			err = os.MkdirAll("./uploads", os.ModePerm)
+			if err != nil {
+				log.Printf("Error creating uploads directory: %v", err)
+				http.Error(w, "Internal server error", 500)
+				return
+			}
+
+			rawFileName := "news-" + header.Filename
+
+			filename := filepath.Join("uploads", rawFileName)
+			dst, err := os.Create(filename)
+			if err != nil {
+				http.Error(w, "Error saving file: "+err.Error(), 500)
+				return
+			}
+			defer dst.Close()
+			_, err = io.Copy(dst, file)
+			if err != nil {
+				http.Error(w, "Error saving file: "+err.Error(), 500)
+				return
+			}
+			imageUrl = "/" + filename
+		}
+
+		Item := models.NewsData{
+			Id:          atoi(idStr),
+			Title:       title,
+			Description: description,
+			ImageURL:    imageUrl,
+		}
+
+		List, err := models.UpdateNews(idStr, Item)
+		if err != nil {
+			http.Error(w, "Failed to update : "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		data := &SiteData{
+			News: List,
+		}
+
+		err = templates.Render(w, "news-partial", data)
+		if err != nil {
+			log.Printf("Error rendering news-partial template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		log.Printf("News item updated: %+v", Item)
+	}
+}
+
+func updateEventHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPut {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+
+		err := r.ParseMultipartForm(10 << 20)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		idStr := r.FormValue("id")
+		title := r.FormValue("title")
+		description := r.FormValue("description")
+		dateStr := r.FormValue("date")
+
+		file, header, err := r.FormFile("image")
+		var imageUrl string
+		if err != nil {
+			imageUrl = ""
+		} else {
+			defer file.Close()
+			err = os.MkdirAll("./uploads", os.ModePerm)
+			if err != nil {
+				log.Printf("Error creating uploads directory: %v", err)
+				http.Error(w, "Internal server error", 500)
+				return
+			}
+
+			rawFileName := "event-" + header.Filename
+
+			filename := filepath.Join("uploads", rawFileName)
+			dst, err := os.Create(filename)
+			if err != nil {
+				http.Error(w, "Error saving file: "+err.Error(), 500)
+				return
+			}
+			defer dst.Close()
+			_, err = io.Copy(dst, file)
+			if err != nil {
+				http.Error(w, "Error saving file: "+err.Error(), 500)
+				return
+			}
+			imageUrl = "/" + filename
+		}
+
+		eventItem := models.EventData{
+			Id:          atoi(idStr),
+			Title:       title,
+			Description: description,
+			Date:        dateStr,
+			ImageURL:    imageUrl,
+		}
+
+		eventList, err := models.UpdateEvent(idStr, eventItem)
+		if err != nil {
+			http.Error(w, "Failed to update event: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		data := &SiteData{
+			Events: eventList,
+		}
+
+		err = templates.Render(w, "events-partial", data)
+		if err != nil {
+			log.Printf("Error rendering events-partial template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		log.Printf("Events item updated: %+v", eventItem)
+	}
+}
+
+func updateVacancyHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPut {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+
+		err := r.ParseMultipartForm(10 << 20)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		idStr := r.FormValue("id")
+		title := r.FormValue("title")
+		description := r.FormValue("description")
+
+		file, header, err := r.FormFile("image")
+		var imageUrl string
+		if err != nil {
+			imageUrl = ""
+		} else {
+			defer file.Close()
+			err = os.MkdirAll("./uploads", os.ModePerm)
+			if err != nil {
+				log.Printf("Error creating uploads directory: %v", err)
+				http.Error(w, "Internal server error", 500)
+				return
+			}
+
+			rawFileName := "vacancies-" + header.Filename
+
+			filename := filepath.Join("uploads", rawFileName)
+			dst, err := os.Create(filename)
+			if err != nil {
+				http.Error(w, "Error saving file: "+err.Error(), 500)
+				return
+			}
+			defer dst.Close()
+			_, err = io.Copy(dst, file)
+			if err != nil {
+				http.Error(w, "Error saving file: "+err.Error(), 500)
+				return
+			}
+			imageUrl = "/" + filename
+		}
+
+		Item := models.VacanciesData{
+			Id:          atoi(idStr),
+			Title:       title,
+			Description: description,
+			ImageURL:    imageUrl,
+		}
+
+		List, err := models.UpdateVacancies(idStr, Item)
+		if err != nil {
+			http.Error(w, "Failed to update : "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		data := &SiteData{
+			Vacancies: List,
+		}
+
+		err = templates.Render(w, "vacancies-partial", data)
+		if err != nil {
+			log.Printf("Error rendering vacancies-partial template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		log.Printf("Vacancies item updated: %+v", Item)
+	}
+}
+
+func updateStaffHandler(templates *Templates) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPut {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+
+		err := r.ParseMultipartForm(10 << 20)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		idStr := r.FormValue("id")
+		name := r.FormValue("name")
+		position := r.FormValue("position")
+
+		file, header, err := r.FormFile("image")
+		var imageUrl string
+		if err != nil {
+			imageUrl = ""
+		} else {
+			defer file.Close()
+			err = os.MkdirAll("./uploads", os.ModePerm)
+			if err != nil {
+				log.Printf("Error creating uploads directory: %v", err)
+				http.Error(w, "Internal server error", 500)
+				return
+			}
+
+			rawFileName := "staff-" + header.Filename
+
+			filename := filepath.Join("uploads", rawFileName)
+			dst, err := os.Create(filename)
+			if err != nil {
+				http.Error(w, "Error saving file: "+err.Error(), 500)
+				return
+			}
+			defer dst.Close()
+			_, err = io.Copy(dst, file)
+			if err != nil {
+				http.Error(w, "Error saving file: "+err.Error(), 500)
+				return
+			}
+			imageUrl = "/" + filename
+		}
+
+		Item := models.StaffData{
+			Id:       atoi(idStr),
+			Name:     name,
+			Position: position,
+			ImageURL: imageUrl,
+		}
+
+		List, err := models.UpdateStaffs(idStr, Item)
+		if err != nil {
+			log.Printf("Error updating staff: %v", err)
+			http.Error(w, "Failed to update : "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		data := &SiteData{
+			Staffs: List,
+		}
+
+		err = templates.Render(w, "staffs-partial", data)
+		if err != nil {
+			log.Printf("Error rendering staffs-partial template: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		log.Printf("Staff item updated: %+v", Item)
+	}
+}
+
+
+func atoi(s string) int {
+	n, err := strconv.Atoi(s)
+	if err != nil {
+		return 0
+	}
+	return n
 }

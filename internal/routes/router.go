@@ -57,6 +57,7 @@ func NewRouter(templates *Templates) http.Handler {
 	r.Get("/news", getNewsHandler(templates))
 	r.Get("/vacancies", getVacanciesHandler(templates))
 	r.Get("/events", getEventsHandler(templates))
+	r.Get("/team", getStaffsHandler(templates))
 	r.Get("/login", loginHandler(templates))
 	r.Get("/logout", logoutHandler)
 	r.Get("/search", searchHandler(templates))
@@ -65,12 +66,23 @@ func NewRouter(templates *Templates) http.Handler {
 	r.Group(func(r chi.Router) {
 		r.Use(adminOnly)
 		r.Get("/dashboard", dashboardHandler(templates))
-	})
+		r.Post("/news", postNewsHandler(templates))
+		r.Post("/events", postEventHandler(templates))
+		r.Post("/vacancies", postVacancyHandler(templates))
+		r.Post("/team", postStaffHandler(templates))
 
-	r.Post("/news", postNewsHandler(templates))
-	r.Post("/events", postEventHandler(templates))
-	r.Post("/vacancies", postVacancyHandler(templates))
+		r.Delete("/news", deleteNewsHandler(templates))
+		r.Delete("/events", deleteEventHandler(templates))
+		r.Delete("/vacancies", deleteVacanciesHandler(templates))
+		r.Delete("/team", deleteStaffsHandler(templates))
+
+		r.Put("/news", updateNewsHandler(templates))
+		r.Put("/events", updateEventHandler(templates))
+		r.Put("/vacancies", updateVacancyHandler(templates))
+		r.Put("/team", updateStaffHandler(templates))
+	})
 	r.Post("/login", loginHandler(templates))
+
 
 	r.Get("/about", createSimplePageHandler(templates, "about"))
 	r.Get("/academics", createSimplePageHandler(templates, "academics"))
@@ -79,7 +91,6 @@ func NewRouter(templates *Templates) http.Handler {
 	r.Get("/contact", createSimplePageHandler(templates, "contact"))
 	r.Get("/facilities", createSimplePageHandler(templates, "facilities"))
 	r.Get("/privacy", createSimplePageHandler(templates, "privacy"))
-	r.Get("/team", createSimplePageHandler(templates, "team"))
 
 	cwd, err := os.Getwd()
 	if err != nil {
