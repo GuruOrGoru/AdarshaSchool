@@ -1,6 +1,6 @@
 # Adarsha School Website
 
-This repository hosts the backend for the Adarsha School Website, a web application designed to provide information about the school, manage content, and potentially handle other school-related functionalities.
+This repository hosts the backend for the Adarsha Secondary School Website, a web application designed to provide information about the school, manage content, and potentially handle other school-related functionalities.
 
 ## Features
 
